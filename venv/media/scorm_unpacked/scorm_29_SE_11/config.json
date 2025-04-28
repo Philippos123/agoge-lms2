@@ -1,0 +1,993 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-3782316960612276120_tgpjhr.png",
+		"colors": {
+			"background": "#040505",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #040505;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #3D622D;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "54e002ad-8563-bf78-2282-6437fe9e3de8",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "54e002ad-8563-bf78-2282-6437fe9e3de8"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/CH_Industry_Kap_3_eazns9_hogomz.png",
+				"prompt": "Klicka på knappen för att gå vidare",
+				"appearance": {
+					"waypointColor": "None"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-116386864978239291_bwy2ux.png",
+						"caption": "<p>Vi vet att du kan vara orolig inför din första arbetsdag.</p><p></p><hr><p>Detta kapitel är till för att ge dig en överblick om vad som händer din första dag.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.8233333333333334,
+							"yMin": 0.8866666666666667,
+							"xMin": 0.15
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "78ddfbc1-dc4f-92d2-5d58-818e5a47c971",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "78ddfbc1-dc4f-92d2-5d58-818e5a47c971"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<p>Det är snart dags för dig att påbörja din första arbetsdag hos oss på CH Industry. <br></p><p><strong>Det är något vi är superglada inför!</strong></p>",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/0001-2351298184838386944_nresgt_tsdno7.png",
+						"contentType": "image"
+					},
+					{
+						"content": "<p>Vi söker alltid personal med rätt attityd och viljan att alltid utvecklas!</p><hr><p><strong><em>center&gt; Om du kommer till oss med den inställningen så ger du dig rätt förutsättningar att passa in!</em></strong></p>",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "<p>Din onboarding hos <br>CH Industry </p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2294d99b-f143-5eb3-9cb2-07c0cfb6464e",
+			"type": "title",
+			"subtype": "default",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "2294d99b-f143-5eb3-9cb2-07c0cfb6464e"
+			},
+			"data": {
+				"buttonText": "Nu kör vi! ",
+				"exitButton": false,
+				"title": "Hur kommer din första dag se ut?",
+				"titleType": "html",
+				"subtitle": "",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "3821f503-697c-4c87-4d32-b236ff91436a",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "3821f503-697c-4c87-4d32-b236ff91436a"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Testa mina kunskaper",
+				"url": "fit_content_assets/CH_VAD_DU_FAR_msvtwu.png",
+				"prompt": "Utforska bilderna",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<p>Din första arbetsdag kommer du vanligtvis kl 08:00 till huvudentrén. \n\nVi tar emot dig och ser till att du får:",
+						"narration": null,
+						"region": {
+							"yMax": 0.868,
+							"xMax": 0.136,
+							"yMin": 0.096,
+							"xMin": 0
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Passerkort</h1>\n____\n<p>Med detta kort kommer du kunna ta dig in och ut ur våra lokaler",
+						"narration": null,
+						"region": {
+							"yMax": 0.798,
+							"xMax": 0.314,
+							"yMin": 0.156,
+							"xMin": 0.154
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2> Arbetskläder och skyddsskor</h1>\n___\nVi jobbar i en bransch med tunga maskiner, då finns det krav på vad man ska bära för kläder. </small>\n\n",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.476,
+							"yMin": 0.18000000000000002,
+							"xMin": 0.354
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Anställningsnummer </h1>\n___\nMed hjälp av ett anställningsnummer kan du registrera närvaro och starta jobb i Monitor",
+						"narration": null,
+						"region": {
+							"yMax": 0.772,
+							"xMax": 0.666,
+							"yMin": 0.252,
+							"xMin": 0.528
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Skyddsutrustning</h1>\n___\nSom sagt tidigare: \n\nVi jobbar i en bransch med tunga maskiner och hårda material. Det kräver skydd av olika slag.",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.836,
+							"yMin": 0.252,
+							"xMin": 0.722
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1> Kaffemugg</h1>\n___\nOch självklart ska du få din egen <x>kaffemugg! ",
+						"narration": "",
+						"region": {
+							"yMax": 0.832,
+							"xMax": 1,
+							"yMin": 0.14400000000000002,
+							"xMin": 0.884
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "25df4ce8-502e-0694-9244-e2c7f80355b4",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Varför behöver vi <br>anställningsnummer? ",
+							"questionId": "d193e46a-4f98-445e-805f-29d23edf9158",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "För att visa att vi jobbar på CH Industry",
+								"correct": false,
+								"answerId": "fd93bfbc-5820-43c9-a10a-4c68253f0209",
+								"type": "text"
+							},
+							{
+								"content": "För att kunna registrera närvaro och starta jobb i Monitor",
+								"correct": true,
+								"answerId": "83e92763-2fec-48e2-9c9e-cc860f068c07",
+								"type": "text"
+							},
+							{
+								"content": "Med hjälp av anställningsnummer kan jag starta maskiner i verkstan",
+								"correct": false,
+								"answerId": "fbbc684a-e28f-4264-8aaf-e7cca74451b5",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "25df4ce8-502e-0694-9244-e2c7f80355b4"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "8173eea1-2097-4429-99ca-7322dac00e27",
+						"content": "För att visa att vi jobbar på CH Industry",
+						"correct": false
+					},
+					{
+						"id": "46f2b5ac-9dcc-4836-a5ac-f3878c923ade",
+						"content": "För att kunna registrera närvaro och starta jobb i Monitor",
+						"correct": true
+					},
+					{
+						"id": "78f406bc-2e13-4173-a135-45ac6b203b87",
+						"content": "Med hjälp av anställningsnummer kan jag starta maskiner i verkstan",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>Inte riktigt</p>",
+					"correct": "<p>Det är korrekt</p>",
+					"text": "<p>Vi använder anställningsnummer för att registrera närvaro och starta jobb i Monitor</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Varför behöver vi <br>anställningsnummer? ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "2ce90d30-7b2d-a697-aa8a-50887629e33c",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "2ce90d30-7b2d-a697-aa8a-50887629e33c"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera/klicka på pilen",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-5611904506178148251_xjmocl.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>När du kommer kl 8.00 till huvudentrén så kommer du få träffa din handledare. ",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-8542621964031687387_uil5gs.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Din handledare kommer ta hand om dig under din introduktion eller praktikperiod.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-2978424638602479938_vuqvqq.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Din handledare ser till att du får:\n\n<p> <small>\"**Passerkort, arbetskläder, anställningsnummer, skyddsutrustning och en <x>kaffemugg**",
+						"imagePosition": "Top",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-8542621963591432369_edbdvg.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Därefter kommer din handledare ta dig till din arbetsplats där du får träffa din kollegor. Samt vart man beställer mat <br>(<strong>Ifall man glömmer matlåda</strong>).</p>",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-2373816375950710548_zrihic.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p> Är du osäker på något i ditt arbete skall du fråga din handledare direkt, så att vi kan korrigera eventuella fel och brister. \n\n<x>Det är bättre att fråga en gång för mycket!",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<p>Har du läst något i denna utbildning som du har frågor kring så kan du alltid fråga din handledare!  ",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Hur är mina arbetstider?",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "e26732a7-ca5d-6b41-5a55-876bac4839c0",
+			"type": "title",
+			"subtype": "default",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "e26732a7-ca5d-6b41-5a55-876bac4839c0"
+			},
+			"data": {
+				"buttonText": "Nu kör vi! ",
+				"exitButton": false,
+				"title": "Arbetstider",
+				"titleType": "html",
+				"subtitle": "Vad har vi för arbetstider, raster och lunch. ",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "9794bf40-6b7d-2276-ffdf-5f4f4803410d",
+			"type": "expandable-list",
+			"subtype": "three",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Expandable list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "9794bf40-6b7d-2276-ffdf-5f4f4803410d"
+			},
+			"data": {
+				"content": null,
+				"prompt": "Välj en rubrik för att se mera",
+				"focus": true,
+				"doneText": "Testa mina kunskaper!",
+				"list": [
+					{
+						"content": "**07:00-16:15**",
+						"title": "Måndag-Torsdag"
+					},
+					{
+						"content": "**07:00-14:00**",
+						"title": "Fredagar"
+					},
+					{
+						"content": "* <p>Frukost 09:00-09:15\n* <p>Kafferast 10:30-10:40\n* <p>Lunch 12:00-12:30** (endast 15 min på fredagar)** \n* <p>kafferast 14:30-14:40 **(Ej fredagar)**",
+						"title": "Raster"
+					},
+					{
+						"content": "<p>Jobbar man skift har man lite andra tider och de framgår tydligt av skiftschema vid stämplingsterminalen.",
+						"title": "Jobbar du skift? "
+					}
+				],
+				"title": "Normala arbetstider **Dagtid**",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2adf17db-0e3e-4622-232a-63355a9ffa27",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Det är fredag och klockan är 12:00.<br> Hur lång lunch rast har du? ",
+							"questionId": "4504e7ad-4126-4faa-ba00-11173d6734a9",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "15 minuter.",
+								"correct": true,
+								"answerId": "d8202d85-a893-4d5b-8aa7-008363dd661d",
+								"type": "text"
+							},
+							{
+								"content": "Som vanligt 30 minuter.",
+								"correct": false,
+								"answerId": "32f3e9df-d9b6-4447-863f-eb41a0c3a999",
+								"type": "text"
+							},
+							{
+								"content": "Vi hoppar över lunchen.",
+								"correct": false,
+								"answerId": "cb0cef96-4427-443b-8999-a0990be1faec",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "2adf17db-0e3e-4622-232a-63355a9ffa27"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "bf5565c1-2c4e-4512-ae33-c16fe16c8839",
+						"content": "15 minuter.",
+						"correct": true
+					},
+					{
+						"id": "ced76dd3-0675-456a-8c91-9b6e38fb8b9b",
+						"content": "Som vanligt 30 minuter.",
+						"correct": false
+					},
+					{
+						"id": "4f0635e5-abe1-448e-8c2a-a3c5c2acd37b",
+						"content": "Vi hoppar över lunchen.",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt! ",
+					"text": "På fredagar har vi 15 minuter lunch ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Det är fredag och klockan är 12:00.<br> Hur lång lunch rast har du? ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "da4a469c-7e34-99d5-9af3-65e1252cb489",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "da4a469c-7e34-99d5-9af3-65e1252cb489"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4042400042044927647_pcxmsa.png",
+						"caption": "<p> Vi är superglada att du kommer till oss! Låt oss berätta vart du kan ställa din bil, cykel, el-sparkcyklar osv. "
+					},
+					{
+						"image": "fit_content_assets/Skarmbild_88_wewnd1_r5foyd.png",
+						"caption": "<h1> Bil</h1>\n___\n<p>Personalparkering för bil finns på den östra gaveln mellan CH och Arkitektkopia.\n\n<br> \n**Kolla på bilden för exempel.**"
+					},
+					{
+						"image": "fit_content_assets/0001-952930696577748538_xmmkrc.png",
+						"caption": "<h1> Cykel</h2>\n___\n\n<p>Cyklar kan\nparkeras utanför i cykelställ eller i vårt cykelrum.(Här kan du även ladda din el-cykel)"
+					},
+					{
+						"image": "fit_content_assets/0001-5611904511583111804_db8ydl.png",
+						"caption": "<h1> El-sparkcykel</h2>\n___\nEl-sparkcyklar får endast stå i vårt cykelrum\neller utomhus, pga brandfara.\n\n(Laddning får endast ske i cykel rummet) "
+					},
+					{
+						"image": "fit_content_assets/0001-9142726617439794239_jarteu.png",
+						"caption": "<h1>Tar du bussen?</h1><hr><p>För att ta bussen till oss tar du linje 4. <br>Du hoppar av vid Skjulsta och sedan är det <br>10-15 minuter gångavstånd till <x>CH.</p>"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "392e23d9-1589-e6f6-f1a5-9a18a739a3c6",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vilken tid börjar du din första dag?",
+							"questionId": "9fbe797d-f0f9-47ec-92bb-6c1eca80e8ae",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "08:00",
+								"correct": true,
+								"answerId": "fc361ea4-5a13-4340-900e-968dfbe46fc5",
+								"type": "text"
+							},
+							{
+								"content": "09:00",
+								"correct": false,
+								"answerId": "0a0fd10e-b4b2-42fc-abd5-ec94d5f8ed56",
+								"type": "text"
+							},
+							{
+								"content": "08:30",
+								"correct": false,
+								"answerId": "b66f7610-1c27-420e-9de0-51dec049afb8",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "392e23d9-1589-e6f6-f1a5-9a18a739a3c6"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "1c08447d-f1ca-41fd-9121-452ddbae195d",
+						"content": "08:00",
+						"correct": true
+					},
+					{
+						"id": "1b3fab2f-41ee-4f25-bab6-f2debf5157ac",
+						"content": "09:00",
+						"correct": false
+					},
+					{
+						"id": "3f8d2f0e-6c6c-4b98-93dd-9636697b40e5",
+						"content": "08:30",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt",
+					"text": "<p>Se till att vara vid våran <strong>huvudentré 08:00</strong></p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Vilken tid börjar du din första dag?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "0871d910-e079-497c-62cf-3d181d2bb8d9",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0871d910-e079-497c-62cf-3d181d2bb8d9"
+			},
+			"data": {
+				"prompt": "svep upp för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-5239231659376425689_itkuvh.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h2>Bra jobbat!</h2><p>Nu är du klar med detta kapitel. Vi har gått igenom hur din <strong><x>Första dag</strong> kommer att se ut hos oss på CH Indsutry.<br></p>",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "9d8b0e82-49aa-7b26-8a4c-01b4c5bea881",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "9d8b0e82-49aa-7b26-8a4c-01b4c5bea881"
+			},
+			"data": {
+				"prompt": "Svep för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-3110154917101719265_iyvy7s.png",
+						"caption": "\n\n<h1> Varmt välkommen till <br><x>CH Industry! "
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "56bac423-23a8-df4d-f904-909b2a4e5c3d",
+			"type": "multiple-choice-survey",
+			"subtype": "yes-no",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Survey",
+			"templateDescription": "Ask a multiple choice question",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "56bac423-23a8-df4d-f904-909b2a4e5c3d"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"answers": [
+					{
+						"id": "46ff6826-e73b-40a5-744e-df2b5d014dbe",
+						"content": "Taggad"
+					},
+					{
+						"id": "651bb57e-49f1-b6f0-7e2a-806936607170",
+						"content": "Nervös"
+					},
+					{
+						"id": "7fdc30ed-60f9-7ed3-edd4-e19b24b4c36f",
+						"content": "Lite av båda"
+					}
+				],
+				"prompt": "Välj det bästa svaret",
+				"question": {
+					"min": null,
+					"content": "Hur känner du inför din första arbetsdag?",
+					"contentType": "text",
+					"id": "a93befd0-16b1-8b2b-a04f-68f7c31c1c16"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "f1bc54b3-4230-eeaf-293a-c035735d5890",
+			"type": "multiple-choice-survey",
+			"subtype": "yes-no",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Survey",
+			"templateDescription": "Ask a multiple choice question",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "f1bc54b3-4230-eeaf-293a-c035735d5890"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"answers": [
+					{
+						"id": "c85f51f1-ec30-3706-7fd8-7236b4db4e28",
+						"content": "Ja "
+					},
+					{
+						"id": "8733d3a5-e3ed-582c-6e69-4992f3f5288b",
+						"content": "Nej "
+					}
+				],
+				"prompt": "Välj det bästa svaret",
+				"question": {
+					"min": null,
+					"content": "Hjälpte detta kapitel dig att känna dig tryggare eller taggade inför din första arbetsdag?",
+					"contentType": "text",
+					"id": "8849e4ff-f703-9b74-fcad-a32f414f6396"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a1723a8a-8807-2e7c-1b59-0eaf4f6f5fe9",
+			"type": "free-text-survey",
+			"subtype": "free-text",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Free text",
+			"templateDescription": "Free text input for user feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a1723a8a-8807-2e7c-1b59-0eaf4f6f5fe9"
+			},
+			"data": {
+				"prompt": "Skriv ett svar",
+				"question": {
+					"min": 0,
+					"content": "Finns det något du tycker vi kan förbättra?",
+					"contentType": "html",
+					"id": "0b5adecc-2cf3-d677-2ab2-be5cfe52ffda"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "01e76584-5e8d-497b-87c2-b54227ad51f1",
+			"type": "exit",
+			"subtype": "default",
+			"name": 16,
+			"displayIndex": 17,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "01e76584-5e8d-497b-87c2-b54227ad51f1"
+			},
+			"data": {
+				"content": "<p>Lycka till med din första dag!\n///<x>CH Industry</p>",
+				"buttonText": "Avsluta lektion",
+				"title": "<p>Det var allt!</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Din första dag. ",
+	"index": 0,
+	"scorm": true,
+	"id": "65d348a18500bfad45cefc00"
+}

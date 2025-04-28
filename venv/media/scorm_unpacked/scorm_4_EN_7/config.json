@@ -1,0 +1,977 @@
+{
+	"config": {
+		"colors": {
+			"background": "#FEFEFE",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #967A26;\n  --secondary-palette-colour: #FEFEFE;\n  --primary-font-colour: #FFFFFF;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\nblack{\n  color:black;",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "en"
+	},
+	"slides": [
+		{
+			"id": "4ef07401-6b99-40d8-aa59-690447635e8f",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 1,
+			"displayIndex": 1,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "4ef07401-6b99-40d8-aa59-690447635e8f"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">Svep för att fortsätta</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/Logotyp_Agoge_flcibr_vwcwbv_qtyaok.png",
+						"caption": "<p>Welcome to Agoge's training on mental health in the workplace.\n</p>"
+					}
+				],
+				"doneText": "<p>Con</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "8f7c9ef3-2f47-4328-a932-cc765f93c07e",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 2,
+			"displayIndex": 2,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "8f7c9ef3-2f47-4328-a932-cc765f93c07e"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<p>We will talk about what mental health issues are, how we can recognize signs in ourselves and others, and what we can do to manage them.</p>",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/1595385_jst1fc.jpg",
+						"contentType": "image"
+					},
+					{
+						"content": "<p>This training is designed to give you basic knowledge and practical tools that you can use to take care of both your own and your colleagues’ mental health.</p><p> Let’s start by understanding what we mean by mental health issues.</p>",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "<p>Continue</p>",
+				"preventFocus": false,
+				"title": "Introduktion",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "9759b1c1-dba7-43e1-83ac-2ef407a91571",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 3,
+			"displayIndex": 3,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "9759b1c1-dba7-43e1-83ac-2ef407a91571"
+			},
+			"data": {
+				"prompt": "Svep för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h1>What are mental health issues?\n</h1>"
+					},
+					{
+						"image": null,
+						"caption": "<p>Mental health issues is a broad term that includes everything from stress and worry to more serious conditions such as depression and anxiety.</p>"
+					},
+					{
+						"image": null,
+						"caption": "<p>It is important to understand that mental health issues can affect anyone, regardless of age, gender, or job role.</p>"
+					}
+				],
+				"doneText": "<p>Continue</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "c55be243-0b86-4720-b814-e5df69910d03",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 4,
+			"displayIndex": 4,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "c55be243-0b86-4720-b814-e5df69910d03"
+			},
+			"data": {
+				"doneText": "<p>Continue</p>",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/Stress_wdh6h3.png",
+				"prompt": "<black>Tryck på bilderna för att utforska",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-7310905621212924438_dxvmdd.png",
+						"caption": "<h1>Depression</h1><p>A long-term condition characterized by depressed mood, low energy, and decreased interest in activities previously enjoyed.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.35370371500651043,
+							"xMax": 0.5888071469907408,
+							"yMin": 0.022222188313802082,
+							"xMin": 0.07592592592592592
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-665844371133278533_r16lay.png",
+						"caption": "<h1>Stress</h1><p>A natural reaction to pressure, but when stress becomes chronic, it can lead to exhaustion and other health problems.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.6888888549804687,
+							"xMax": 1,
+							"yMin": 0.38888885498046877,
+							"xMin": 0.48559678819444446
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-8470582525460104577_ur5bb3.png",
+						"caption": "<p class=\"text-xxl\">Anxiety</p><h1 class=\"text-md\">A feeling of worry or fear that can be temporary but sometimes becomes so severe that it affects daily life.</h1>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9407407633463541,
+							"xMax": 0.4234157986111111,
+							"yMin": 0.6207407633463542,
+							"xMin": 0.07905381944444445
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "8553cf85-eb57-45e7-9534-a990da889fe7",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 5,
+			"displayIndex": 5,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "8553cf85-eb57-45e7-9534-a990da889fe7"
+			},
+			"data": {
+				"prompt": "Swipe to continue",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4010893000058018152_iqxgct.png",
+						"caption": "<p>It’s important that we normalize the conversation about mental health and understand that it's something many people experience.\n</p><p>\n<strong>Seeking help when you feel unwell is a sign of strength, not weakness.</strong>\n</p><p>\nLet's begin there.\n\n</p>"
+					}
+				],
+				"doneText": "<p>Continue</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "29b2c6aa-f254-4ecb-89e8-2b42bae7ce33",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 6,
+			"displayIndex": 6,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>What is a common form of mental ill-health? (Choose one option)</p>",
+							"content": "",
+							"questionId": "144c93ee-1284-4b4c-a09b-5a355ee42856",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Stress",
+								"correct": false,
+								"answerId": "5b92164b-7b50-43a2-9ce0-5230c5ddec76",
+								"type": "text"
+							},
+							{
+								"content": "Depression",
+								"correct": false,
+								"answerId": "a1f44855-fd97-44a6-b369-c62bcba7dc55",
+								"type": "text"
+							},
+							{
+								"content": "<p>Anxiety</p>",
+								"correct": false,
+								"answerId": "dfaa3215-a482-4667-b83f-85555b6f4a03",
+								"type": "text"
+							},
+							{
+								"content": "<p>Everything above</p>",
+								"correct": true,
+								"answerId": "d1c34c8e-cd14-4c60-828b-48dbc9d13748",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "29b2c6aa-f254-4ecb-89e8-2b42bae7ce33"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>Continue</p>",
+				"answers": [
+					{
+						"id": "59d8f1f5-6f2e-8422-eba6-5e160435a768",
+						"content": "Stress",
+						"correct": false
+					},
+					{
+						"id": "1f14e39f-51f8-8ff6-f1bf-61fc27925f12",
+						"content": "Depression",
+						"correct": false
+					},
+					{
+						"id": "f6af0d64-3933-30e0-3190-87f4b6e9983a",
+						"content": "<p>Anxiety</p>",
+						"correct": false
+					},
+					{
+						"id": "86565d89-7492-43a3-9c1c-a1b3fbe1aa5e",
+						"content": "<p>Everything above</p>",
+						"correct": true
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>Not quite right...</p>",
+					"correct": "<p>It is correct!</p>",
+					"text": "<p>Correct answer: D</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">Choose the correct alternativ</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>What is a common form of mental ill-health? (Choose one option)</p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": true,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "9772f3aa-5d51-4796-9e1d-44e076f1e371",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 7,
+			"displayIndex": 7,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "9772f3aa-5d51-4796-9e1d-44e076f1e371"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">Swipe up to contiune</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<p>Being able to recognize signs of mental ill-health, both in ourselves and our colleagues, is important to be able to act in time.</p>"
+					},
+					{
+						"image": null,
+						"caption": "<p>Here are some common warning signs: Changes in behavior:</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-2412115135097862433_rtvtkx_ew4inb.png",
+						"caption": "<p><strong>Someone who is usually social and talkative suddenly becomes withdrawn and isolated. </strong></p>"
+					},
+					{
+						"image": "fit_content_assets/0001-6640995184078221441_ewarj0_av2hwa.png",
+						"caption": "<p><strong>Reduced productivity: </strong>An otherwise efficient and productive colleague starts missing deadlines or making more mistakes than usual.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-3758691422699573341_iphp2o_fhfexn.png",
+						"caption": "<p><strong>Physical symptoms:\n</strong>Often headaches, stomach aches, or other unexplained physical problems can be signs of underlying mental ill-health. </p>"
+					},
+					{
+						"image": "fit_content_assets/0001-7707222397136453957_ndoxk8_ydyvdb.png",
+						"caption": "<p><strong>Irritability or mood swings:</strong></p><p><strong>\n</strong>Someone who was previously calm and collected may start reacting strongly to small things.</p>"
+					}
+				],
+				"doneText": "<p>Continue</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "99eb68c3-da4d-4e19-a4d7-ddf50b3c9eb8",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 8,
+			"displayIndex": 8,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "99eb68c3-da4d-4e19-a4d7-ddf50b3c9eb8"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">swipe up to see more</p>",
+				"items": [
+					{
+						"content": "fit_content_assets/339620_qnxwk2_rurqgb.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<p> It is also important to recognize the difference between temporary stress and something more serious. </p>",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/236151_pt763k_cvbypn.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<p>If these symptoms last for several weeks or affect work performance, it is time to take it seriously. </p>",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "<p>Continue</p>",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "4f26ec34-25e7-4b07-894c-d9747e7e106a",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 9,
+			"displayIndex": 9,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>Which of the following is a warning sign of mental illness?\n(Choose one option)</p>",
+							"content": "",
+							"questionId": "0a323588-6e08-4b19-9357-e9e53d775f97",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>Increased social interaction\n</p>",
+								"correct": false,
+								"answerId": "cef982cc-a4f2-4df2-8a1c-a961012ae882",
+								"type": "text"
+							},
+							{
+								"content": "<p>Changes in behavior\n</p>",
+								"correct": true,
+								"answerId": "9037f0e8-4746-4252-a4bc-24d0edd20869",
+								"type": "text"
+							},
+							{
+								"content": "<p>Improved work capacity\n</p>",
+								"correct": false,
+								"answerId": "d0f46e8f-8e2b-4165-89a7-9af3be9b47f2",
+								"type": "text"
+							},
+							{
+								"content": "<p>None of the above\n</p>",
+								"correct": false,
+								"answerId": "3bb07bdb-9011-47f6-b38d-4fd3f37a26eb",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "4f26ec34-25e7-4b07-894c-d9747e7e106a"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>Continue</p>",
+				"answers": [
+					{
+						"id": "c21bdcc6-9040-6c62-3cc6-bfeefa6afaea",
+						"content": "<p>Increased social interaction\n</p>",
+						"correct": false
+					},
+					{
+						"id": "c52977fa-27d9-e2c9-a7a8-1f6a97767e70",
+						"content": "<p>Changes in behavior\n</p>",
+						"correct": true
+					},
+					{
+						"id": "b921112c-861b-1eae-ae34-bb3beca9ffe9",
+						"content": "<p>Improved work capacity\n</p>",
+						"correct": false
+					},
+					{
+						"id": "ef9f6d23-0e62-4be6-89f6-e6a0b975d507",
+						"content": "<p>None of the above\n</p>",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>Not quite...</p>",
+					"correct": "<p>That´s correct!</p>",
+					"text": "<p>Correct answer: B</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">Choose to correct alternativ</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>Which of the following is a warning sign of mental illness?\n(Choose one option)</p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "7c9a4463-23cb-4397-953b-b6b5fee0b5ae",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 10,
+			"displayIndex": 10,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "7c9a4463-23cb-4397-953b-b6b5fee0b5ae"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">swipe up to see more</p>",
+				"items": [
+					{
+						"content": "<h1>How can we cope with mental ill-health?</h1>",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": null,
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "<p>Managing mental ill-health involves both taking care of yourself and knowing when and where to seek help. </p><p></p><p>Here are some simple strategies:</p>",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": "",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "<p>Continue</p>",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "22e50959-9009-4884-a734-dd8567445735",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 11,
+			"displayIndex": 11,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "22e50959-9009-4884-a734-dd8567445735"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "<p>Continue</p>",
+				"url": "fit_content_assets/Namnlos_design_80_czw61e.png",
+				"prompt": "<p class=\"text-transform-uppercase\">Explore the image</p>",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h2>Self-help:</h2><p></p><p>Techniques such as mindfulness, meditation, and deep breathing can help reduce stress and anxiety. Taking regular breaks and spending time on activities you enjoy is also important.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.17555541992187498,
+							"yMin": 0.09333361816406267,
+							"xMin": 0.0244443359375
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">Talk to someone:</h2><h2 class=\"text-md\">\nIf you feel overwhelmed, talk to a colleague, manager, or someone you trust. Sharing your feelings can reduce the feeling of being alone in it.</h2>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9499995117187501,
+							"xMax": 0.4533333740234375,
+							"yMin": 0.12000000000000001,
+							"xMin": 0.2933333740234375
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">Professional help: </h2><h2 class=\"text-md\">If your symptoms are severe or prolonged, do not hesitate to seek professional help. Occupational health services, psychologists, and counseling services are available to support you. </h2>",
+						"narration": null,
+						"region": {
+							"yMax": 0.92333349609375,
+							"xMax": 0.727777587890625,
+							"yMin": 0.09666674804687495,
+							"xMin": 0.5733331298828125
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">The workplace's role:</h2><h2 class=\"text-md\">\nIf you notice that a colleague is feeling unwell, encourage them to talk to their manager or HR. The workplace can often offer support or adjustments that can help.</h2><p class=\"text-md\"></p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9200001220703128,
+							"xMax": 0.988888916015625,
+							"yMin": 0.10000012207031285,
+							"xMin": 0.818888916015625
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "f4c774a8-5776-4bbe-9456-1563b1d24d32",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 12,
+			"displayIndex": 12,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "f4c774a8-5776-4bbe-9456-1563b1d24d32"
+			},
+			"data": {
+				"author": "",
+				"avatar": "fit_content_assets/0001-2340057537713428607_fsgplo.png",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "<p>Continue</p>",
+				"title": "<h2>Seeking help is an important step towards feeling better. Remember that mental ill-health is not something you need to deal with alone. </h2>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "5129f1f7-9965-4809-8a37-2231f90fe0d9",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 13,
+			"displayIndex": 13,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>What can you do if you feel overwhelmed? (Choose one option)</p>",
+							"content": "",
+							"questionId": "158d06fe-076b-47af-a519-075090a6d566",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>Ignore it and continue working </p>",
+								"correct": false,
+								"answerId": "a0396597-4f8a-4ea7-a1d3-3cdfb1f25337",
+								"type": "text"
+							},
+							{
+								"content": "<p>Talk to someone you trust </p>",
+								"correct": true,
+								"answerId": "67fc075d-d839-424c-ac3b-9c09b9271fc6",
+								"type": "text"
+							},
+							{
+								"content": "<p>Wait until it goes away on its own</p>",
+								"correct": false,
+								"answerId": "c2a84b92-9ea7-4b2a-8cf6-c8f6a0056992",
+								"type": "text"
+							},
+							{
+								"content": "<p>Increase the workload</p>",
+								"correct": false,
+								"answerId": "ee47ccb1-ac2a-4ff0-8aa2-e9455c470338",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "5129f1f7-9965-4809-8a37-2231f90fe0d9"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>Continue</p>",
+				"answers": [
+					{
+						"id": "841e9448-8dd5-0708-ad11-d9e960dc8680",
+						"content": "<p>Ignore it and continue working </p>",
+						"correct": false
+					},
+					{
+						"id": "c979b986-1c5f-74c4-0ac6-742df2e6d961",
+						"content": "<p>Talk to someone you trust </p>",
+						"correct": true
+					},
+					{
+						"id": "3051e802-d060-869c-73d0-d8a3f97ae69b",
+						"content": "<p>Wait until it goes away on its own</p>",
+						"correct": false
+					},
+					{
+						"id": "a7cf10b6-e95a-44a8-84d7-5e11d9dc8010",
+						"content": "<p>Increase the workload</p>",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Rätt svar: B\n",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">Choose the correct alternativ</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>What can you do if you feel overwhelmed? (Choose one option)</p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "27b56da8-a313-4daf-a63e-edebc03054ee",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 14,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "27b56da8-a313-4daf-a63e-edebc03054ee"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">Swipe up to continue</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h2>Summary and conclusion.</h2>"
+					},
+					{
+						"image": "",
+						"caption": "<p>In summary, we have talked about what mental ill-health is, how to recognize the signs of it, and some basic ways to manage it.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-4698817839922133258_gky7vx.png",
+						"caption": "<p>It is important that we take care of our mental health and are attentive to both our own and our colleagues' well-being.</p><p></p><p>If you notice that you or someone else is feeling unwell, do not hesitate to seek help or talk to someone. Mental health is just as important as physical health, and we all need to support each other to feel good at work. </p>"
+					},
+					{
+						"image": "fit_content_assets/708440_ipljq5.jpg",
+						"caption": "<p>Mental health is just as important as physical health, and we all need to support each other to feel good at work.\n</p>"
+					}
+				],
+				"doneText": "<p>Continue</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "1bce0d0c-4789-460c-ab85-3db5a378e395",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 15,
+			"displayIndex": 15,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "1bce0d0c-4789-460c-ab85-3db5a378e395"
+			},
+			"data": {
+				"author": "## // Team Agoge",
+				"avatar": "",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "<p>Continue</p>",
+				"title": "<p>Take care of yourself and your colleagues.</p><p></p><p> Your mental health is important, and you have the tools to manage it. Thank you for participating in this training.</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "434b17a8-e9f7-4a5d-b01e-71d742ddb3b0",
+			"type": "exit",
+			"subtype": "default",
+			"name": 16,
+			"displayIndex": 16,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "434b17a8-e9f7-4a5d-b01e-71d742ddb3b0"
+			},
+			"data": {
+				"content": "<p>Thank you for participating in this training.\n</p>",
+				"buttonText": "<p>Complete education\n</p>",
+				"title": "<p>That was everything</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Psykisk hälsa på jobbet EN",
+	"index": 0,
+	"scorm": true,
+	"id": "67fcafea771d9f70ad836650"
+}

@@ -1,0 +1,1248 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-407994839950324976_dkoqdb.png",
+		"colors": {
+			"background": "#000000",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #000000;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #e09770;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "bfb9c292-9035-b4e3-fab0-257086ae3b40",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "bfb9c292-9035-b4e3-fab0-257086ae3b40"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/CH_Industry_Kap_2_gilq93.png",
+				"prompt": "Klicka på knappen för att gå vidare",
+				"appearance": {
+					"waypointColor": "None"
+				},
+				"lightbox": {
+					"background": "Transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-1600322842611040570_aqqrzb_uh9uow.png",
+						"caption": "Detta kapitel handlar om våra **trivselregler och värdegrunder.**\n___\n<x>Allt för att du ska kunna trivas och känna dig trygg hos oss! ",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.8633333333333333,
+							"yMin": 0.89,
+							"xMin": 0.15666666666666668
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "739762d1-77cc-1d2f-5adb-236244b5bce5",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "739762d1-77cc-1d2f-5adb-236244b5bce5"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "<p>Testa mina kunskaper</p>",
+				"url": "fit_content_assets/Trivsel_CH_Industry_1_zdtuvm.png",
+				"prompt": "Utforska bilderna med hjälp av pilarna</p>",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<p>För att du och alla andra på CH skall trivas och känna sig trygga på jobbet har vi kommit överens om en gemensam värdegrund.</p><hr><p><strong>Den bygger på sunt förnuft och respekt för individen.</strong></p>",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.168,
+							"yMin": 0,
+							"xMin": 0
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Vår värdegrund handlar om</p><h1><x>Kvalitet</h1></x><p></p><hr><p>Att vi skall göra <x>\"rätt från mig\"",
+						"narration": null,
+						"region": {
+							"yMax": 0.9640000000000002,
+							"xMax": 0.396,
+							"yMin": 0.07200000000000001,
+							"xMin": 0.236
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1><x>Attityd</x></h2>\n___\n Att vi är positiva och schysta mot varandra",
+						"narration": null,
+						"region": {
+							"yMax": 0.9540000000000001,
+							"xMax": 0.652,
+							"yMin": 0.16599999999999995,
+							"xMin": 0.534
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1> <x> Beslut </h1> </x>\n___\nVi skall alltid fatta kloka faktabaserade <x>Beslut.",
+						"narration": null,
+						"region": {
+							"yMax": 0.8680000000000003,
+							"xMax": 0.968,
+							"yMin": 0.16800000000000034,
+							"xMin": 0.81
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2d93e284-fd58-7980-d37e-962031b85a1e",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p><small> *Välj ett eller flera alternativ.*\n___",
+							"content": "<p>Vilka av dessa tre var det vi pratade om när det gäller trivsel?</p>",
+							"questionId": "c87db0af-6955-4049-b2d2-19a3f588878c",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Attityd",
+								"correct": true,
+								"answerId": "4fe76ff9-d3c3-4efb-9ea1-e0788ab1925f",
+								"type": "text"
+							},
+							{
+								"content": "Kvalitet",
+								"correct": true,
+								"answerId": "fa4a728b-a2bb-42fc-84bc-b0e099a9bb25",
+								"type": "text"
+							},
+							{
+								"content": "Ansvar",
+								"correct": false,
+								"answerId": "aeca2926-5645-4e6d-8bd2-638d91190fb0",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "2d93e284-fd58-7980-d37e-962031b85a1e"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 2,
+				"randomize": true,
+				"doneText": "<p>Fortsätt</p>",
+				"answers": [
+					{
+						"id": "cbde86a4-6c64-4d95-98ed-b3b87b12724d",
+						"content": "Attityd",
+						"correct": true
+					},
+					{
+						"id": "16a8b12c-dd22-4de9-a754-094fb12b8a9a",
+						"content": "Kvalitet",
+						"correct": true
+					},
+					{
+						"id": "f61854b8-241b-45cf-b042-2b3c3bbcfa2e",
+						"content": "Ansvar",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>Inte riktigt...</p>",
+					"correct": "Det är korrekt",
+					"text": "Vi nämnde kvalitet och attityd\n",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "<p>Vilka av dessa tre var det vi pratade om när det gäller trivsel?</p>",
+				"titleType": "text",
+				"subtitle": "<p><small> *Välj ett eller flera alternativ.*\n___",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "cf52389b-bdb1-5916-5d93-c6c196135cc5",
+			"type": "title",
+			"subtype": "default",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "cf52389b-bdb1-5916-5d93-c6c196135cc5"
+			},
+			"data": {
+				"buttonText": "Nu kör vi! ",
+				"exitButton": false,
+				"title": "Trivselregler",
+				"titleType": "html",
+				"subtitle": "Mobiltelefoner, rökning,  m.m.",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "8ee85eb6-f2bf-c35e-4541-f221908409bd",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "8ee85eb6-f2bf-c35e-4541-f221908409bd"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera/Klicka på pilen",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-5239231656734687688_szegds.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h3>Som på alla arbetsplatser finns det trivselregler.</h3><p>CH Industry är inget undantag.</p><p>Låt oss gå igenom några trivselregler som är <strong>extra viktiga</strong></p>",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-3559388994721301089_miu9bq.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h1> Mobiltelefoner</h1> \n___\nMobiler har vi undanstoppade på arbetstid. Man får lyssna, men inte titta (på film, spel m.m.).",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-8212733307265719216_mlxsj1.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h1>Privata samtal</h1> \n___\nMobilsamtal måste man ibland ta på arbetstid, men vi håller samtalen korta och fokuserar därefter på arbetsuppgiften.",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "40ef332b-28b2-e409-4ba7-fc45a9d48bc4",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "40ef332b-28b2-e409-4ba7-fc45a9d48bc4"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "Ibland kan livet vara väldigt hektiskt och det kan ske oförutsägbara saker. \n\nDet har hänt oss alla.\n",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/0001-9142726630829541841_mrzxxm.png",
+						"contentType": "image"
+					},
+					{
+						"content": "<p>I första hand ska du försöka hantera privata problem på din fritid. \n\n<p> <center><strong>På arbetsplatsen fokuserar vi på arbete.",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "Hur hanterar vi privata problem? ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "ab636345-fda7-0af6-bf36-1e7f94f1b59c",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vart ska telefonen ligga?",
+							"questionId": "92b7de9d-4135-43e8-88fc-bd4d1c2b482f",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Undanstoppad",
+								"correct": true,
+								"answerId": "5e9975a9-60f2-41ae-bf70-2718a7bbc398",
+								"type": "text"
+							},
+							{
+								"content": "Jag kan använda den, så länge den inte stör",
+								"correct": false,
+								"answerId": "e63d95b0-3c58-4d99-be99-e761bc92aa43",
+								"type": "text"
+							},
+							{
+								"content": "Jag får använda telefonen hur mycket jag vill",
+								"correct": false,
+								"answerId": "62bb6d0d-d275-4b35-9502-45577c8e4695",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "ab636345-fda7-0af6-bf36-1e7f94f1b59c"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "b2054277-be57-46d0-9fd0-627c225fa3be",
+						"content": "Undanstoppad",
+						"correct": true
+					},
+					{
+						"id": "9ebf62b3-e624-4433-bb21-1801409969ac",
+						"content": "Jag kan använda den, så länge den inte stör",
+						"correct": false
+					},
+					{
+						"id": "5cd45df9-7537-4609-bac4-79e4f665c863",
+						"content": "Jag får använda telefonen hur mycket jag vill",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Telefonen ska vara undanstoppad under arbetstid ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta svaret",
+				"title": "Vart ska telefonen ligga?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "9c1966bc-046f-5345-cfee-1d3be94e3928",
+			"type": "reveal",
+			"subtype": "reveal",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Reveal",
+			"templateDescription": "Flip cards to reveal more details",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "9c1966bc-046f-5345-cfee-1d3be94e3928"
+			},
+			"data": {
+				"content": [
+					{
+						"title": "Ordning och reda ",
+						"description": "**Ordning och reda**\n\nVi håller ordning och reda på arbetsplatsen och lämnar den och våra matrum i det skick vi önskar finna dem i.\n\n**Det skapar en god stämningen och en bättre kvalitet på vårt arbete**\n"
+					},
+					{
+						"title": "Inför möten och raster",
+						"description": "När det är rast eller möten så kommer vi i tid och börjar arbeta när rasten är slut.\n"
+					},
+					{
+						"title": "Samtala med kollegor",
+						"description": "Samtal med kollegor kan vara viktiga för samarbete och för att lösa uppgifter, men tänk på att både du och den du talar med kanske har en viktig uppgift att utföra eller en tid att hålla.\n"
+					}
+				],
+				"prompt": "Klicka på rubrikerna för att se mera",
+				"focus": true,
+				"doneText": "Fortsätt",
+				"title": "Respekt för kollegor och arbetsplatsen",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "a78d4f87-d1b3-efec-1389-0a4bdb034bd2",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a78d4f87-d1b3-efec-1389-0a4bdb034bd2"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera/Klicka på pilen",
+				"items": [
+					{
+						"content": "",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<h1>Rökning</h1>\n<p> Vart får jag röka?\n\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-8225118812651531058_piad61.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "För att skapa en trevlig arbetsmiljö sker rökning på anvisade platser utomhus.\n\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "6dd92d42-53d2-29fd-e9b9-881dc3cd2784",
+			"type": "title",
+			"subtype": "default",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "6dd92d42-53d2-29fd-e9b9-881dc3cd2784"
+			},
+			"data": {
+				"buttonText": "Nu kör vi!",
+				"exitButton": false,
+				"title": "Saker som är bra att känna till",
+				"titleType": "html",
+				"subtitle": "Denna del handlar om saker som är bra att känna till hos oss. ",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d134e193-e9fe-ad40-1ac3-2145724c6fa9",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "d134e193-e9fe-ad40-1ac3-2145724c6fa9"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-1443823068631392720_okte4e_ilhpwl.png",
+						"caption": "<h1> Lunch</h1> \n___\nLunch kan man ta med och värma i någon av våra matsalar. **Micro eller värmeskåp** finns på plats."
+					},
+					{
+						"image": "fit_content_assets/0001-99498579098824405_p5cih3_xwtm5p.png",
+						"caption": "<h1>Glömt matlåda?</h1>\n___\nDet finns möjlighet att beställa mat mot löneavdrag men det behöver göras **innan kl 09:00 samma dag** \n\nVi går igenom det mer i nästa kapitel. "
+					},
+					{
+						"image": "fit_content_assets/0001-3673104882926435158_uzi4wb_bwnqz6.png",
+						"caption": "<h1> Arbetskläder</h1>\n___\nDu kommer att få arbetskläder på din första arbetsdag. \n"
+					},
+					{
+						"image": "fit_content_assets/0001-1443823068128734552_esipoz.png",
+						"caption": "<h1> Tvätt av arbetskläder</h2>\n\n____\n Arbetskläder (byxa, jacka, skjorta) och <x>handduk </x> lämnas in på tvätt när de är smutsiga.\n\nT-tröjor och andra mjuka tröjor tvättas hemma. När de går sönder kasserar man dem och tar nya plagg."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "b9527053-d9ed-7d7f-aefd-fa6b73816f30",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "b9527053-d9ed-7d7f-aefd-fa6b73816f30"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/sjukdom_CH_atgj7f.png",
+				"prompt": "Utforska bilderna",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h1> Vid sjukdom</h1> \n\nVad ska du göra om du har blivit sjuk? ",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.288,
+							"yMin": 0,
+							"xMin": 0.08
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Sjuk- och friskanmälan görs till Smedhälsan/TakeNote på 08-693 80 84 eller via: www.tnsreg.se",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.6,
+							"yMin": 0.048,
+							"xMin": 0.432
+						}
+					},
+					{
+						"image": null,
+						"caption": "Meddela även en kollega  om du tror att det kommer hjälpa dem i planeringen.\n___\n\n<small>Det kommer finnas ett dokument i **Dokumentportfölj** med instruktioner hur du sjukanmäler dig.",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.902,
+							"yMin": 0.20400000000000018,
+							"xMin": 0.75
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "ac720150-aa6e-3ad3-48d9-4d393a1168ab",
+			"type": "title",
+			"subtype": "default",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "ac720150-aa6e-3ad3-48d9-4d393a1168ab"
+			},
+			"data": {
+				"buttonText": "Nu kör vi!",
+				"exitButton": false,
+				"title": "Personalförmåner",
+				"titleType": "html",
+				"subtitle": "Denna del handlar om vad du som anställd på <x>CH</x> har för förmåner",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "aea6e2e1-aab0-bd23-3bce-825fb59c5f99",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "aea6e2e1-aab0-bd23-3bce-825fb59c5f99"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4104324548416729250_o0ms3q.png",
+						"caption": "Vi vill ha frisk, stark och välmående personal som håller i längden. Därför uppmuntrar vi träning i alla former. \n___\n<small> <x>Det finns både gym och träningshall på CH, som är tillgänglig 24-7 för dig och din familj. </x></small> \n\nPrata med din handledare för mera information \n"
+					},
+					{
+						"image": null,
+						"caption": "<p>Om företaget ordnar lunchträning sker den mellan kl 12-12:30 en dag i veckan och därefter bjuder företaget på den tid det tar att byta om och äta sin lunch. "
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "dee86c85-4f33-02c3-3340-0f4f3af3f8f6",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vem ska du kontakta ifall du blir sjuk? ",
+							"questionId": "7432d539-d8fb-49ce-a55a-d5b74e748b60",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Smedhälsan/TakeNote",
+								"correct": true,
+								"answerId": "406408cf-8a1f-417f-bc64-1adfc05bcaf4",
+								"type": "text"
+							},
+							{
+								"content": "1177",
+								"correct": false,
+								"answerId": "42ac4aca-ff12-49c9-af1a-22af88148990",
+								"type": "text"
+							},
+							{
+								"content": "Vårdcentralen",
+								"correct": false,
+								"answerId": "faf0086f-e1eb-4a48-9dae-72267a07fddf",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "dee86c85-4f33-02c3-3340-0f4f3af3f8f6"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "e6ae05db-3767-4e89-8a75-397448526256",
+						"content": "Smedhälsan/TakeNote",
+						"correct": true
+					},
+					{
+						"id": "b435ec9a-8d83-4939-abac-b6da270785b4",
+						"content": "1177",
+						"correct": false
+					},
+					{
+						"id": "09fd9b47-109d-4e8b-9996-89535e75ec40",
+						"content": "Vårdcentralen",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Du ska kontakta Smedhälsan/TakeNote ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta svaret",
+				"title": "Vem ska du kontakta ifall du blir sjuk? ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "41ad844c-3ac2-a306-5818-7b79dc24aa16",
+			"type": "scratch-to-reveal",
+			"subtype": "scratch-to-reveal",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Scratch to reveal",
+			"templateDescription": "Scratch to reveal the content",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "41ad844c-3ac2-a306-5818-7b79dc24aa16"
+			},
+			"data": {
+				"before": {
+					"label": "<h1><x>Skrapa på bilden!\n",
+					"content": "fit_content_assets/0001-3721518581265700856_xs6jmx_pobm0j.png",
+					"contentType": "image"
+				},
+				"after": {
+					"label": "**Kaffe, te, choklad eller kolsyrat vatten** finns att hämta i maskiner i matsalarna utan kostnad.\n\n",
+					"content": "fit_content_assets/0001-8212733311198640244_uhuqs8_kfbu12.png",
+					"contentType": "image"
+				},
+				"canvasBackground": "#666769",
+				"prompt": "Skrapa bilden för att se mera",
+				"doneText": "Fortsätt",
+				"title": "Vad finns det att dricka? ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d9f9a196-c345-0951-7358-c858bd09f09b",
+			"type": "image-collection",
+			"subtype": "image-collection",
+			"name": 16,
+			"displayIndex": 17,
+			"templateName": "Image collection",
+			"templateDescription": "Select an image to see more detail",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "d9f9a196-c345-0951-7358-c858bd09f09b"
+			},
+			"data": {
+				"prompt": "Klicka på bilderna ",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"content": "<p>Vi erbjuder vanligtvis möjlighet till massage 30 min varannan vecka mot subventionerat löneavdrag.\n___\n**Prata med din handledare för att få mera information.**",
+						"image": "fit_content_assets/Namnlos_design_24_evt9fs.png",
+						"narration": null
+					},
+					{
+						"content": "<p>Vi har en bilvårdshall och en tvätthall som anställda kan boka och använda. \n\n**Det är dock inte tillåtet att lämna bilen kvar i någon av hallarna över natten.**",
+						"image": "fit_content_assets/Namnlos_design_25_cbmh1v.png",
+						"narration": null
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": "Klicka på bilderna ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "9707c2a5-7161-2418-9ca7-e62585fa5f6e",
+			"type": "categorise",
+			"subtype": "true-or-false",
+			"name": 17,
+			"displayIndex": 18,
+			"templateName": "Categorize",
+			"templateDescription": "Drag to the correct category",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Får du lämna kvar bilen över natten i biltvätten?",
+							"content": "<p>Får du göra detta?</p>",
+							"questionId": "1062e4e1-2266-4c47-a242-1ba264da3b8f",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Det får jag",
+								"correct": false,
+								"answerId": "4dc2dd50-671f-43c6-8049-3d5a934f4102",
+								"type": "text"
+							},
+							{
+								"content": "Det får jag inte göra",
+								"correct": true,
+								"answerId": "5bf88fb7-03e0-4aa9-9215-33225b33d8e1",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "9707c2a5-7161-2418-9ca7-e62585fa5f6e"
+			},
+			"data": {
+				"buttonText": "Får du lämna kvar bilen över natten i biltvätten?",
+				"categories": [
+					{
+						"text": "Det får jag",
+						"correct": false
+					},
+					{
+						"text": "Det får jag inte göra",
+						"correct": true
+					}
+				],
+				"doneText": "Fortsätt",
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt",
+					"text": "Det får inte lämna kvar bilen över natten i biltvätten",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Dra till det korrekta svaret",
+				"title": "<p>Får du göra detta?</p>",
+				"titleType": "text",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "36c113d7-ed3c-074b-85f0-a3185f1b088a",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 18,
+			"displayIndex": 19,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "36c113d7-ed3c-074b-85f0-a3185f1b088a"
+			},
+			"data": {
+				"prompt": "svep upp för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-5239231659376425689_itkuvh.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h2> <x>Bra jobbat!</h2> </x>\n<p> Nu har du klar med detta kapitel. \nVi har gått igenom vad för vad vi har för regler och värderingar <x>CH Indsutry</x>.\n<br>\n \n<small> Nu avslutar vi med en enkät! \n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "21e9e9be-3e2c-ddff-1e4c-0d82a702c991",
+			"type": "multiple-choice-survey",
+			"subtype": "yes-no",
+			"name": 19,
+			"displayIndex": 20,
+			"templateName": "Survey",
+			"templateDescription": "Ask a multiple choice question",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "21e9e9be-3e2c-ddff-1e4c-0d82a702c991"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"answers": [
+					{
+						"id": "4687a823-69bd-f560-cda6-f0a0a8dc0f45",
+						"content": "<p>Ja</p>"
+					},
+					{
+						"id": "4bc3e13b-51ef-4071-21d4-a503523f59e2",
+						"content": "<p>Nej</p>"
+					}
+				],
+				"prompt": "Välj det alternativet som passar dig ",
+				"question": {
+					"min": null,
+					"content": "<p>Har du lärt dig något nytt om CH Industry</p>",
+					"contentType": "text",
+					"id": "f60b6e40-fbb7-e659-7b0d-8f563ae3f606"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "c26f3f0c-baa7-d406-3288-aa912209abea",
+			"type": "slider-survey",
+			"subtype": "slider",
+			"name": 20,
+			"displayIndex": 21,
+			"templateName": "Slider",
+			"templateDescription": "Gather numerical feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "c26f3f0c-baa7-d406-3288-aa912209abea"
+			},
+			"data": {
+				"slider": {
+					"min": 0,
+					"max": 10,
+					"prefix": "",
+					"suffix": "",
+					"increment": 1,
+					"decimals": 0,
+					"labels": 10,
+					"minLabel": "<p>Mycket dåligt</p>",
+					"maxLabel": "<p>Mycket bra</p>"
+				},
+				"prompt": "Dra för att svara",
+				"question": {
+					"min": null,
+					"content": "<p>Vad tycker du om dagens kapitel? </p>",
+					"contentType": "html",
+					"id": "0767ad3e-8c0c-2a19-4109-8329f32cd781"
+				},
+				"doneText": "<p>Fortsätt</p>",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "f77be88f-ce54-8e86-16ce-dc075ea6007f",
+			"type": "free-text-survey",
+			"subtype": "free-text",
+			"name": 21,
+			"displayIndex": 22,
+			"templateName": "Free text",
+			"templateDescription": "Free text input for user feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "f77be88f-ce54-8e86-16ce-dc075ea6007f"
+			},
+			"data": {
+				"prompt": "<p class=\",text-transform-uppercase\">Skriv ditt svar</p>",
+				"question": {
+					"min": 0,
+					"content": "<p>Finns det något du tycker vi kan göra bättre eller nämna mera?</p>",
+					"contentType": "html",
+					"id": "0d2fc7a8-a080-630b-d86a-6764f51e059d"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "b7665fb3-c211-418e-8842-8501eb98f84e",
+			"type": "exit",
+			"subtype": "default",
+			"name": 22,
+			"displayIndex": 23,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "b7665fb3-c211-418e-8842-8501eb98f84e"
+			},
+			"data": {
+				"content": "Bra jobbat med att genomfört Kapitel 2! ",
+				"buttonText": "Avsluta lektion",
+				"title": "Det var allt!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "För att du ska trivas ",
+	"index": 0,
+	"scorm": true,
+	"id": "65d1fd4ebc7f96ee047084a8"
+}

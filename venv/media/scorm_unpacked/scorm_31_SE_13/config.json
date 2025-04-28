@@ -1,0 +1,1505 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-9098819115125941079_hsrnoo.png",
+		"colors": {
+			"background": "#000000",
+			"experimental": false,
+			"text": "#020101"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #000000;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #020101;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #3D622D;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "4575999f-b0ea-3a4b-865e-abba35449a89",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "4575999f-b0ea-3a4b-865e-abba35449a89"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/CH_Industry_Kap_5_yrwna4.png",
+				"prompt": "Klicka på Klicka här!",
+				"appearance": {
+					"waypointColor": "None"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-5328180328759862328_yyu70e.png",
+						"caption": "<p><x>Rätt kvalitet</x> är viktigt för att **våra kunder** skall bli nöjda och för att vi skall kunna jobba effektivt och hålla hög leveranssäkerhet.</p>\n___\n**Kvalitet är något vi värdesätter högt på <x>CH Industry.**",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.8366666666666667,
+							"yMin": 0.8866666666666667,
+							"xMin": 0.15666666666666668
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "e04aca3a-7dec-fa2b-d11d-552ab9b721b6",
+			"type": "title",
+			"subtype": "default",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "e04aca3a-7dec-fa2b-d11d-552ab9b721b6"
+			},
+			"data": {
+				"buttonText": "Nu kör vi!",
+				"exitButton": false,
+				"title": "Första- och sistabitskontroll",
+				"titleType": "html",
+				"subtitle": "Vad betyder <x>Första- och sistabitskontroll",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "07f40015-e9f9-0de8-94b3-e841ea4654ce",
+			"type": "expandable-list",
+			"subtype": "three",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Expandable list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "07f40015-e9f9-0de8-94b3-e841ea4654ce"
+			},
+			"data": {
+				"content": null,
+				"prompt": "Välj en rubrik för att se mera",
+				"focus": true,
+				"doneText": "Fortsätt",
+				"list": [
+					{
+						"content": "<p>Det är vårt sätt att kontrollera att det vi skapar följer ritningsunderlag och instruktioner innan vi börjar producera större mängder.</p>",
+						"title": "Förstabitskontroll"
+					},
+					{
+						"content": "<p>Sistabitskontroll genomförs när hela batchen är färdig. Genom att kontrollera första - och sistabit utgår vi från att alla detaljer där emellan är korrekta. ",
+						"title": "Sistabitskontroll"
+					},
+					{
+						"content": "<p>Denna kontroll säkerställer att varje batch bara består av artiklar med rätt kvalité.\n",
+						"title": "Länge leve kvalité! "
+					}
+				],
+				"title": "Vad är Första- och sistabitskontroll",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "54408e3a-bb6a-9c74-28d9-6f777aaf766d",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "54408e3a-bb6a-9c74-28d9-6f777aaf766d"
+			},
+			"data": {
+				"prompt": "Svep upp/klicka på pilen för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-1128573764280224121_bn0ne4.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<x> Förstabitskontroll\n___\n \n<p>Varje **\"första-bit\"** skall kontrolleras mot ritning av kollega eller av personal i  \nmät-rummet.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-6778339496240037396_jvo6hk.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>När första biten är **ok** fortsätter man att producera ordern tills den är klar.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-8256646072914956177_lustwv.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h3><x>Komihåg! </h3>\n___\n<p> Att kontrollera stickprov under ordern är förstås väldigt bra och **måste göras om man är osäker på kvalitén.**",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "b0eddd10-8a29-c2d4-462f-4b33f855c460",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "b0eddd10-8a29-c2d4-462f-4b33f855c460"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Namnlos_design_33_axbo1u.png",
+				"prompt": "Klicka på pilen för att se mera",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h1> Sistabitskontroll",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.116,
+							"yMin": 0.048,
+							"xMin": 0
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>När den sista biten i batchen kontrolleras på samma sätt som den första och blivit godkänd, är ordern klar att leverera till nästa operation.",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.292,
+							"yMin": 0,
+							"xMin": 0.162
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Blir sista biten inte godkänd, måste alla detaljer i ordern kontrolleras för att avgöra vilka som är rätt eller fel.</p>",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.54,
+							"yMin": 0,
+							"xMin": 0.42
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Komihåg!</h1>\n\n<p>I kapitel 2 pratade vi om <x> Rätt från mig</x> när det gäller kvalité. \n___\n <x>”Rätt från mig”</x> **betyder att det du lämnar ifrån dig till nästa operation alltid ska ha rätt kvalite.**",
+						"narration": "",
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.84,
+							"yMin": 0.14400000000000018,
+							"xMin": 0.664
+						}
+					},
+					{
+						"image": null,
+						"caption": "Denna kontroll kallar vi för <x>Första- och sistabitskontroll</x>.\n\nDen gör vi för att säkerställa att ordern följer ritningsunderlaget",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 1,
+							"yMin": 0,
+							"xMin": 0.888
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "6bffe865-be51-2031-88f0-aa2f741fe880",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vad betyder *rätt från mig?* ",
+							"questionId": "b61bb120-5b03-4b9e-9440-b7c5d9fc5fab",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Det betyder att det jag lämnar ifrån mig till nästa operation alltid ska ha rätt kvalite.",
+								"correct": true,
+								"answerId": "c65594f3-1817-429a-af46-06611fcdc5ac",
+								"type": "text"
+							},
+							{
+								"content": "Jag ska lita på min magkänsla. ",
+								"correct": false,
+								"answerId": "551d7695-fa9a-439a-b0ff-87ffa99c8fe9",
+								"type": "text"
+							},
+							{
+								"content": "Jag ska göra på det sättet som jag tror fungerar bäst. ",
+								"correct": false,
+								"answerId": "a979a864-5201-4939-a091-48a607303ea1",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "6bffe865-be51-2031-88f0-aa2f741fe880"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "86261b5a-5fa9-4c7b-aff2-8cbc5f4f8477",
+						"content": "Det betyder att det jag lämnar ifrån mig till nästa operation alltid ska ha rätt kvalite.",
+						"correct": true
+					},
+					{
+						"id": "73c71eaf-a271-41c3-8280-8f012f5eb0aa",
+						"content": "Jag ska lita på min magkänsla. ",
+						"correct": false
+					},
+					{
+						"id": "84cdda3d-43e5-43ac-a199-2d8b14f4e7c0",
+						"content": "Jag ska göra på det sättet som jag tror fungerar bäst. ",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt! ",
+					"text": "Det betyder att allt man gör skall följa ritningsunderlag och instruktioner.",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta svaret",
+				"title": "Vad betyder *rätt från mig?* ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "53e465c2-89ed-e5aa-8654-72b7a8e01e1b",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "53e465c2-89ed-e5aa-8654-72b7a8e01e1b"
+			},
+			"data": {
+				"prompt": "Svep för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "",
+						"caption": "<h1>Vad händer vid <x> avvikelser?"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "90acd43b-d082-0260-d00b-2e9bb584d68a",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "90acd43b-d082-0260-d00b-2e9bb584d68a"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-3370240475623594960_ujewu0.png",
+						"caption": "<p><x>Om man upptäcker en avvikelse</x> på de produkter man jobbar med\n\n<br>\n<small> <strong>(tex en avvikelse från de toleranser som är angivna på ritning)</strong><br> <br></small> så måste produktion stoppas och avvikelsen registreras i Monitor.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-2448128455214434334_rgpsbe.png",
+						"caption": "<p>Prata med din Produktionsledare så får du hjälp med detta."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "b33fe95b-5640-ea8e-1f32-850cb338cc28",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "b33fe95b-5640-ea8e-1f32-850cb338cc28"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Namnlos_design_34_w83vl1.png",
+				"prompt": "Klicka på pilen för att se mera",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h2>Hur arbetar vi för att bli bättre? ",
+						"narration": null,
+						"region": {
+							"yMax": 0.928,
+							"xMax": 0.182,
+							"yMin": 0.096,
+							"xMin": 0.026
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>I Monitor finns ett kontrollverktyg där kritiska mått från första- och sistabitskontrollen registreras. ",
+						"narration": null,
+						"region": {
+							"yMax": 0.8580000000000001,
+							"xMax": 0.43,
+							"yMin": 0.168,
+							"xMin": 0.27
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Registreringen blir en databas där vi kan följa hur kvalitén på varje artikel förändras över tid.",
+						"narration": null,
+						"region": {
+							"yMax": 0.8580000000000001,
+							"xMax": 0.688,
+							"yMin": 0.15399999999999994,
+							"xMin": 0.536
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p><x>Det är ett viktigt verktyg</x> för uppföljning och förbättringsarbete.",
+						"narration": null,
+						"region": {
+							"yMax": 0.8560000000000003,
+							"xMax": 0.928,
+							"yMin": 0.14400000000000035,
+							"xMin": 0.786
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "0d904984-ada0-8db3-acad-714c45c2eea0",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0d904984-ada0-8db3-acad-714c45c2eea0"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-550987110048752750_yvzqke.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h2>Detta gör vi för att skapa \n\n**5 stjärnig** <x>kvalité \n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "fe24e903-d7a2-026f-7760-9700761ae491",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "fe24e903-d7a2-026f-7760-9700761ae491"
+			},
+			"data": {
+				"prompt": "Svep upp/Klicka på pilen för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-5274137220739712100_dfarci.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h1> Mätverktyg\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-5466666101520333911_uqmkfo.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Alla mätverktyg (talmeter, skjutmått, tolk mm) som används på arbetsplatsen måste kontrolleras och **kalibreras en gång per år.**",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-745767795145720985_sknml6.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p> Detta sker på anmodan från Kvalitetsavdelningen och sker i mät-rummet. \n\nAv en liten färgad lapp med nummer på framgår vilken månad ditt mät-don skall kontrolleras. ",
+						"imagePosition": "Top",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "ff00cd49-173e-cbb8-4cd4-b357ce8dc7c6",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Hur ofta ska mätverktygen kalibreras? ",
+							"questionId": "5e0661e7-8bdf-40eb-990b-edbce085d4e8",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Minst 1 gång per år ",
+								"correct": true,
+								"answerId": "446d9604-cac9-4ce5-8a88-8f49d7e1b3f3",
+								"type": "text"
+							},
+							{
+								"content": "2 gånger per år ",
+								"correct": false,
+								"answerId": "9ea4adcc-2164-4676-b953-7028001f6e34",
+								"type": "text"
+							},
+							{
+								"content": "Vi behöver aldrig kalibrera mätverktygen",
+								"correct": false,
+								"answerId": "717e92e5-d4d3-4c07-b6e8-7c2695a52a2f",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "ff00cd49-173e-cbb8-4cd4-b357ce8dc7c6"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "0612d109-ca77-43b1-b40c-455e9b6112ac",
+						"content": "Minst 1 gång per år ",
+						"correct": true
+					},
+					{
+						"id": "fe249b86-0c31-4f78-9bb5-7594e67af2f4",
+						"content": "2 gånger per år ",
+						"correct": false
+					},
+					{
+						"id": "de2827b6-3350-4bda-93a0-bddae345745f",
+						"content": "Vi behöver aldrig kalibrera mätverktygen",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt! ",
+					"text": "Vi ska kalibrera verktygen 1 gång per år ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Hur ofta ska mätverktygen kalibreras? ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "6b2dd56a-e03a-3010-f63e-59e9c0081147",
+			"type": "title",
+			"subtype": "default",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "6b2dd56a-e03a-3010-f63e-59e9c0081147"
+			},
+			"data": {
+				"buttonText": "Nu kör vi! ",
+				"exitButton": false,
+				"title": "Ordning och reda ",
+				"titleType": "html",
+				"subtitle": "Varför är ordning och reda viktigt för oss? ",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "c1c82533-d7a6-ed7a-6662-9d0b83be96e5",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "c1c82533-d7a6-ed7a-6662-9d0b83be96e5"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-745767795636639058_xz8yew.png",
+						"caption": "<p> En förutsättning för rätt kvalitet är att vi håller ordning och reda på våra arbetsplatser."
+					},
+					{
+						"image": "fit_content_assets/0001-5864108771805563792_uge1ww.png",
+						"caption": "<p>Detta gör vi för att ordning och reda påverkar kvalité, effektivitet och trivsel på arbetsplatsen. "
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "61a72a5a-0a43-7ab1-ecf0-f51f50ddfbe6",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "61a72a5a-0a43-7ab1-ecf0-f51f50ddfbe6"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Namnlos_design_36_zuiwzn.png",
+				"prompt": "Klicka på pilen för att se mera",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<p>Låt oss nämna <x>3 punkter</x> som du alltid ska tänka på när det gäller \"Ordning och reda\"</h3>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9463281250000002,
+							"xMax": 0.13573437499999993,
+							"yMin": 0.07918749999999995,
+							"xMin": 0.01
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Ställbitar eller felaktiga artiklar kasseras omedelbart.",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.386,
+							"yMin": 0,
+							"xMin": 0.262
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Verktyg hängs alltid tillbaka på sin plats när de använts och arbetsplatsen skall alltid städas innan du lämnar den för dagen.",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.662,
+							"yMin": 0,
+							"xMin": 0.492
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Ingenting som riskerar att förväxlas med korrekta artiklar får ligga framme och skräp skall kastas direkt i avsedda kärl.",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.938,
+							"yMin": 0,
+							"xMin": 0.774
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "bfc49de8-bbe2-67c6-0f08-9a04a9f6e0a5",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "bfc49de8-bbe2-67c6-0f08-9a04a9f6e0a5"
+			},
+			"data": {
+				"prompt": "",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "",
+						"caption": "<p>Vi tillämpar en metod för ordning- och reda som kallas <x>5S</x>. Vi kommer att berätta mer om den metoden under din fortsatta introduktion."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "b4b3b9d0-522e-fe34-35d2-2efcc3fce523",
+			"type": "categorise",
+			"subtype": "true-or-false",
+			"name": 16,
+			"displayIndex": 17,
+			"templateName": "Categorize",
+			"templateDescription": "Drag to the correct category",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Jag ska kassera felaktiga artiklar direkt. ",
+							"content": "Är detta påstående sant eller falskt",
+							"questionId": "0a4f8759-8cf9-4c7c-9f6d-1e98c9c65bc6",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Sant",
+								"correct": true,
+								"answerId": "b67016ca-6271-40d5-a43f-c3e172552aa4",
+								"type": "text"
+							},
+							{
+								"content": "Falskt",
+								"correct": false,
+								"answerId": "6c0577f4-2a15-4b3b-8c1e-540069aeac76",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "b4b3b9d0-522e-fe34-35d2-2efcc3fce523"
+			},
+			"data": {
+				"buttonText": "Jag ska kassera felaktiga artiklar direkt. ",
+				"categories": [
+					{
+						"text": "Sant",
+						"correct": true
+					},
+					{
+						"text": "Falskt",
+						"correct": false
+					}
+				],
+				"doneText": "Fortsätt",
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt! ",
+					"text": "Detta påstående är sant. Vi ska kassera felaktiga artiklar direkt för att undvika fel. ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Dra påståendet till sant eller falskt. ",
+				"title": "Är detta påstående sant eller falskt",
+				"titleType": "text",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "7cf8b405-c433-e3fa-8e92-d138712d7661",
+			"type": "comparison",
+			"subtype": "compare-two",
+			"name": 17,
+			"displayIndex": 18,
+			"templateName": "Comparison",
+			"templateDescription": "Juxtapose two items in a slider",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "7cf8b405-c433-e3fa-8e92-d138712d7661"
+			},
+			"data": {
+				"before": {
+					"contentType": "image",
+					"content": "fit_content_assets/Namnlos_design_30_ketq82.png",
+					"label": "**Jag förstår inte allting...**\n\n\n"
+				},
+				"after": {
+					"contentType": "image",
+					"content": "fit_content_assets/Namnlos_design_31_yci5b3_aj0afk.png",
+					"label": "**Ingen fara!**\n\nVi förväntar oss inte att du ska förstå allting på en gång. \n____\n**Men kom ihåg att hellre fråga en gång för mycket än att producera något som du är osäker på!**// <x>CH\n"
+				},
+				"startPosition": "Before - Start with the first section visible",
+				"prompt": "Dra sträcket åt vänster för att se mera",
+				"doneText": "Fortsätt",
+				"title": "",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "5bff3a9b-68f6-2adc-d64d-71d1f46ee25c",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 18,
+			"displayIndex": 19,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Hur vet du om ett verktyg behöver kalibreras? ",
+							"questionId": "a908046f-7c96-47e9-bb0b-9014349cd5c5",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Det finns en färgglad lapp på verktyget som har ett datum där den måste kalibreras. ",
+								"correct": true,
+								"answerId": "43c97ad4-cfda-411c-85f7-6a67563280d4",
+								"type": "text"
+							},
+							{
+								"content": "Det märker jag när jag använder den. ",
+								"correct": false,
+								"answerId": "00220c46-7864-4849-9047-03e85147d55b",
+								"type": "text"
+							},
+							{
+								"content": "Det är någon annan som sköter allt med verktygen",
+								"correct": false,
+								"answerId": "fb5bbfd6-80db-4c45-ae81-f69e3b56d011",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "5bff3a9b-68f6-2adc-d64d-71d1f46ee25c"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "0d5e23b1-9c97-4b75-8602-b972e346509a",
+						"content": "Det finns en färgglad lapp på verktyget som har ett datum där den måste kalibreras. ",
+						"correct": true
+					},
+					{
+						"id": "d375613c-0575-47a6-8354-253a721c1e86",
+						"content": "Det märker jag när jag använder den. ",
+						"correct": false
+					},
+					{
+						"id": "73e5a64d-2194-439f-9467-9e630f6298a8",
+						"content": "Det är någon annan som sköter allt med verktygen",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt! ",
+					"text": "Det finns en färglad lapp på verktyget för när den ska kalibreras. ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Hur vet du om ett verktyg behöver kalibreras? ",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a12121f5-4870-180c-cab3-bfa11b28720e",
+			"type": "title",
+			"subtype": "default",
+			"name": 19,
+			"displayIndex": 20,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a12121f5-4870-180c-cab3-bfa11b28720e"
+			},
+			"data": {
+				"buttonText": "Nu kör vi!",
+				"exitButton": false,
+				"title": "Standarder",
+				"titleType": "html",
+				"subtitle": "",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2f249620-9ce3-9b3e-d57d-16c4384f580f",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 20,
+			"displayIndex": 21,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "2f249620-9ce3-9b3e-d57d-16c4384f580f"
+			},
+			"data": {
+				"prompt": "Svep upp/klicka på pilen för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-2575355153534078084_nfrzhy_tzj4jc_gj0bfw_dx45p1.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<x>CH Industry</x> är certifierat enligt **ISO9001** och **ISO14001**, men också för **IATF16949**.\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-3241887904880483728_cbt3jb.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Dessa standarder bildar regelverk för hur vi leder och styr arbetet med kvalitet och miljö.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-6299832052583630552_se3kup.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>IATF **(International Automotive Task Force)** \n\nÄr en mer detaljerad standard som ställer höga krav på oss som leverantör till fordonskunder.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-7679059439952237909_bfsitm.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Du kommer få särskild information om regelverket i IATF när du jobbat en tid på <x>CH Industry.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "019ca10e-4d29-17bc-420e-95cf55406f7c",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 21,
+			"displayIndex": 22,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vad är ISO och IATF certifikat?",
+							"questionId": "2630a937-0d6c-4971-ab00-d7d681616063",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Det är internationella certifikat som bevisar att vi uppfyller vissa krav. ",
+								"correct": true,
+								"answerId": "23d07a64-2a5e-45b5-ae18-fb8319f00399",
+								"type": "text"
+							},
+							{
+								"content": "Det betyder att vi har rätt till reseavdrag ",
+								"correct": false,
+								"answerId": "b67dffca-2f2c-4b8d-995b-84da78e09b4b",
+								"type": "text"
+							},
+							{
+								"content": "Det betyder att jag inte behöver sjukanmäla mig. ",
+								"correct": false,
+								"answerId": "740848cd-f308-44e4-941d-2fd6ede3a4af",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "019ca10e-4d29-17bc-420e-95cf55406f7c"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "26c46d64-f48d-4972-b5b6-3a8f981e1c44",
+						"content": "Det är internationella certifikat som bevisar att vi uppfyller vissa krav. ",
+						"correct": true
+					},
+					{
+						"id": "499d7040-7ae2-4185-b5b2-ac21f288204d",
+						"content": "Det betyder att vi har rätt till reseavdrag ",
+						"correct": false
+					},
+					{
+						"id": "ae665318-4f97-455a-a124-6977895b8a1f",
+						"content": "Det betyder att jag inte behöver sjukanmäla mig. ",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "ISO och ITFA är internationella certifikat som bevisar att vi uppfyller vissa krav inom vår verksamhet. Tillexempel **Miljö, leverans och kvalitet**  ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Vad är ISO och IATF certifikat?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "0cbfd0ff-77e4-e5c6-5804-8170d2fcb470",
+			"type": "multiple-choice-survey",
+			"subtype": "yes-no",
+			"name": 22,
+			"displayIndex": 23,
+			"templateName": "Survey",
+			"templateDescription": "Ask a multiple choice question",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0cbfd0ff-77e4-e5c6-5804-8170d2fcb470"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"answers": [
+					{
+						"id": "01451512-3908-f505-48e3-950d5c36eed9",
+						"content": "Ja"
+					},
+					{
+						"id": "ffc04107-6c1e-9b0f-d27e-09847dc0aa74",
+						"content": "Nej "
+					}
+				],
+				"prompt": "Välj det bästa svaret",
+				"question": {
+					"min": null,
+					"content": "Har du lärt dig något nytt? ",
+					"contentType": "text",
+					"id": "4dc006f7-4427-3e77-ed63-d691949044c8"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a60494d3-402e-00d3-35f8-46b5518ce2de",
+			"type": "slider-survey",
+			"subtype": "slider",
+			"name": 23,
+			"displayIndex": 24,
+			"templateName": "Slider",
+			"templateDescription": "Gather numerical feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a60494d3-402e-00d3-35f8-46b5518ce2de"
+			},
+			"data": {
+				"slider": {
+					"min": 1,
+					"max": 10,
+					"prefix": "",
+					"suffix": "",
+					"increment": 1,
+					"decimals": 0,
+					"labels": 9,
+					"minLabel": "Väldigt dåligt",
+					"maxLabel": "Väldigt bra"
+				},
+				"prompt": "Dra till det bästa svaret",
+				"question": {
+					"min": null,
+					"content": "Vad tyckter du om detta kapitel? ",
+					"contentType": "html",
+					"id": "5e302762-820b-ebe8-3849-f4658fc8c5e0"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "3a1c755e-7384-2547-1d32-5dcd6eaa5be3",
+			"type": "free-text-survey",
+			"subtype": "free-text",
+			"name": 24,
+			"displayIndex": 25,
+			"templateName": "Free text",
+			"templateDescription": "Free text input for user feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "3a1c755e-7384-2547-1d32-5dcd6eaa5be3"
+			},
+			"data": {
+				"prompt": "Skriv ditt svar? ",
+				"question": {
+					"min": 0,
+					"content": "Finns det något du tycker vi kan utveckla eller prata mera om? ",
+					"contentType": "html",
+					"id": "1f744bae-8fca-9a8b-248d-c03693a55554"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "300e4c60-bf65-4213-9c71-ea47d8286da5",
+			"type": "exit",
+			"subtype": "default",
+			"name": 25,
+			"displayIndex": 26,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "300e4c60-bf65-4213-9c71-ea47d8286da5"
+			},
+			"data": {
+				"content": "Nu har du genomfört alla 5 kapitel. **Bra jobbat!** ",
+				"buttonText": "Avsluta lektion",
+				"title": "Gratulerar! ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Kvalitetsutbildning",
+	"index": 0,
+	"scorm": true,
+	"id": "65f708debe02d64e015bd001"
+}

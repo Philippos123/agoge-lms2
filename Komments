@@ -1,0 +1,497 @@
+// Glöm inte denna! 
+
+const CourseService = {
+  getCourses: async (params = {}) => {
+    try {
+      const response = await api.get('/courses/', { params });
+      return response.data;
+    } catch (error) {
+      throw this.handleCourseError(error);
+    }
+  },
+
+  createCourse: async (courseData) => {
+    const formData = new FormData();
+    
+    // Handle file uploads and nested objects
+    Object.entries(courseData).forEach(([key, value]) => {
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else if (typeof value === 'object') {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, value);
+      }
+    });
+
+    try {
+      const response = await api.post('/courses/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      return response.data;
+    } catch (error) {
+      throw this.handleCourseError(error);
+    }
+  },
+
+  getCourseProgress: async (courseId) => {
+    try {
+      const response = await api.get(`/user-progress/${courseId}/`);
+      return response.data;
+    } catch (error) {
+      throw this.handleCourseError(error);
+    }
+  },
+
+  handleCourseError: (error) => {
+    const message = error.response?.data?.detail || 'Course operation failed';
+    return new Error(message);
+  }
+};
+
+
+
+
+
+// Url till Scorm spelare 5173 eller 8000 direkt 
+// Detta är koden för att ta mig till Scorm via iframe 5173
+
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom"; // Importera useNavigate
+
+const API_URL = "http://localhost:8000/api/coursetobuy";
+
+export default function CourseDetail() {
+  const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Använd useNavigate
+
+  useEffect(() => {
+    fetch(`${API_URL}/${courseId}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCourse(data);
+        setLoading(false);
+      })
+      .catch((error) => console.error("Error fetching course:", error));
+  }, [courseId]);
+
+  if (loading) return <p>Laddar...</p>;
+  if (!course) return <p>Kurs hittades inte.</p>;
+
+  const handleBuyNow = () => {
+    navigate(`/course/${courseId}/scorm`); // Navigera till SCORM-spelaren
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+      <img
+        src={`http://localhost:8000${course.image_url}`}
+        alt={course.title}
+        className="w-full h-64 object-cover rounded-lg mb-4"
+      />
+      <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
+      <p className="text-gray-600 mb-4">{course.description}</p>
+      <p className="text-lg font-semibold">Pris: {course.price} SEK</p>
+      <p className="text-gray-500">Språk: {course.language_icon}</p>
+      <button
+        onClick={handleBuyNow} // Lägg till onClick-hanterare
+        className="mt-4 px-6 py-2 bg-green-500 rounded-md hover:bg-green-600 transition"
+      >
+        Köp nu
+      </button>
+    </div>
+  );
+}
+
+
+
+
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState('');
+
+
+  // Detta fungerar 
+
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import api from './../services/api';
+import './../services/scormApiWrapper'; // Se till att wrappern laddas HÄR
+
+export default function ScormPlayer() {
+  const { courseId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [availableLanguages, setAvailableLanguages] = useState([]);
+  const newWindow = useRef(null); // Använd useRef för fönsterreferens
+
+  useEffect(() => {
+    const fetchAvailableLanguages = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await api.get(`/coursetobuy/${courseId}/available_languages/`);
+        if (response.data && response.data.languages) {
+          setAvailableLanguages(response.data.languages);
+        } else {
+          setError({ message: 'Could not fetch available languages.' });
+        }
+      } catch (err) {
+        setError({
+          message:
+            err.response?.data?.error ||
+            err.response?.data?.message ||
+            err.message ||
+            'Failed to fetch available languages.',
+        });
+        console.error('Error fetching available languages:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAvailableLanguages();
+  }, [courseId]);
+
+  const openScormInLanguage = async (languageCode) => {
+    setError(null);
+    console.log("openScormInLanguage CALLED with languageCode:", languageCode);
+    try {
+      const response = await api.get(`/coursetobuy/${courseId}/scorm/launch/${languageCode}/`);
+      if (response.data && response.data.scorm_url) {
+        const win = window.open(response.data.scorm_url, '_blank');
+        newWindow.current = win; // Uppdatera referensen
+        console.log("openScormInLanguage: SCORM window opened:", win);
+  
+        // Försök att exponera API när det nya fönstret har öppnats (med fördröjning)
+        if (win) {
+          console.log("openScormInLanguage: New window object:", win); // Kontrollera fönsterobjektet
+          setTimeout(() => {
+            try {
+              win.API = window.API;
+              win.API_1483_2004_API = window.API;
+              console.log("openScormInLanguage: Försöker koppla API:", window.API);
+              console.log("openScormInLanguage: SCORM API kopplat till det nya fönstret (med fördröjning).");
+            } catch (error) {
+              console.error("openScormInLanguage: Kunde inte koppla SCORM API till det nya fönstret (med fördröjning):", error);
+            }
+            if (win.API) {
+              console.log("openScormInLanguage: win.API efter tilldelning:", win.API); // Kontrollera om tilldelningen lyckades
+            } else {
+              console.log("openScormInLanguage: win.API är fortfarande null eller undefined.");
+            }
+          }, 500);
+        }
+      } else {
+        setError({ message: 'Could not get SCORM URL for the selected language.' });
+        console.log("openScormInLanguage: Error getting SCORM URL.");
+      }
+    } catch (err) {
+      setError({
+        message:
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          err.message ||
+          'Failed to launch SCORM content.',
+      });
+      console.error('openScormInLanguage: Error launching SCORM:', err);
+    }
+  };
+
+  if (loading) return <div>Loading course languages...</div>;
+  if (error) return <div className="error">Error: {error.message}</div>;
+  if (availableLanguages.length === 0) return <div>No languages available for this course.</div>;
+
+  return (
+    <div className="relative h-screen overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-950 to-gray-950/70 h-full flex items-center justify-center text-white text-center flex-col p-4">
+        <div className="scorm-container bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-xl mb-6">
+          <h2 className="text-4xl font-semibold py-4">Choose Language</h2>
+          <p className="text-lg mb-4">Select the language to start the course:</p>
+
+          <div className="flex justify-center gap-4">
+            {availableLanguages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => openScormInLanguage(lang.code)}
+                className="bg-gradient-to-r from-green-800 to-green-400 hover:bg-green-600 text-white rounded-xl py-3 px-6 transition ease-in-out duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
+              >
+                {lang.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// Fungerar typ...
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import api from './../services/api';
+// Ta bort importen av scormApiWrapper här:
+// import './../services/scormApiWrapper';
+
+export default function ScormPlayer() {
+  const { courseId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [availableLanguages, setAvailableLanguages] = useState([]);
+  const iframeRef = useRef(null);
+  const [scormUrlToLoad, setScormUrlToLoad] = useState(null);
+
+  useEffect(() => {
+    const fetchAvailableLanguages = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await api.get(`/coursetobuy/${courseId}/available_languages/`); // Använder proxy-path
+        if (response.data && response.data.languages) {
+          setAvailableLanguages(response.data.languages);
+        } else {
+          setError({ message: 'Could not fetch available languages.' });
+        }
+      } catch (err) {
+        setError({
+          message:
+            err.response?.data?.error ||
+            err.response?.data?.message ||
+            err.message ||
+            'Failed to fetch available languages.',
+        });
+        console.error('Error fetching available languages:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAvailableLanguages();
+  }, [courseId]);
+
+  const getScormUrl = async (languageCode) => {
+    try {
+      const response = await api.get(`/coursetobuy/${courseId}/scorm/launch/${languageCode}/`);
+      if (response.data && response.data.scorm_url) {
+        let scormUrl = response.data.scorm_url;
+        // Om URL:en INTE börjar med http (dvs. är relativ) och börjar med /media, använd den som den är
+        if (!scormUrl.startsWith('http') && scormUrl.startsWith('/media')) {
+          return scormUrl;
+        }
+        // Om URL:en INTE börjar med http (dvs. är relativ) och INTE börjar med /media, prefixa med /media (om det behövs baserat på din backend)
+        else if (!scormUrl.startsWith('http')) {
+          return `/media${scormUrl}`;
+        }
+        // Om URL:en redan är absolut (börjar med http), använd den som den är
+        else {
+          return scormUrl;
+        }
+      } else {
+        setError({ message: 'Could not get SCORM URL for the selected language.' });
+        console.log("getScormUrl: Error getting SCORM URL.");
+        return null;
+      }
+    } catch (err) {
+      setError({
+        message:
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          err.message ||
+          'Failed to fetch SCORM content URL.',
+      });
+      console.error('getScormUrl: Error fetching SCORM URL:', err);
+      return null;
+    }
+  };
+
+  const handleLanguageButtonClick = async (languageCode) => {
+    const scormUrl = await getScormUrl(languageCode);
+    if (scormUrl) {
+      setScormUrlToLoad(scormUrl);
+    }
+  };
+
+  useEffect(() => {
+    if (scormUrlToLoad && iframeRef.current) {
+      iframeRef.current.src = scormUrlToLoad;
+      console.log("handleLanguageButtonClick: Setting iframe src to:", scormUrlToLoad);
+    }
+  }, [scormUrlToLoad]);
+
+  const injectScormApi = () => {
+    const iframeWindow = iframeRef.current?.contentWindow;
+    if (iframeWindow) {
+      // *** KOPIERA INNEHÅLLET FRÅN DIN scormApiWrapper.js HÄR ***
+      let initialized = false;
+      let terminated = false;
+      let errorCode = "0";
+      let currentCourseId = null;
+
+      const API = {
+        LMSInitialize: (param) => {
+          console.log("LMSInitialize CALLED with:", param);
+          if (initialized) {
+            console.log("LMSInitialize: Already initialized, returning true.");
+            return "true";
+          }
+          initialized = true;
+          errorCode = "0";
+          currentCourseId = getCurrentCourseId();
+          console.log("LMSInitialize: Initialized successfully, currentCourseId:", currentCourseId);
+          return "true";
+        },
+
+        LMSGetValue: (cmiElement) => {
+          console.log("LMSGetValue CALLED for:", cmiElement);
+          if (!initialized || terminated || !currentCourseId) {
+            console.log("LMSGetValue: Not initialized or terminated, returning empty string.");
+            return "";
+          }
+          errorCode = "0";
+          console.log("LMSGetValue: Fetching data from backend for:", cmiElement);
+          return new Promise((resolve) => {
+            api.post('/scorm/data/get/', { courseId: currentCourseId, cmiElement }) // Använder proxy-path
+              .then(response => {
+                console.log("LMSGetValue: Backend response:", response.data.value);
+                resolve(response.data.value);
+              })
+              .catch(error => {
+                console.error("LMSGetValue: Error fetching from backend:", error);
+                errorCode = "401";
+                resolve("");
+              });
+          });
+        },
+
+        LMSSetValue: (cmiElement, value) => {
+          console.log("LMSSetValue CALLED for:", cmiElement, "value:", value);
+          if (!initialized || terminated || !currentCourseId) {
+            console.log("LMSSetValue: Not initialized or terminated, returning false.");
+            return "false";
+          }
+          errorCode = "0";
+          console.log("LMSSetValue: Sending data to backend:", cmiElement, value);
+          api.post('/scorm/data/set/', { courseId: currentCourseId, cmiElement, value }) // Använder proxy-path
+            .catch(error => {
+              console.error("LMSSetValue: Error sending to backend:", error);
+              errorCode = "405";
+              return "false";
+            });
+          console.log("LMSSetValue: Data sent to backend (asynchronously), returning true.");
+          return "true";
+        },
+
+        LMSCommit: (param) => {
+          console.log("LMSCommit CALLED with:", param);
+          if (!initialized || terminated || !currentCourseId) {
+            console.log("LMSCommit: Not initialized or terminated, returning false.");
+            return "false";
+          }
+          errorCode = "0";
+          console.log("LMSCommit: Sending commit request to backend.");
+          api.post('/scorm/data/commit/', { courseId: currentCourseId }) // Använder proxy-path
+            .catch(error => {
+              console.error("LMSCommit: Error during commit:", error);
+              return "false";
+            });
+          console.log("LMSCommit: Commit request sent (asynchronously), returning true.");
+          return "true";
+        },
+
+        LMSFinish: (param) => {
+          console.log("LMSFinish CALLED with:", param);
+          if (terminated || !currentCourseId) {
+            console.log("LMSFinish: Already terminated or no course ID, returning true.");
+            return "true";
+          }
+          terminated = true;
+          errorCode = "0";
+          console.log("LMSFinish: Sending finish request to backend.");
+          api.post('/scorm/session/end/', { courseId: currentCourseId }) // Använder proxy-path
+            .catch(error => {
+              console.error("LMSFinish: Error during session end:", error);
+            });
+          console.log("LMSFinish: Finish request sent (asynchronously), returning true.");
+          return "true";
+        },
+
+        LMSGetLastError: () => {
+          console.log("LMSGetLastError CALLED:", errorCode);
+          return errorCode;
+        },
+
+        LMSGetErrorString: (errorCode) => {
+          console.log("LMSGetErrorString CALLED for:", errorCode);
+          return "Ingen felbeskrivning tillgänglig";
+        },
+
+        LMSGetDiagnostic: (param) => {
+          console.log("LMSGetDiagnostic CALLED for:", param);
+          return "";
+        },
+      };
+
+      function getCurrentCourseId() {
+        // Anpassa hur du får tag på courseId om det behövs i iframe-kontexten
+        // Om det är samma som i föräldrafönstret kan du ev. använda window.parent.location.pathname
+        // Men det säkraste är att skicka med det via props eller state.
+        // För nu behåller vi en liknande logik som i din wrapper:
+        const pathParts = window.parent.location.pathname.split('/');
+        const courseIdIndex = pathParts.indexOf('coursetobuy') + 1;
+        const id = courseIdIndex > 0 ? pathParts[courseIdIndex] : null;
+        console.log("getCurrentCourseId: Returning", id);
+        return id;
+      }
+
+      iframeWindow.API = API;
+      iframeWindow.API_1483_2004_API = API;
+      console.log("SCORM API injected into iframe.");
+    }
+  };
+
+  const handleIframeLoad = () => {
+    console.log("Iframe loaded.");
+    injectScormApi();
+  };
+
+  if (loading) return <div>Loading course languages...</div>;
+  if (error) return <div className="error">Error: {error.message}</div>;
+  if (availableLanguages.length === 0) return <div>No languages available for this course.</div>;
+
+  return (
+    <div className="relative h-screen overflow-hidden">
+      <div className="bg-gradient-to-r from-blue-950 to-gray-950/70 h-full flex items-center justify-center text-white text-center flex-col p-4">
+        <div className="scorm-container bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-xl mb-6">
+          <h2 className="text-4xl font-semibold py-4">Choose Language</h2>
+          <p className="text-lg mb-4">Select the language to start the course:</p>
+
+          <div className="flex justify-center gap-4 mb-4">
+            {availableLanguages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageButtonClick(lang.code)}
+                className="bg-gradient-to-r from-green-800 to-green-400 hover:bg-green-600 text-white rounded-xl py-3 px-6 transition ease-in-out duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
+              >
+                {lang.name}
+              </button>
+            ))}
+          </div>
+
+          {/* Iframe för att visa SCORM-innehållet */}
+          <div className="iframe-container h-[600px] w-full bg-white rounded-md shadow-md overflow-hidden">
+            <iframe
+              ref={iframeRef}
+              title="SCORM Content"
+              width="100%"
+              height="100%"
+              style={{ border: 'none' }}
+              onLoad={handleIframeLoad}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,977 @@
+{
+	"config": {
+		"colors": {
+			"background": "#FEFEFE",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #967A26;\n  --secondary-palette-colour: #FEFEFE;\n  --primary-font-colour: #FFFFFF;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\nblack{\n  color:black;",
+		"direction": "rtl",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "fa"
+	},
+	"slides": [
+		{
+			"id": "4cf60e3a-a47b-45b7-8060-37037c38470e",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 1,
+			"displayIndex": 1,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "4cf60e3a-a47b-45b7-8060-37037c38470e"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">Svep för att fortsätta</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/Logotyp_Agoge_flcibr_vwcwbv_qtyaok.png",
+						"caption": "<p>به آموزش آگoge در زمینه سلامت روان در محیط کار خوش آمدید.</p>"
+					}
+				],
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "be97db33-1c2e-46ca-9cbc-9b4aaf61d401",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 2,
+			"displayIndex": 2,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "be97db33-1c2e-46ca-9cbc-9b4aaf61d401"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<p style=\"text-align: right\">ما در مورد اینکه مسائل مربوط به سلامت روان چیست، چگونه می توانیم علائم آن را در خود و دیگران تشخیص دهیم و چه کاری می توانیم برای مدیریت آنها انجام دهیم صحبت خواهیم کرد. </p>",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/1595385_jst1fc.jpg",
+						"contentType": "image"
+					},
+					{
+						"content": "<p style=\"text-align: right\">این آموزش به منظور ارائه دانش پایه و ابزارهای عملی طراحی شده است که می توانید از آنها برای مراقبت از سلامت روان خود و همکارانتان استفاده کنید. بیایید با درک اینکه منظور ما از مسائل مربوط به سلامت روان چیست شروع کنیم.</p>",
+						"contentType": "text"
+					}
+				],
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"doneText": "<p>ادامه دهید\n</p>",
+				"preventFocus": false,
+				"title": "<p>مقدمه</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "091242ca-23d2-44d5-b585-da9d47357234",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 3,
+			"displayIndex": 3,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "091242ca-23d2-44d5-b585-da9d47357234"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h1>مسائل مربوط به سلامت روان چیست؟</h1>"
+					},
+					{
+						"image": null,
+						"caption": "<p>مسائل مربوط به سلامت روان یک اصطلاح گسترده است که همه چیز از استرس و نگرانی گرفته تا شرایط جدی تری مانند افسردگی و اضطراب را شامل می شود.</p>"
+					},
+					{
+						"image": null,
+						"caption": "<p>مهم است که بدانیم مسائل مربوط به سلامت روان می تواند هر کسی را بدون در نظر گرفتن سن، جنسیت یا نقش شغلی تحت تاثیر قرار دهد.</p>"
+					}
+				],
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d3378f01-19bf-4d77-a9d7-e0256b049708",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 4,
+			"displayIndex": 4,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "d3378f01-19bf-4d77-a9d7-e0256b049708"
+			},
+			"data": {
+				"doneText": "<p>ادامه دهید\n</p>",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/Stress_wdh6h3.png",
+				"prompt": "<p class=\"text-transform-uppercase\">برای بررسی روی تصاویر کلیک کنید\n</p>",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-7310905621212924438_dxvmdd.png",
+						"caption": "<h1>افسردگی</h1><p></p><p>یک وضعیت طولانی مدت که با خلق افسرده، کمبود انرژی و کاهش علاقه به فعالیت هایی که قبلاً لذت بخش بودند مشخص می شود</p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.35370371500651043,
+							"xMax": 0.5888071469907408,
+							"yMin": 0.022222188313802082,
+							"xMin": 0.07592592592592592
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-665844371133278533_r16lay.png",
+						"caption": "<h1>استرس</h1><p>یک واکنش طبیعی به فشار است، اما وقتی استرس مزمن می شود، می تواند منجر به فرسودگی و سایر مشکلات سلامتی شود.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.6888888549804687,
+							"xMax": 1,
+							"yMin": 0.38888885498046877,
+							"xMin": 0.48559678819444446
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-8470582525460104577_ur5bb3.png",
+						"caption": "<p class=\"text-xxl\">اضطراب</p><p class=\"text-xxl\"></p><h1 class=\"text-md\">احساس نگرانی یا ترس که می تواند موقتی باشد اما گاهی اوقات آنقدر شدید می شود که زندگی روزمره را تحت تاثیر قرار می دهد.</h1>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9407407633463541,
+							"xMax": 0.4234157986111111,
+							"yMin": 0.6207407633463542,
+							"xMin": 0.07905381944444445
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "dba398c4-7719-4c77-bb29-25b268e38e36",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 5,
+			"displayIndex": 5,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "dba398c4-7719-4c77-bb29-25b268e38e36"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4010893000058018152_iqxgct.png",
+						"caption": "<p>مهم است که گفتگو در مورد سلامت روان را عادی کنیم و درک کنیم که این چیزی است که بسیاری از افراد تجربه می کنند. درخواست کمک در هنگام احساس ناخوشی نشانه قدرت است نه ضعف. بیایید از همین جا شروع کنیم. </p>"
+					}
+				],
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "fd76aca8-fc7a-402e-b79e-1a827a3289e0",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 6,
+			"displayIndex": 6,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>یک نوع رایج از بیماری روانی چیست؟  (یک گزینه را انتخاب کنید) </p>",
+							"content": "",
+							"questionId": "303262b7-b3e2-4423-b288-fad11743093b",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>استرس </p>",
+								"correct": false,
+								"answerId": "fcdd3917-b1d0-4f76-94a1-d0cc3f290767",
+								"type": "text"
+							},
+							{
+								"content": "<p>افسردگی</p>",
+								"correct": false,
+								"answerId": "7ba6930b-c63e-4c97-b928-f82cb0d40f5c",
+								"type": "text"
+							},
+							{
+								"content": "<p>اضطراب </p>",
+								"correct": false,
+								"answerId": "64aa03b9-bfa3-45df-9155-b903969de519",
+								"type": "text"
+							},
+							{
+								"content": "<p>همه موارد فوق</p>",
+								"correct": true,
+								"answerId": "12eac374-2a87-42ed-8c3d-f8baa41e2b2b",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "fd76aca8-fc7a-402e-b79e-1a827a3289e0"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>ادامه دهید</p>",
+				"answers": [
+					{
+						"id": "59d8f1f5-6f2e-8422-eba6-5e160435a768",
+						"content": "<p>استرس </p>",
+						"correct": false
+					},
+					{
+						"id": "1f14e39f-51f8-8ff6-f1bf-61fc27925f12",
+						"content": "<p>افسردگی</p>",
+						"correct": false
+					},
+					{
+						"id": "f6af0d64-3933-30e0-3190-87f4b6e9983a",
+						"content": "<p>اضطراب </p>",
+						"correct": false
+					},
+					{
+						"id": "86565d89-7492-43a3-9c1c-a1b3fbe1aa5e",
+						"content": "<p>همه موارد فوق</p>",
+						"correct": true
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>کاملاً درست نیست... </p>",
+					"correct": "<p>درست است! </p>",
+					"text": "<p>پاسخ صحیح: د </p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">جایگزین صحیح را انتخاب کنید\n</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>یک نوع رایج از بیماری روانی چیست؟  (یک گزینه را انتخاب کنید) </p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": true,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "53c3c141-2bc8-4f9e-af5d-ff4616b3d6d3",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 7,
+			"displayIndex": 7,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "53c3c141-2bc8-4f9e-af5d-ff4616b3d6d3"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<p>توانایی تشخیص علائم بیماری روانی، هم در خودمان و هم در همکارانمان، برای اقدام به موقع مهم است.</p>"
+					},
+					{
+						"image": null,
+						"caption": "<p>در اینجا چند علامت هشدار دهنده رایج آورده شده است: </p>"
+					},
+					{
+						"image": "fit_content_assets/0001-2412115135097862433_rtvtkx_ew4inb.png",
+						"caption": "<p><strong>تغییرات در رفتار: کسی که معمولاً اجتماعی و پرحرف است، ناگهان گوشه‌گیر و منزوی می‌شود.</strong></p>"
+					},
+					{
+						"image": "fit_content_assets/0001-6640995184078221441_ewarj0_av2hwa.png",
+						"caption": "<p><strong>کاهش بهره وری: </strong>همکاری که در غیر این صورت کارآمد و مولد است، شروع به از دست دادن ضرب الاجل ها یا اشتباهات بیشتر از حد معمول می کند.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-3758691422699573341_iphp2o_fhfexn.png",
+						"caption": "<p><strong>علائم جسمی: </strong>اغلب سردرد، معده درد یا سایر مشکلات جسمی غیرقابل توضیح می تواند نشانه ای از بیماری روانی زمینه ای باشد.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-7707222397136453957_ndoxk8_ydyvdb.png",
+						"caption": "<p><strong>تحریک پذیری یا نوسانات خلقی: </strong></p><p>کسی که قبلاً آرام و متین بود، ممکن است شروع به واکنش شدید به مسائل کوچک کند.</p>"
+					}
+				],
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "4d894ca2-b55c-45cb-9470-51053e945d4f",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 8,
+			"displayIndex": 8,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "4d894ca2-b55c-45cb-9470-51053e945d4f"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"items": [
+					{
+						"content": "fit_content_assets/339620_qnxwk2_rurqgb.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<p>همچنین مهم است که تفاوت بین استرس موقت و چیزی جدی تر را تشخیص دهیم.</p>",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/236151_pt763k_cvbypn.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<p>اگر این علائم برای چندین هفته ادامه داشته باشد یا بر عملکرد کاری تأثیر بگذارد، وقت آن است که آن را جدی بگیریم.</p>",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "<p>ادامه دهید\n</p>",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "caf53421-89f1-4965-979d-34838f9de0f4",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 9,
+			"displayIndex": 9,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>کدام یک از موارد زیر هشدار دهنده بیماری روانی است؟ (یک گزینه را انتخاب کنید)\n</p>",
+							"content": "",
+							"questionId": "893ff452-d17c-44d3-9e50-82ba24fdf90b",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>افزایش تعامل اجتماعی\n</p>",
+								"correct": false,
+								"answerId": "75c45c38-1b8d-440d-94af-74aaa09ebf08",
+								"type": "text"
+							},
+							{
+								"content": "<p>تغییرات در رفتار\n</p>",
+								"correct": true,
+								"answerId": "c2ff704b-b99e-4d8b-adce-dfb590145c68",
+								"type": "text"
+							},
+							{
+								"content": "<p>ظرفیت کاری بهبود یافته است\n</p>",
+								"correct": false,
+								"answerId": "84541030-5547-4c95-beb2-8c985f8e6c6a",
+								"type": "text"
+							},
+							{
+								"content": "<p>هیچ کدام از موارد بالا\n</p>",
+								"correct": false,
+								"answerId": "73a47a22-9bf0-40b0-b78f-4450371977b4",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "caf53421-89f1-4965-979d-34838f9de0f4"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>ادامه دهید</p>",
+				"answers": [
+					{
+						"id": "c21bdcc6-9040-6c62-3cc6-bfeefa6afaea",
+						"content": "<p>افزایش تعامل اجتماعی\n</p>",
+						"correct": false
+					},
+					{
+						"id": "c52977fa-27d9-e2c9-a7a8-1f6a97767e70",
+						"content": "<p>تغییرات در رفتار\n</p>",
+						"correct": true
+					},
+					{
+						"id": "b921112c-861b-1eae-ae34-bb3beca9ffe9",
+						"content": "<p>ظرفیت کاری بهبود یافته است\n</p>",
+						"correct": false
+					},
+					{
+						"id": "ef9f6d23-0e62-4be6-89f6-e6a0b975d507",
+						"content": "<p>هیچ کدام از موارد بالا\n</p>",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>نه کاملا...\n</p>",
+					"correct": "<p>درسته!\n</p>",
+					"text": "<p>پاسخ صحیح: ب\n</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">جایگزین صحیح را انتخاب کنید\n</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>کدام یک از موارد زیر هشدار دهنده بیماری روانی است؟ (یک گزینه را انتخاب کنید)\n</p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a7a0bb85-e487-4654-a8e7-69194cc12f92",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 10,
+			"displayIndex": 10,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a7a0bb85-e487-4654-a8e7-69194cc12f92"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"items": [
+					{
+						"content": "<h1>چگونه می توانیم با بیماری روانی کنار بیاییم؟</h1>",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": null,
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "<p>مدیریت بیماری روانی هم شامل مراقبت از خود و هم دانستن زمان و مکان مراجعه برای کمک است. </p><p></p><p>در اینجا چند استراتژی ساده آورده شده است: </p>",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": "",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "<p>ادامه دهید\n</p>",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "5577b42c-ebc2-4c7e-b6df-28d962102fa0",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 11,
+			"displayIndex": 11,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "5577b42c-ebc2-4c7e-b6df-28d962102fa0"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "<p>ادامه دهید\n</p>",
+				"url": "fit_content_assets/Namnlos_design_80_czw61e.png",
+				"prompt": "<p class=\"text-transform-uppercase\">تصویر را کاوش کنید\n</p>",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h2>خود یاری: </h2><p></p><p>تکنیک هایی مانند ذهن آگاهی، مدیتیشن و تنفس عمیق می تواند به کاهش استرس و اضطراب کمک کند. استراحت منظم و اختصاص دادن وقت به فعالیت هایی که از آن لذت می برید نیز مهم است.</p>",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.17555541992187498,
+							"yMin": 0.09333361816406267,
+							"xMin": 0.0244443359375
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">با کسی صحبت کنید:</h2><p class=\"text-md\"></p><h2 class=\"text-md\">اگر احساس خستگی و درماندگی می کنید، با یک همکار، مدیر یا کسی که به او اعتماد دارید صحبت کنید. به اشتراک گذاشتن احساسات می تواند احساس تنهایی را کاهش دهد.</h2>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9499995117187501,
+							"xMax": 0.4533333740234375,
+							"yMin": 0.12000000000000001,
+							"xMin": 0.2933333740234375
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">کمک حرفه ای:</h2><h2 class=\"text-md\">اگر علائم شما شدید یا طولانی مدت است، در جستجوی کمک حرفه ای تردید نکنید. خدمات بهداشت شغلی، روانشناسان و خدمات مشاوره برای حمایت از شما در دسترس هستند.</h2>",
+						"narration": null,
+						"region": {
+							"yMax": 0.92333349609375,
+							"xMax": 0.727777587890625,
+							"yMin": 0.09666674804687495,
+							"xMin": 0.5733331298828125
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h2 class=\"text-md\">نقش محل کار: </h2><p class=\"text-md\"></p><h2 class=\"text-md\">اگر متوجه شدید که حال همکارتان خوب نیست، او را تشویق کنید تا با مدیر یا بخش منابع انسانی صحبت کند. محل کار اغلب می تواند پشتیبانی یا تسهیلاتی را ارائه دهد که می تواند کمک کند.</h2><p class=\"text-md\"></p>",
+						"narration": null,
+						"region": {
+							"yMax": 0.9200001220703128,
+							"xMax": 0.988888916015625,
+							"yMin": 0.10000012207031285,
+							"xMin": 0.818888916015625
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "0f162aba-a07c-4c50-8bdb-b82e03af3705",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 12,
+			"displayIndex": 12,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0f162aba-a07c-4c50-8bdb-b82e03af3705"
+			},
+			"data": {
+				"author": "",
+				"avatar": "fit_content_assets/0001-2340057537713428607_fsgplo.png",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": "<h2>جستجوی کمک یک گام مهم برای احساس بهتر است. به یاد داشته باشید که بیماری روانی چیزی نیست که مجبور باشید به تنهایی با آن کنار بیایید. </h2>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "ab3080bb-7ee1-4e24-b0a0-b83d03d1eab9",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 13,
+			"displayIndex": 13,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<p>اگر احساس خستگی می کنید چه کاری می توانید انجام دهید؟ (یک گزینه را انتخاب کنید)\n</p>",
+							"content": "",
+							"questionId": "41656c3d-4b49-44e4-935f-006f38c3af7f",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>آن را نادیده بگیرید و به کار خود ادامه دهید\n</p>",
+								"correct": false,
+								"answerId": "814f5733-b7bd-47f3-bf20-3103bcf94784",
+								"type": "text"
+							},
+							{
+								"content": "<p>با کسی که بهش اعتماد دارید صحبت کنید\n</p>",
+								"correct": true,
+								"answerId": "d36c6791-f82a-4ce0-8e71-d112997b88eb",
+								"type": "text"
+							},
+							{
+								"content": "<p>صبر کنید تا خود به خود از بین برود\n</p>",
+								"correct": false,
+								"answerId": "70f9d664-2c18-434d-811e-85df9071d71d",
+								"type": "text"
+							},
+							{
+								"content": "<p>حجم کار را افزایش دهید\n</p>",
+								"correct": false,
+								"answerId": "c4b90be7-b91b-43b4-b01a-8d7a7db6c8e0",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "ab3080bb-7ee1-4e24-b0a0-b83d03d1eab9"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "<p>ادامه دهید</p>",
+				"answers": [
+					{
+						"id": "841e9448-8dd5-0708-ad11-d9e960dc8680",
+						"content": "<p>آن را نادیده بگیرید و به کار خود ادامه دهید\n</p>",
+						"correct": false
+					},
+					{
+						"id": "c979b986-1c5f-74c4-0ac6-742df2e6d961",
+						"content": "<p>با کسی که بهش اعتماد دارید صحبت کنید\n</p>",
+						"correct": true
+					},
+					{
+						"id": "3051e802-d060-869c-73d0-d8a3f97ae69b",
+						"content": "<p>صبر کنید تا خود به خود از بین برود\n</p>",
+						"correct": false
+					},
+					{
+						"id": "a7cf10b6-e95a-44a8-84d7-5e11d9dc8010",
+						"content": "<p>حجم کار را افزایش دهید\n</p>",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "<p>نه واقعا...\n</p>",
+					"correct": "<p>درست است!\n</p>",
+					"text": "<p>امتیاز: B\n</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "<p class=\"text-transform-uppercase\">جایگزین صحیح را انتخاب کنید\n</p>",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "<p>اگر احساس خستگی می کنید چه کاری می توانید انجام دهید؟ (یک گزینه را انتخاب کنید)\n</p>",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "010057c7-070a-45eb-9f2b-36790d5cd987",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 14,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "010057c7-070a-45eb-9f2b-36790d5cd987"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">برای ادامه، انگشت خود را به بالا بکشید\n</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h2>خلاصه و نتیجه گیری. </h2>"
+					},
+					{
+						"image": "",
+						"caption": "<p>به طور خلاصه، ما در مورد اینکه بیماری روانی چیست، چگونه می توان علائم آن را تشخیص داد و برخی از روش های اساسی برای مدیریت آن صحبت کرده ایم.</p>"
+					},
+					{
+						"image": "fit_content_assets/0001-4698817839922133258_gky7vx.png",
+						"caption": "<p>مهم است که ما از سلامت روانی خود مراقبت کنیم و به رفاه خود و همکارانمان توجه داشته باشیم.</p><p></p><p>اگر متوجه شدید که حال شما یا شخص دیگری خوب نیست، در جستجوی کمک یا صحبت با کسی تردید نکنید. سلامت روان به اندازه سلامت جسمی مهم است و همه ما باید برای احساس خوب در محل کار از یکدیگر حمایت کنیم.</p>"
+					},
+					{
+						"image": "fit_content_assets/708440_ipljq5.jpg",
+						"caption": "<p>Mental health is just as important as physical health, and we all need to support each other to feel good at work.\n</p>"
+					}
+				],
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "09fcb95f-a9b0-46c1-ad64-765614b06009",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 15,
+			"displayIndex": 15,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "09fcb95f-a9b0-46c1-ad64-765614b06009"
+			},
+			"data": {
+				"author": "## // Team Agoge",
+				"avatar": "",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "<p>ادامه دهید\n</p>",
+				"title": "<p>از خودتان و همکارانتان مراقبت کنید.</p><p></p><p>سلامت روانی شما مهم است و شما ابزارهایی برای مدیریت آن دارید. </p><p></p><p>از شرکت شما در این آموزش سپاسگزاریم.</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "b69c1352-d3bc-4cd2-8e50-dd710ad28eb3",
+			"type": "exit",
+			"subtype": "default",
+			"name": 16,
+			"displayIndex": 16,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "b69c1352-d3bc-4cd2-8e50-dd710ad28eb3"
+			},
+			"data": {
+				"content": "<p>از شرکت شما در این آموزش سپاسگزاریم.</p>",
+				"buttonText": "<p>آموزش کامل </p>",
+				"title": "<p>این همه چیز بود</p>",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Psykisk hälsa på jobbet FA",
+	"index": 0,
+	"scorm": true,
+	"id": "67fcc4a6175ad5e51231f582"
+}

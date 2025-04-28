@@ -1,0 +1,1243 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-357329542822826825_wgrmqq.png",
+		"colors": {
+			"background": "#000000",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #000000;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #3D622D;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "72bc26b5-f9fa-2e70-fa70-3fc413f53663",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "72bc26b5-f9fa-2e70-fa70-3fc413f53663"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/CH_Industry_Kap_4_cwd59k.png",
+				"prompt": "Klicka på knappen ",
+				"appearance": {
+					"waypointColor": "None"
+				},
+				"lightbox": {
+					"background": "Transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-4677407484007488649_apsn2c.png",
+						"caption": "# På CH Industry bryr vi oss.\n\nVi bryr oss om våra anställda och vill att alla ska känna sig <x>trygga och säkra på sin arbetsplats.\n\nDärför har vi en obligatorisk säkerhetsutbildning alla måste genomföra. \n",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.8433333333333334,
+							"yMin": 0.8933333333333333,
+							"xMin": 0.14333333333333334
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "f894ec8a-c955-496e-94ab-b8e51575517e",
+			"type": "title",
+			"subtype": "default",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "f894ec8a-c955-496e-94ab-b8e51575517e"
+			},
+			"data": {
+				"buttonText": "<p>**Nu kör vi!** </p>",
+				"exitButton": false,
+				"title": "<p>Säkerhetsutbildning</p>",
+				"titleType": "html",
+				"subtitle": "",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d808e1ff-5206-2b78-12a7-5f2a00735243",
+			"type": "list",
+			"subtype": "list",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Bulleted list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "d808e1ff-5206-2b78-12a7-5f2a00735243"
+			},
+			"data": {
+				"list": [
+					"Vi arbetar med hårda material",
+					"<h2>Vi arbetar med tungt material",
+					"<h2>Vi jobbar även med stora maskiner & robotar </h2>\n",
+					"Vi arbetar med roterande verktyg<center> <h3> <x>Vi måste arbeta på ett säkert sätt! "
+				],
+				"doneText": "<p>Fortsätt</p>",
+				"title": "Varför vi har säkerhetsutbildning",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "603ab56b-50c9-4bdc-3b6c-d80a65c30169",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "603ab56b-50c9-4bdc-3b6c-d80a65c30169"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<p>På CH har vi ett systematiskt arbetsmiljö arbete. <br>\n<br>\nVi vill att du skall kunna utföra ditt arbete på <x>CH</x> utan risk för skador. Av den anledningen finns det skyddsutrustning som <strong>är obligatorisk att bära.</strong></p>",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/Handledare_CH_uexsff.png",
+						"contentType": "image"
+					},
+					{
+						"content": "Förutom **arbetskläder** (som för\nsvetspersonal är flamskyddade) och **skyddsskor** kommer din handledare utrusta dig med annan\nskyddsutrustning som du kan behöva. \n____\n<center><p>**Låt oss gå igenom all utrustning du kommer behöva.**",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "<h1> <center>Säkerhet\n____",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d831df4f-6c56-0b21-126c-66f0f3400412",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "d831df4f-6c56-0b21-126c-66f0f3400412"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Skydd_dlvjz6.png",
+				"prompt": "Utforska bilderna",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h1>Skyddsglasögon",
+						"narration": null,
+						"region": {
+							"yMax": 0.8340000000000001,
+							"xMax": 0.20200000000000004,
+							"yMin": 0.192,
+							"xMin": 0.042
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Skyddshandskar ",
+						"narration": null,
+						"region": {
+							"yMax": 0.8580000000000001,
+							"xMax": 0.46,
+							"yMin": 0.09399999999999994,
+							"xMin": 0.284
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1> Hörselskydd",
+						"narration": null,
+						"region": {
+							"yMax": 0.8440000000000003,
+							"xMax": 0.684,
+							"yMin": 0.15600000000000036,
+							"xMin": 0.54
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Visir eller svetshjäm",
+						"narration": "",
+						"region": {
+							"yMax": 1,
+							"xMax": 0.904,
+							"yMin": 0,
+							"xMin": 0.756
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "0c69ed08-d1db-15ed-69a4-d38cb10596b0",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0c69ed08-d1db-15ed-69a4-d38cb10596b0"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att se mera",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-5481300240635148380_lrdfxg.png",
+						"caption": "Arbetskläder, skyddsskor och rätt skyddsutrustning måste användas. \n___\nSom sagt, det är **obligatoriskt!**\n"
+					},
+					{
+						"image": "fit_content_assets/0001-9049277045442551267_e32mzi.png",
+						"caption": "Observera\natt handskar **inte får användas vid arbete med roterande verktyg** där handsken kan fastna i\narbetsstycke eller verktyg.\n___\nPrata med din handledare ifall det känns oklart eller uppstår frågor. "
+					},
+					{
+						"image": "fit_content_assets/0001-5481300241422960067_fbtlih.png",
+						"caption": "<p>Hörselkåpa med radio eller blåtand för mobil är helt ok att använda när du jobbar."
+					},
+					{
+						"image": "",
+						"caption": "<p> <h2>**Komihåg!**</h2> <p>**Om du kör truck**\nskall du stänga av ljudet eller ta ur en lur eller vrida bort en kåpa, så att du kan höra bättre."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "6dde4909-da30-a730-0805-a0cb27ee86fc",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Är skydd obligatoriskt?",
+							"questionId": "f6f9f091-6cd0-4adc-8ea9-5d44d469baa2",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Ja",
+								"correct": true,
+								"answerId": "bf507598-4cf4-4310-b29f-53c20bda6860",
+								"type": "text"
+							},
+							{
+								"content": "Nej",
+								"correct": false,
+								"answerId": "8af80ec6-8a4c-481a-ae71-577f094e4796",
+								"type": "text"
+							},
+							{
+								"content": "Jag vet inte",
+								"correct": false,
+								"answerId": "39633018-fe00-4fdd-9e0d-f660d9c1b784",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "6dde4909-da30-a730-0805-a0cb27ee86fc"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "47e8c0bb-ac13-4ca4-85d4-9e0d40a73ab6",
+						"content": "Ja",
+						"correct": true
+					},
+					{
+						"id": "f224dc1b-dda1-42fc-9720-fe3ceda7037c",
+						"content": "Nej",
+						"correct": false
+					},
+					{
+						"id": "05da0a60-ee52-47b3-a8f8-9b49ae7719e9",
+						"content": "Jag vet inte",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "<p>Skydd som <x>CH</x> förser dig med är **obligatoriska att bära.**",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Är skydd obligatoriskt?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "0ea18656-23e7-8fa9-c8d2-c4c3fa89ee9f",
+			"type": "title",
+			"subtype": "default",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0ea18656-23e7-8fa9-c8d2-c4c3fa89ee9f"
+			},
+			"data": {
+				"buttonText": "Nu kör vi! ",
+				"exitButton": false,
+				"title": "Vad gör jag vid brand? ",
+				"titleType": "html",
+				"subtitle": "Vad händer om det börjar brinna? ",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "bd096703-0c96-bd3a-9d07-df03dcf81c1e",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "bd096703-0c96-bd3a-9d07-df03dcf81c1e"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera/klicka på pilen",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-3960209468320607209_kx4rsr.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h2> Brand</h2>\n<p> På CH arbetar vi en del med varma processer(svetsning och laserskärning).\n\n\nNär man svetsar kan det spruta smält metall och gnistor som kan vara väldigt varma.\n\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-228977177241879933_iivaxz.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p> Av den anledningen **måste** vi hålla rent på våra arbetsplatser. \n\nBrännbart material får aldrig ligga framme på en arbetsplats där hetarbete pågår. ",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "<h2> Vårt arbete</h2>\n___\n<p> På CH har vi ett systematiskt brandskyddsarbete \n\nLåt oss gå igenom vad vi gör om en brand ändå uppstår. ",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "a2461c73-ac47-cfc3-62a4-08b2fc7e2a20",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a2461c73-ac47-cfc3-62a4-08b2fc7e2a20"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Brand_itaaqm.png",
+				"prompt": "Klicka på pilen för att se mera",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "Skulle brand uppstå larmar arbetsledare eller annan personal genom att tuta med huligantuta och\nförsäkra sig om att alla förstår att det brinner.",
+						"narration": null,
+						"region": {
+							"yMax": 0.952,
+							"xMax": 0.226,
+							"yMin": 0.060000000000000005,
+							"xMin": 0.06
+						}
+					},
+					{
+						"image": null,
+						"caption": "Tutor och annan bra utrustning finns i speciella\nbrandskyddskåp i verkstaden och på kontoret.",
+						"narration": null,
+						"region": {
+							"yMax": 0.93,
+							"xMax": 0.594,
+							"yMin": 0.07200000000000001,
+							"xMin": 0.388
+						}
+					},
+					{
+						"image": null,
+						"caption": "Efter larm skall lokalerna omedelbart utrymmas och\nall personal återsamlas vid gästparkeringen.",
+						"narration": null,
+						"region": {
+							"yMax": 0.8220000000000001,
+							"xMax": 0.942,
+							"yMin": 0.18999999999999995,
+							"xMin": 0.754
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "f56b2706-773e-8afb-c57b-d07e272da948",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vart finns brandskåpen?",
+							"questionId": "c88cba1a-4623-4178-977a-404df80cb24f",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "I verkstaden och på kontoret",
+								"correct": true,
+								"answerId": "0ed6516d-113a-41c9-9ff7-6239c6169765",
+								"type": "text"
+							},
+							{
+								"content": "Vid toaletterna och vid huvudentrén ",
+								"correct": false,
+								"answerId": "30829ba8-acf6-455d-89c1-417e99613162",
+								"type": "text"
+							},
+							{
+								"content": "Jag vet inte vart brandskåpen finns...",
+								"correct": false,
+								"answerId": "1aa37b6d-d1f3-4575-ad6c-375cb72c1d4d",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "f56b2706-773e-8afb-c57b-d07e272da948"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "65e5cc44-632b-4e5d-8933-c6214de98ff0",
+						"content": "I verkstaden och på kontoret",
+						"correct": true
+					},
+					{
+						"id": "b5cbdc34-68ee-4161-be26-70518fb56183",
+						"content": "Vid toaletterna och vid huvudentrén ",
+						"correct": false
+					},
+					{
+						"id": "7dc132ae-8f63-41fd-b272-c8872a26fab5",
+						"content": "Jag vet inte vart brandskåpen finns...",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "<p>Brandskyddskåp finns i verkstaden och på kontoret.",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det alternativet du tror på är rätt",
+				"title": "Vart finns brandskåpen?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "205684e2-bbcd-db9d-29b9-cf1bcae852d2",
+			"type": "title",
+			"subtype": "default",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "205684e2-bbcd-db9d-29b9-cf1bcae852d2"
+			},
+			"data": {
+				"buttonText": "Nu kör vi!",
+				"exitButton": false,
+				"title": "Kemikalier",
+				"titleType": "html",
+				"subtitle": "Hur arbetar vi med Kemikalier? ",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "ac966d91-498b-80f1-edc3-58e0e1af1c1f",
+			"type": "expandable-list",
+			"subtype": "three",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Expandable list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "ac966d91-498b-80f1-edc3-58e0e1af1c1f"
+			},
+			"data": {
+				"content": null,
+				"prompt": "Klicka på en rubrik för att se mera",
+				"focus": true,
+				"doneText": "Fortsätt",
+				"list": [
+					{
+						"content": "På <x>CH</x> har vi inga direkt farliga kemikalier, men smörjoljor, avfettningsmedel och speciella produkter\nför olika ändamål samlar vi i kemikalieskåp eller på uppsamlingstråg.",
+						"title": "Har vi farliga kemikalier?"
+					},
+					{
+						"content": "<p>Skyddsdatablad kan man hämta\npå CHIPS/Svensk arbetshygien.",
+						"title": "Vill du veta mera? "
+					},
+					{
+						"content": "<p>Ett skyddsdatablad (SDB) är en dokumentation som innehåller information om farliga kemiska produkter.",
+						"title": "Vad är skyddsdatablad?"
+					}
+				],
+				"title": "",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2061dc7e-bdec-b0ee-8d2d-9bff4ec77da9",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "2061dc7e-bdec-b0ee-8d2d-9bff4ec77da9"
+			},
+			"data": {
+				"prompt": "Swipe to continue",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-3544752400620591463_tkqsli.png",
+						"caption": "<h1>Olycksfall/Tillbud</h1>\n___\nVad gör vi vid Olycksfall/tillbud?"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "ca1eb095-4e6e-f471-d575-9764b3d9b9d5",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "ca1eb095-4e6e-f471-d575-9764b3d9b9d5"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera/Klicka på pilen",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-2186917206247243356_nlelgq.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Vid <x>olycka (aj!) eller tillbud (oj!)</x> på jobbet, meddela skyddsombud eller arbetsledning.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-3039223434635162170_istoak.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Är olyckan allvarlig går man hem och får olyckan **dokumenterad av sjukvården.**",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/Namnlos_design_26_jxnjar.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>**När man är tillbaka på\narbetet**\n___\n Då gör man en anmälan i IA- appen, gärna tillsammans med <x>skyddsombud eller kollega.</x>\n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-2236456712392999761_k3hm8w.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Vi har flera skyddsombud på <x>CH </x>som kan hjälpa dig med **IA-appen och andra typer av skyddsfrågor.**",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "d81895e5-435b-2574-6d67-29832c773fda",
+			"type": "categorise",
+			"subtype": "true-or-false",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Categorize",
+			"templateDescription": "Drag to the correct category",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Vid olycka eller tillbud måste jag kontakta skyddsombud eller arbetsledningen",
+							"content": "Är detta påstående sant",
+							"questionId": "bf5a20ec-32f0-4e7e-ab09-ad3e6fffd89a",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Sant",
+								"correct": true,
+								"answerId": "2e3f9aab-bfdc-4574-8f56-357078fc3c22",
+								"type": "text"
+							},
+							{
+								"content": "Falskt",
+								"correct": false,
+								"answerId": "59453da8-e476-48b2-93ad-e882491f27cb",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "d81895e5-435b-2574-6d67-29832c773fda"
+			},
+			"data": {
+				"buttonText": "Vid olycka eller tillbud måste jag kontakta skyddsombud eller arbetsledningen",
+				"categories": [
+					{
+						"text": "Sant",
+						"correct": true
+					},
+					{
+						"text": "Falskt",
+						"correct": false
+					}
+				],
+				"doneText": "Fortsätt",
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Detta påstående är sant ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Dra påståendet till det korrekta alternativet",
+				"title": "Är detta påstående sant",
+				"titleType": "text",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a172cec5-a704-5cba-e89b-6ced1a2295bf",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 16,
+			"displayIndex": 17,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a172cec5-a704-5cba-e89b-6ced1a2295bf"
+			},
+			"data": {
+				"prompt": "Swipe to continue",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4401562230785221531_hi1ijl.png",
+						"caption": "<h1>Får jag köra truck?"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "11fc1b94-ac7a-c799-11ce-170ffdcc7558",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 17,
+			"displayIndex": 18,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "11fc1b94-ac7a-c799-11ce-170ffdcc7558"
+			},
+			"data": {
+				"author": "<h2><x>CH Industry AB</h2>",
+				"avatar": "",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Rounded",
+				"doneText": "Fortsätt",
+				"title": "Truck (Ledstaplare och motviktstruck) får man bara köra om man har truckkort och ett trucktillstånd.<br>\n\nTrucktillstånd utfärdas skriftligt av Produktionsledningen.",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "94da10fc-58db-ba7f-484b-722f971aba51",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 18,
+			"displayIndex": 19,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "<p>Vart går du om du hör brandlarm? </p>",
+							"questionId": "065d376d-cb91-4a95-a024-2630bf14cb0a",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>Gästparkeringen</p>",
+								"correct": true,
+								"answerId": "32048b97-b0b1-4d59-a47d-0db2858597fe",
+								"type": "text"
+							},
+							{
+								"content": "<p>Utanför entrén </p>",
+								"correct": false,
+								"answerId": "c2637a50-bfe6-4ce8-97c0-106d27e82576",
+								"type": "text"
+							},
+							{
+								"content": "<p>På andra sidan gatan</p>",
+								"correct": false,
+								"answerId": "1fd2f06f-2907-42c3-937d-ecfc565ee6ae",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "94da10fc-58db-ba7f-484b-722f971aba51"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "8705ffcb-5b43-43a5-af8b-577c6f1febe5",
+						"content": "<p>Gästparkeringen</p>",
+						"correct": true
+					},
+					{
+						"id": "6fb141ec-8d7d-4050-9984-b3fda647c223",
+						"content": "<p>Utanför entrén </p>",
+						"correct": false
+					},
+					{
+						"id": "84746457-d317-4e6f-8abc-3422a886b31e",
+						"content": "<p>På andra sidan gatan</p>",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Vi samlas på gästparkeringen",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "<p>Vart går du om du hör brandlarm? </p>",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "43572aab-46f1-aa99-e5d0-dde699447042",
+			"type": "slider-survey",
+			"subtype": "slider",
+			"name": 19,
+			"displayIndex": 20,
+			"templateName": "Slider",
+			"templateDescription": "Gather numerical feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "43572aab-46f1-aa99-e5d0-dde699447042"
+			},
+			"data": {
+				"slider": {
+					"min": 0,
+					"max": 10,
+					"prefix": "",
+					"suffix": "",
+					"increment": 1,
+					"decimals": 0,
+					"labels": 10,
+					"minLabel": "Mycket dåligt",
+					"maxLabel": "Mycket bra"
+				},
+				"prompt": "Dra cirkeln till det betyget du tycker passar",
+				"question": {
+					"min": null,
+					"content": "Vad tyckte du om detta kapitel?",
+					"contentType": "html",
+					"id": "8c3b0c9b-01b3-e557-c343-6218089e0e04"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "ab9be154-a05b-e476-9f0f-5f887235a4a4",
+			"type": "multiple-choice-survey",
+			"subtype": "yes-no",
+			"name": 20,
+			"displayIndex": 21,
+			"templateName": "Survey",
+			"templateDescription": "Ask a multiple choice question",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "ab9be154-a05b-e476-9f0f-5f887235a4a4"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"answers": [
+					{
+						"id": "f1682707-0c61-fdad-866c-93fac4d33596",
+						"content": "Ja"
+					},
+					{
+						"id": "0bd13dad-bd49-6c5a-765b-1790a0861178",
+						"content": "Nej"
+					}
+				],
+				"prompt": "Välj det bästa svaret",
+				"question": {
+					"min": null,
+					"content": "Lärde du dig något nytta under detta kapitel?",
+					"contentType": "text",
+					"id": "074de6ad-dac5-edd1-3944-5aaf1842c49d"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "394e42eb-8596-6710-7a93-eb54b1d229ce",
+			"type": "free-text-survey",
+			"subtype": "free-text",
+			"name": 21,
+			"displayIndex": 22,
+			"templateName": "Free text",
+			"templateDescription": "Free text input for user feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "394e42eb-8596-6710-7a93-eb54b1d229ce"
+			},
+			"data": {
+				"prompt": "Skriv ditt svar",
+				"question": {
+					"min": 0,
+					"content": "Finns det något du tycker vi kan utveckla?",
+					"contentType": "html",
+					"id": "60b5f35a-2e84-a140-69b7-bbdf7e35709b"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "b4100bab-cb7d-4c31-89ed-afc62478ef15",
+			"type": "exit",
+			"subtype": "default",
+			"name": 22,
+			"displayIndex": 23,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "b4100bab-cb7d-4c31-89ed-afc62478ef15"
+			},
+			"data": {
+				"content": "Bra jobbat. /// <x> CH Industry",
+				"buttonText": "Avsluta lektion",
+				"title": "Det var allt!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Säkerhetsutbildning",
+	"index": 0,
+	"scorm": true,
+	"id": "65d48fbbaf2a82e007720b0a"
+}

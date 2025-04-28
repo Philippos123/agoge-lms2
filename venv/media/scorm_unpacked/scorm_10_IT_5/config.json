@@ -1,0 +1,476 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-2309638431224297451_zxhnu3.png",
+		"colors": {
+			"background": "#000000",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #000000;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #3D622D;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": false,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/CH_logga_rundad_2014-03-14_efcpah.jpg",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "533bfed5-eccb-4046-568d-78162e2bedb3",
+			"type": "title",
+			"subtype": "default",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "533bfed5-eccb-4046-568d-78162e2bedb3"
+			},
+			"data": {
+				"buttonText": "Då kör vi",
+				"exitButton": false,
+				"title": "<x>Lär dig appen!",
+				"titleType": "html",
+				"subtitle": "Detta är en introduktion till appen.",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "967647e3-d754-9320-45f4-05fb312071d5",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "967647e3-d754-9320-45f4-05fb312071d5"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-8097890163448410764_yczyum.png",
+						"caption": "<h1><x>Lär dig appen! </h1>\n___\n<p>Längst ner på din telefon/dator ska du se en text som det står: </p><p></p><p><w>SVEP ÅT VÄNSTER FÖR ATT FORTSÄTTA</W></p><p>Den texten kommer förklara för dig vad du ska göra för att ta dig vidare.</p><hr><h2><x>Så svep vidare nu!</h2>"
+					},
+					{
+						"image": "fit_content_assets/0001-8303929846277061596_y096eq.png",
+						"caption": "<p>Uppe i högra hörnet kommer du se <x>2/9.</p><p>Det betyder att ni är på sida <x>2 av 9 </x>möjliga sidor av detta kapitel just nu.</p>"
+					},
+					{
+						"image": "",
+						"caption": "Och när du har gått igenom allt innehåll på denna sida, så kommer det komma upp en text i botten som står forsätt\n____\n\nDet betyder att du är färdig och du kan gå vidare till sida <x>3/9</p>\n<br><br>\n<h2> <x>Tryck på Fortsätt!"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "1c774734-29b4-28d2-7127-21f0832b5404",
+			"type": "expandable-list",
+			"subtype": "three",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Expandable list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "1c774734-29b4-28d2-7127-21f0832b5404"
+			},
+			"data": {
+				"content": null,
+				"prompt": "Klicka på respektive texter för att få fram innehållet.",
+				"focus": true,
+				"doneText": "Fortsätt",
+				"list": [
+					{
+						"content": "Informativa sidor kommer kräva att du läsar allting innan du kan gå vidare",
+						"title": "Information- (TRYCK PÅ MIG)"
+					},
+					{
+						"content": "Under utbildningens gång så kommer du stöta på tester, var noga med att läsa instruktionerna längst ner på din telefon/dator. \n\nFör att svara på ett test så krävs det att du klickar i ett alternativ och sedan på Fortsätt",
+						"title": "Test (TRYCK PÅ MIG TVÅ GÅNGER FÖR ATT STÄNGA)"
+					},
+					{
+						"content": "Vi kommer samla in feedback under utbildningens gång, där vill vi att ni ska vara så ärliga som möjligt då det hjälper oss på Agoge att hjälpa er skapa det bästa programmet. \n",
+						"title": "Feedback"
+					}
+				],
+				"title": "Vi har flera olika slides",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "3a3d4683-e73f-a1a9-7f53-d158ec5362a1",
+			"type": "comparison",
+			"subtype": "reveal-further-information",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Comparison",
+			"templateDescription": "Juxtapose two items in a slider",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "3a3d4683-e73f-a1a9-7f53-d158ec5362a1"
+			},
+			"data": {
+				"before": {
+					"contentType": "text",
+					"content": "### Appen är väldigt interaktiv, det gör vi för att vi ska behöva fokusera under utbildningens gång. \n\nNu vill vi att du drar den oranga linjen till vänster\n",
+					"label": null
+				},
+				"after": {
+					"contentType": "text",
+					"content": "## Snyggt! \n\nDet kan kännas lite klurigt, men detta kommer du lära dig väldigt snabbt",
+					"label": null
+				},
+				"startPosition": "Before - Start with the first section visible",
+				"prompt": "Dra sträcket för att avslöja mera",
+				"doneText": "Testa mina kunskaper!",
+				"title": "",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "153deefb-5c6d-e2ab-1a87-d97899c09a53",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "<small> *Kom ihåg instruktionerna längst ner.*",
+							"content": "Vart hittar jag instruktioner för hur jag ska genomföra uppgiften?",
+							"questionId": "063c7223-5344-48fd-8cd1-ac176f6158f4",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Längst ner under det svarta sträcket",
+								"correct": true,
+								"answerId": "d30f128c-3c28-43ae-ab27-584735f97ecf",
+								"type": "text"
+							},
+							{
+								"content": "Jag får gissa ",
+								"correct": false,
+								"answerId": "286a0c7a-e293-4127-bb0b-cf3d05d94992",
+								"type": "text"
+							},
+							{
+								"content": "Högst upp på sidan",
+								"correct": false,
+								"answerId": "1906f8a6-8c8a-4e3d-83fd-eaed3bba92e0",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "153deefb-5c6d-e2ab-1a87-d97899c09a53"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "ea989eb7-121f-43a1-9ada-d0522777670e",
+						"content": "Längst ner under det svarta sträcket",
+						"correct": true
+					},
+					{
+						"id": "62378f43-766c-4a48-a326-6e77b56863f2",
+						"content": "Jag får gissa ",
+						"correct": false
+					},
+					{
+						"id": "5992d6f8-7c70-4ad0-b79d-dc2bc4bb2bd8",
+						"content": "Högst upp på sidan",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Du hittar instruktionerna längst ner på varje individuell sida",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Klicka på det korrekta alternativet",
+				"title": "Vart hittar jag instruktioner för hur jag ska genomföra uppgiften?",
+				"titleType": "text",
+				"subtitle": "<small> *Kom ihåg instruktionerna längst ner.*",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "a5469963-7e11-7ea1-e4dd-12c984050e5e",
+			"type": "categorise",
+			"subtype": "true-or-false",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Categorize",
+			"templateDescription": "Drag to the correct category",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "När en knapp kommer upp i botten av sidan, då har jag genomfört uppgiften korrekt.",
+							"content": "Stämmer detta påstående?",
+							"questionId": "75be22da-c9d9-4106-841b-4613887a826e",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Påståendet är sant",
+								"correct": true,
+								"answerId": "f298b092-c9e0-4a19-b921-79435ce87a5f",
+								"type": "text"
+							},
+							{
+								"content": "Påståendet är falskt",
+								"correct": false,
+								"answerId": "31510228-758a-4600-b7fd-374789a7c79d",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "a5469963-7e11-7ea1-e4dd-12c984050e5e"
+			},
+			"data": {
+				"buttonText": "När en knapp kommer upp i botten av sidan, då har jag genomfört uppgiften korrekt.",
+				"categories": [
+					{
+						"text": "Påståendet är sant",
+						"correct": true
+					},
+					{
+						"text": "Påståendet är falskt",
+						"correct": false
+					}
+				],
+				"doneText": "Kolla! Du kan ju! ",
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt... Men du fick rätt ändå! ",
+					"correct": "Det är korrekt!",
+					"text": "När du har genomfört uppgiften korrekt, då kommer knappen upp! ",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Dra påståendet till Sant eller Falskt",
+				"title": "Stämmer detta påstående?",
+				"titleType": "text",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "29ab452b-5bd1-1d5a-460b-356184280cb5",
+			"type": "list",
+			"subtype": "list",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Bulleted list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "29ab452b-5bd1-1d5a-460b-356184280cb5"
+			},
+			"data": {
+				"list": [
+					"### Läs alltid i botten av sidan ifall du inte förstår",
+					"### Alla sidor ser olika ut och kommer kräva olika uppgifter",
+					"### När du har genomfört uppgiften korrekt så kommer du se en knapp som tar dig vidare."
+				],
+				"doneText": "Fortsätt",
+				"title": "Saker att komma ihåg!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "1f10005f-77a0-74a7-8b55-7260197d7b8c",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "1f10005f-77a0-74a7-8b55-7260197d7b8c"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/Skarmklipp_cwbkpv.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "I varje lektion så kommer det finnas en \"Dokumentportfölj\". Där i kan du hitta viktiga dokument som tillexempel. \n\"Sjukanmälan\" \n",
+						"imagePosition": "Cover",
+						"captionStyle": "Light"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "896771cb-744b-4a64-a2b6-22bfdd9fb29b",
+			"type": "exit",
+			"subtype": "default",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "896771cb-744b-4a64-a2b6-22bfdd9fb29b"
+			},
+			"data": {
+				"content": "Känn ingen stress ifall du inte förstår, fråga en kollega och du kommer lära dig med tiden. ",
+				"buttonText": "Avsluta lektionen",
+				"title": "Det var allt!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Lär dig appen",
+	"index": 0,
+	"scorm": true,
+	"id": "65c38c455f24ee83f282e944"
+}

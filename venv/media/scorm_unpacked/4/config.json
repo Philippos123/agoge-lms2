@@ -1,0 +1,977 @@
+{
+	"config": {
+		"colors": {
+			"background": "#FEFEFE",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #967A26;\n  --secondary-palette-colour: #FEFEFE;\n  --primary-font-colour: #FFFFFF;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\nblack{\n  color:black;",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": false,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/Logotyp_Agoge_2_schcrc.png",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "45b50745-0dd1-0bb8-e9d9-d41e6cd06180",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "45b50745-0dd1-0bb8-e9d9-d41e6cd06180"
+			},
+			"data": {
+				"prompt": "<p class=\"text-transform-uppercase\">Svep för att fortsätta</p>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/Logotyp_Agoge_flcibr_vwcwbv_qtyaok.png",
+						"caption": "<p>Välkomna till Agoges kurs om psykisk hälsa på jobbet.</p>"
+					}
+				],
+				"doneText": "<p>Nu kör vi</p>",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "7ab0efe9-f3a7-805f-d196-96fd87ce812d",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "7ab0efe9-f3a7-805f-d196-96fd87ce812d"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<p>Vi kommer att prata om vad psykisk ohälsa är, hur vi kan känna igen tecken på det hos oss själva och andra, och vad vi kan göra för att hantera det.\n",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/1595385_jst1fc.jpg",
+						"contentType": "image"
+					},
+					{
+						"content": "<p>Denna utbildning är utformad för att ge dig grundläggande kunskaper och praktiska verktyg som du kan använda för att ta hand om både din egen och dina kollegors psykiska hälsa. Låt oss börja med att förstå vad vi menar med psykisk ohälsa.\n\n",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "Introduktion",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "dc1e21ed-79b5-5279-341c-bc307ddd08c7",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "dc1e21ed-79b5-5279-341c-bc307ddd08c7"
+			},
+			"data": {
+				"prompt": "Svep för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h1>Vad är psykisk ohälsa?\n"
+					},
+					{
+						"image": null,
+						"caption": "<p>Psykisk ohälsa är ett brett begrepp som innefattar allt från stress och oro till mer allvarliga tillstånd som depression och ångest."
+					},
+					{
+						"image": null,
+						"caption": "<p>Det är viktigt att förstå att psykisk ohälsa kan drabba vem som helst, oavsett ålder, kön eller arbetsroll. Några vanliga former av psykisk ohälsa inkluderar:\n"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "825ea0de-e0d9-1a86-b8fc-ddfacd08708d",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "825ea0de-e0d9-1a86-b8fc-ddfacd08708d"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/Stress_wdh6h3.png",
+				"prompt": "<black>Tryck på bilderna för att utforska",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-7310905621212924438_dxvmdd.png",
+						"caption": "# Depression\nEtt långvarigt tillstånd som kännetecknas av nedstämdhet, låg energi, och minskat intresse för aktiviteter som man tidigare tyckte om.\n",
+						"narration": null,
+						"region": {
+							"yMax": 0.35370371500651043,
+							"xMax": 0.5888071469907408,
+							"yMin": 0.022222188313802082,
+							"xMin": 0.07592592592592592
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-665844371133278533_r16lay.png",
+						"caption": "# Stress\nEn naturlig reaktion på påfrestningar, men när stressen blir kronisk kan den leda till utmattning och andra hälsoproblem.\n",
+						"narration": null,
+						"region": {
+							"yMax": 0.6888888549804687,
+							"xMax": 1,
+							"yMin": 0.38888885498046877,
+							"xMin": 0.48559678819444446
+						}
+					},
+					{
+						"image": "fit_content_assets/0001-8470582525460104577_ur5bb3.png",
+						"caption": "# Ångest\n<p>En känsla av oro eller rädsla som kan vara tillfällig men ibland bli så allvarlig att den påverkar vardagen.\n",
+						"narration": null,
+						"region": {
+							"yMax": 0.9407407633463541,
+							"xMax": 0.4234157986111111,
+							"yMin": 0.6207407633463542,
+							"xMin": 0.07905381944444445
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "5386b371-6869-2380-1885-09c41252a283",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "5386b371-6869-2380-1885-09c41252a283"
+			},
+			"data": {
+				"prompt": "Swipe to continue",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "fit_content_assets/0001-4010893000058018152_iqxgct.png",
+						"caption": "<p>Det är viktigt att vi normaliserar samtalet om psykisk ohälsa och förstår att det är något många upplever. \n\nAtt söka hjälp när man mår dåligt är ett tecken på styrka, <strong>inte svaghet.\n"
+					}
+				],
+				"doneText": "Forsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "216d7cec-f0dd-2385-8b30-f251c3d93a26",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Vad är en vanlig form av psykisk ohälsa? (Välj ett alternativ)",
+							"content": "",
+							"questionId": "f48d9c83-ba54-4e80-ab7f-795e0456d7fe",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Stress",
+								"correct": false,
+								"answerId": "752379c4-78e1-454b-bd69-1b45cd9c2f9b",
+								"type": "text"
+							},
+							{
+								"content": "Depression",
+								"correct": false,
+								"answerId": "041e7f01-593d-4701-b959-3a2566bb4adc",
+								"type": "text"
+							},
+							{
+								"content": "Ångest",
+								"correct": false,
+								"answerId": "e12cd100-f205-4dd4-93e6-a8d06096311c",
+								"type": "text"
+							},
+							{
+								"content": "Alla ovanstående\n",
+								"correct": true,
+								"answerId": "f306e809-9054-4171-826a-f10080adbb5e",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "216d7cec-f0dd-2385-8b30-f251c3d93a26"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "59d8f1f5-6f2e-8422-eba6-5e160435a768",
+						"content": "Stress",
+						"correct": false
+					},
+					{
+						"id": "1f14e39f-51f8-8ff6-f1bf-61fc27925f12",
+						"content": "Depression",
+						"correct": false
+					},
+					{
+						"id": "f6af0d64-3933-30e0-3190-87f4b6e9983a",
+						"content": "Ångest",
+						"correct": false
+					},
+					{
+						"id": "86565d89-7492-43a3-9c1c-a1b3fbe1aa5e",
+						"content": "Alla ovanstående\n",
+						"correct": true
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt",
+					"text": "Rätt svar: D\n",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "Vad är en vanlig form av psykisk ohälsa? (Välj ett alternativ)",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": true,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "0f1bef15-0edf-c1ac-29eb-c6f115c3f2a7",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0f1bef15-0edf-c1ac-29eb-c6f115c3f2a7"
+			},
+			"data": {
+				"prompt": "Svep för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<p>Att kunna känna igen tecken på psykisk ohälsa, både hos oss själva och våra kollegor, är viktigt för att kunna agera i tid.\n"
+					},
+					{
+						"image": null,
+						"caption": "<p>Här är några vanliga varningssignaler:\n"
+					},
+					{
+						"image": "fit_content_assets/0001-2412115135097862433_rtvtkx_ew4inb.png",
+						"caption": "<strong><p>Förändringar i beteende:</strong> <br><p>Någon som brukar vara social och pratsam blir plötsligt tillbakadragen och isolerad. \n"
+					},
+					{
+						"image": "fit_content_assets/0001-6640995184078221441_ewarj0_av2hwa.png",
+						"caption": "<strong><p>Minskad produktivitet</strong><br> <p>En annars effektiv och produktiv medarbetare börjar missa deadlines eller göra fler misstag än vanligt."
+					},
+					{
+						"image": "fit_content_assets/0001-3758691422699573341_iphp2o_fhfexn.png",
+						"caption": "<strong> <p>Fysiska symtom</strong><br> <p>Ofta huvudvärk, magont eller andra oförklarliga fysiska problem kan vara tecken på underliggande psykisk ohälsa."
+					},
+					{
+						"image": "fit_content_assets/0001-7707222397136453957_ndoxk8_ydyvdb.png",
+						"caption": "<strong><p>Irritabilitet eller humörsvängningar:</strong><br><p>Någon som tidigare var lugn och samlad kan börja reagera starkt på små saker."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "58958558-4800-4d4c-faaa-3c424496b03b",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "58958558-4800-4d4c-faaa-3c424496b03b"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/339620_qnxwk2_rurqgb.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "Det är också viktigt att känna igen skillnaden mellan tillfällig stress och något mer allvarligt. ",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/236151_pt763k_cvbypn.jpg",
+						"contentType": "image",
+						"position": "Middle",
+						"color": "",
+						"caption": "Om dessa symtom varar i flera veckor eller påverkar arbetsförmågan är det dags att ta det på allvar.",
+						"imagePosition": "Cover",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "171d2b26-59ec-6b5f-ba21-7dda392f77b3",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Vilket av följande är en varningssignal för psykisk ohälsa?<br> (Välj ett alternativ)\n\n",
+							"content": "",
+							"questionId": "628bf731-ab0a-481d-a495-69cb13f83521",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Ökad social interaktion",
+								"correct": false,
+								"answerId": "97ad0a70-0fd0-4c8e-8b4a-3ded8865ea99",
+								"type": "text"
+							},
+							{
+								"content": "Förändringar i beteende",
+								"correct": true,
+								"answerId": "886dc936-be40-4a8e-b1a3-758579eb4ed1",
+								"type": "text"
+							},
+							{
+								"content": "Förbättrad arbetsförmåga",
+								"correct": false,
+								"answerId": "5ccaf0aa-9cb3-46f4-904a-52d786704bf2",
+								"type": "text"
+							},
+							{
+								"content": "Ingen av ovanstående",
+								"correct": false,
+								"answerId": "bf00f15e-f17f-4a04-899c-b416f35bf841",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "171d2b26-59ec-6b5f-ba21-7dda392f77b3"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "c21bdcc6-9040-6c62-3cc6-bfeefa6afaea",
+						"content": "Ökad social interaktion",
+						"correct": false
+					},
+					{
+						"id": "c52977fa-27d9-e2c9-a7a8-1f6a97767e70",
+						"content": "Förändringar i beteende",
+						"correct": true
+					},
+					{
+						"id": "b921112c-861b-1eae-ae34-bb3beca9ffe9",
+						"content": "Förbättrad arbetsförmåga",
+						"correct": false
+					},
+					{
+						"id": "ef9f6d23-0e62-4be6-89f6-e6a0b975d507",
+						"content": "Ingen av ovanstående",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Rätt svar: B",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "Vilket av följande är en varningssignal för psykisk ohälsa?<br> (Välj ett alternativ)\n\n",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "ec6a690c-e4cc-1532-246d-1ad7ff709433",
+			"type": "image-slider",
+			"subtype": "multiple",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "ec6a690c-e4cc-1532-246d-1ad7ff709433"
+			},
+			"data": {
+				"prompt": "Svep upp för att se mera",
+				"items": [
+					{
+						"content": "<h1>Hur kan vi bearbeta psykisk ohälsa?",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": null,
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "<p>Att hantera psykisk ohälsa handlar både om att ta hand om sig själv och att veta när och var man ska söka hjälp. <br><br>Här är några enkla strategier:",
+						"contentType": "text",
+						"position": "Bottom",
+						"color": "",
+						"caption": "",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "32848827-8597-44fc-4cf3-c498ec193d62",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "32848827-8597-44fc-4cf3-c498ec193d62"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/Namnlos_design_80_czw61e.png",
+				"prompt": "Utforska bilderna",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "",
+					"textColor": "White"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "## Självhjälp:<br>\nTekniker som mindfulness, meditation och djupandning kan hjälpa till att minska stress och oro. Att ta regelbundna pauser och ägna tid åt aktiviteter man tycker om är också viktigt.",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.17555541992187498,
+							"yMin": 0.09333361816406267,
+							"xMin": 0.0244443359375
+						}
+					},
+					{
+						"image": null,
+						"caption": "## Prata med någon:<br>\nOm du känner dig överväldigad, prata med en kollega, chef, eller någon du litar på. Att dela dina känslor kan minska känslan av att vara ensam i det.",
+						"narration": null,
+						"region": {
+							"yMax": 0.9499995117187501,
+							"xMax": 0.4533333740234375,
+							"yMin": 0.12000000000000001,
+							"xMin": 0.2933333740234375
+						}
+					},
+					{
+						"image": null,
+						"caption": "## Professionell hjälp:<br>\n\nOm dina symtom är svåra eller långvariga, tveka inte att söka professionell hjälp. Företagshälsovård, psykologer och rådgivningstjänster finns tillgängliga för att stötta dig.",
+						"narration": null,
+						"region": {
+							"yMax": 0.92333349609375,
+							"xMax": 0.727777587890625,
+							"yMin": 0.09666674804687495,
+							"xMin": 0.5733331298828125
+						}
+					},
+					{
+						"image": null,
+						"caption": "## Arbetsplatsens roll:<br>\nOm du märker att en kollega mår dåligt, uppmuntra dem att prata med sin chef eller HR. Arbetsplatsen kan ofta erbjuda stöd eller anpassningar som kan hjälpa.",
+						"narration": null,
+						"region": {
+							"yMax": 0.9200001220703128,
+							"xMax": 0.988888916015625,
+							"yMin": 0.10000012207031285,
+							"xMin": 0.818888916015625
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "c5ddc359-6f89-cd46-935e-ceadc331867c",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "c5ddc359-6f89-cd46-935e-ceadc331867c"
+			},
+			"data": {
+				"author": "",
+				"avatar": "fit_content_assets/0001-2340057537713428607_fsgplo.png",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "Fortsätt",
+				"title": "## Att söka hjälp är ett viktigt steg mot att må bättre. Kom ihåg att psykisk ohälsa inte är något man behöver hantera ensam.",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "7dc73776-2522-0109-d819-e673f37bed59",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Vad kan du göra om du känner dig överväldigad? (Välj ett alternativ)",
+							"content": "",
+							"questionId": "02dbf8a1-c9fd-429b-9a8f-31b84aa44d57",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Ignorera det och fortsätta arbeta",
+								"correct": false,
+								"answerId": "6c5f06e0-9879-4290-9f28-a3edaa4c342d",
+								"type": "text"
+							},
+							{
+								"content": "Prata med någon du litar på",
+								"correct": true,
+								"answerId": "fdca69fa-8d16-4e8d-a827-63e8209aedbf",
+								"type": "text"
+							},
+							{
+								"content": "Vänta tills det går över av sig själv",
+								"correct": false,
+								"answerId": "1da50d5d-4a07-405d-9e09-9b507f32268a",
+								"type": "text"
+							},
+							{
+								"content": "Öka arbetsbelastningen",
+								"correct": false,
+								"answerId": "1a2d7e6e-b54b-4b70-94c8-3cd10a9764ab",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "7dc73776-2522-0109-d819-e673f37bed59"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": false,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "841e9448-8dd5-0708-ad11-d9e960dc8680",
+						"content": "Ignorera det och fortsätta arbeta",
+						"correct": false
+					},
+					{
+						"id": "c979b986-1c5f-74c4-0ac6-742df2e6d961",
+						"content": "Prata med någon du litar på",
+						"correct": true
+					},
+					{
+						"id": "3051e802-d060-869c-73d0-d8a3f97ae69b",
+						"content": "Vänta tills det går över av sig själv",
+						"correct": false
+					},
+					{
+						"id": "a7cf10b6-e95a-44a8-84d7-5e11d9dc8010",
+						"content": "Öka arbetsbelastningen",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Rätt svar: B\n",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "",
+				"titleType": "text",
+				"subtitle": "Vad kan du göra om du känner dig överväldigad? (Välj ett alternativ)",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "8fc3d030-d1c5-b555-a1db-ecc1a18a7834",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "8fc3d030-d1c5-b555-a1db-ecc1a18a7834"
+			},
+			"data": {
+				"prompt": "Svep för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "## Sammanfattning och avslutning"
+					},
+					{
+						"image": "",
+						"caption": "<p>Sammanfattningsvis har vi pratat om vad psykisk ohälsa är, hur man kan känna igen tecken på det, och några grundläggande sätt att hantera det. \n"
+					},
+					{
+						"image": "fit_content_assets/0001-4698817839922133258_gky7vx.png",
+						"caption": "<p>Det är viktigt att vi tar hand om vår psykiska hälsa och är uppmärksamma på både våra egna och våra kollegors välmående.<br><br> <p>Om du märker att du eller någon annan mår dåligt, tveka inte att söka hjälp eller prata med någon. \n"
+					},
+					{
+						"image": "fit_content_assets/708440_ipljq5.jpg",
+						"caption": "<p>Psykisk hälsa är lika viktig som fysisk hälsa, och vi behöver alla stödja varandra för att må bra på jobbet."
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "2a944af6-69b3-fcda-f083-a3bede9c1fbb",
+			"type": "speech-bubble",
+			"subtype": "default",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Quote",
+			"templateDescription": "Display a quote",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "2a944af6-69b3-fcda-f083-a3bede9c1fbb"
+			},
+			"data": {
+				"author": "## // Team Agoge",
+				"avatar": "",
+				"direction": "Left",
+				"bubbleStyle": "Dark",
+				"avatarStyle": "Circle",
+				"doneText": "Fortsätt",
+				"title": "### Ta hand om dig själv och dina kollegor. <br><br>Din psykiska hälsa är viktig, och du har verktygen att hantera den. Tack för att du deltog i denna utbildning.",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "39f06da4-4510-4215-9a10-bc8cffd802ff",
+			"type": "exit",
+			"subtype": "default",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "39f06da4-4510-4215-9a10-bc8cffd802ff"
+			},
+			"data": {
+				"content": "Tack för att du deltog i denna utbildning.",
+				"buttonText": "Avsluta utbildning",
+				"title": "Det var allt!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Psykisk hälsa på jobbet",
+	"index": 0,
+	"scorm": true,
+	"id": "66be04d44554a06d97fc2c26"
+}

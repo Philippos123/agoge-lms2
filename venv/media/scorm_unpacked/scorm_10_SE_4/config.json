@@ -1,0 +1,1159 @@
+{
+	"config": {
+		"background": "fit_content_assets/0001-2309638431224297451_zxhnu3.png",
+		"colors": {
+			"background": "#000000",
+			"experimental": false,
+			"text": "#000000"
+		},
+		"enableCustomCSS": true,
+		"customCSS": "@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n/* EDIT THE “MAIN COLORS” BELOW TO APPLY YOUR ORGANISATION’S COLORS */\n/* Add your primary, secondary and tertiary colours by typing colour names such as \"white\" etc. or by replacing the hex color codes below. */\n:root {\n  --primary-palette-colour: #000000;\n  --secondary-palette-colour: #000000;\n  --primary-font-colour: #000000;\n  --secondary-font-colour: #000000;\n}\n\n/* No need to touch the code below*/\n#slides-view, #slides-view-inner, #lesson-menu {\n  color: var(--secondary-font-colour) !important;\n  background-color: var(--secondary-palette-colour) !important;\n}\n/*/ Buttons /*/\n.btn.btn-muted,\n.btn.btn-solid,\n.btn.btn-primary {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n.btn.btn-muted.__active,\n.btn.btn-muted:hover,\n.btn.btn-solid.__active,\n.btn.btn-solid:hover,\n.btn.btn-primary__active,\n.btn.btn-primary:hover {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n  filter: brightness(90%);\n}\n/* exclude game memory */\n.slide-game-memory .game-tiles .btn.btn-solid {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/ Header & Slides /*/\n/*/ Corner Box /*/\n#lesson-header-nav {\n  background: #00000040;\n  color: #fff;\n}\n/*/ Menu Button /*/\n#lesson-header-nav-menu-btn {\n  border-left: 1px solid var(--secondary-palette-colour);\n}\n/*/ Line at the Top/*/\n#lesson-header-title-content {\n  border-bottom: 1px solid var(--secondary-font-colour);\n  color: var(--secondary-font-colour);\n}\n/*/ Progress Bar /*/\n#indicator {\n  background-color: #00000040;\n  color: var(--primary-palette-colour);\n}\n/*/ Line at the bottom/*/\n#slides {\n  border-bottom: 1px solid var(--secondary-font-colour);\n}\n/*/ Image Background Color When You Zoom in/*/\n.pswp__item {\n  background: var(--primary-palette-colour);\n}\n\n/*/----- Multiple Choice Slides ------/*/\n/*/Multiple Choice Slides Selected Button/*/\n.selectable.active .btn {\n  background-color: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Incorrect/*/\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n/*/Multiple Choice Correct/*/\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/-----------------------------------/*/\n\n/*/Chat Bubble on selected/*/\n.slide-chat.show-msg-true .message--answer.active {\n  background: var(--primary-palette-colour);\n  color: var(--primary-font-colour);\n}\n/*/Chat Bubble, the Pointy Part/*/\n.slide-chat.show-msg-true .message--answer.active:after {\n  border-color: var(--primary-palette-colour) transparent transparent;\n}\n/*/Expandable List/*/\n.slide-expandable-list .item.active .item-button,\n.slide-expandable-list .item.active .item-button:after {\n  background: var(--secondary-palette-colour);\n  color: var(--secondary-font-colour);\n}\n\n/*FONTS*/\n\n@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;1,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');\n\n\nh1, h2, h3 { \n  font-family: \"Poppins\", sans-serif;\n  font-weight: 400;\ncolor: black; \n}\n\nbody{ color:black;}\n\np {  font-family: \"mulish\", sans-serif;\n  font-weight: 400;\n  font-style: normal;\ncolor:black;\n}\n\nblack {\n  color:black;\n}\n\nbacky {\nbackground-color: rgba(0, 0, 0, 0.6);\n}\n\nx{\n  color: #e56f31;\n  font-weight: 600;\n}\n\nc{ color: #017C84;\n  font-weight:600;\n}\n\nz{\n  color: black;\n   text-shadow: 2px 2px #8ef05b;\n}\n\nw{\n  color: white;\n  background-color:black;\n}\n\nt{\n  border-radius: 80px;\n  padding:8px;\n \n  border: 3px solid #FFFF;\n}\ncenter {\ntext-align:center;\n}\n\n\n/*COLORS*/\n:root{\n  --main-color: #e56f31;\n  --accent-color: #953c17;\n  --text-color: #000000;\n  \n}\n\n\n/* Hokus pokus */\n\n.btn.btn-muted {\n  background:#e56f31;\n  color:white;\n  font-size:20px;\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n.btn.btn-muted.__active {\n  background: var(--accent-color); \n  color:var(--text-color);\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn-solid {\n  background:var(--main-color);\n  color: var(--text-color);\n  border-radius:3px;\n  transition: all ease-in-out 300ms;\n  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n .btn.btn-solid.__active {\n  background: var(--accent-color); \n  color:black;\n  transition-delay:0.25s;\n  transition:all ease-in-out 300ms;\n  box-shadow: 0 5px #666;\n  transform: translateY(4px);\n}\n\n.btn.btn:hover {\n  background-color:var(--accent-color);\n  color:white;\n}\n\n.btn.btn-circular {\n    border-radius: 50%!important;\n}\n\n\n/*/ Header & Slides /*/\n#lesson-header-nav {\n  background:var(--main-color);\n  color:var(--text-color);\n  box-shadow:0px 17px 10px -10px rgba(0,0,0,0.4);\n}\n\n#lesson-header-nav-menu-btn {\n  border-left: 1.5px solid black;\n}\n\n#lesson-header-title-content {\n  border-bottom:0px solid var(--main-color);\n  color:var(--text-color); \n}\n\n#indicator { \n  background-color:var(--accent-color); \n  color:var(--main-color);\n}\n\n#slides {\n  border-bottom: 1.5px solid var(--text-color);\n}\n\n#text-input-view #text-input-dismiss-btn {\n  color:var(--main-color);\n} \n\n#text-input-view #text-input-container-top {\n  color:var(--main-color);\n}\n\nli::marker {\n  color:var(--main-color); \n}\n\nhr {\n  color: #506680;\n}\n.pswp__item {\n    background:var(--main-color);\n}\n\n.selectable.active .btn { \nbackground-color: var(--accent-color);\n}\n\n/*/Templates/*/\n\n.slide-image-slider .style-default .caption-content {/* From https://css.glass */\nbackground: rgba(255, 255, 255, 0.8);\n  color: rgba (0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px solid rgba(255, 255, 255, 0.3);}\n\n.slide-image-slider .style-dark .caption-content {/* From https://css.glass */\nbackground: rgba(0, 0, 0, 0.8);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(71, 29, 110, 0.2);\n}\n\n\n.slide-image-slider .style-light .caption-content {/* From https://css.glass */\nbackground: rgba(240, 255, 194, 0.7);\n  color: rgba(0, 0, 0);\nborder-radius: 16px;\nbox-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);\nbackdrop-filter: blur(5px);\n-webkit-backdrop-filter: blur(15px);\nborder: 1px rgba(38, 173, 230, 0.3);\n}\n\n\n.slide-image-slider .btn-down:hover,.slide-image-slider .btn-down:active, .slide-image-slider .btn-up:hover, .slide-image-slider .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-image-gallery .pagination .dot {\n color:var(--text-color);\n\n}\n\n.slide-image-gallery .pagination .dot.active {\n  color:var(--main-color);\n\n} \n\n.slide-image-collection .tappy{ \n  transition: transform .5s ease;\n}\n.slide-image-collection .tappy:hover {\n transform: scale(1.1);\n}\n\n.slide-text-sequence .btn-down, .slide-text-sequence .btn-up {\n  background:var(--main-color);\n  color: black;\n  border-radius:50%;\n}\n.slide-text-sequence .btn-down:hover,.slide-text-sequence .btn-down:active, .slide-text-sequence .btn-up:hover, .slide-text-sequence .btn-up:active {\n  background:var(--accent-color);  \n  color: black; \n  border-radius:50%;\n}\n\n.slide-reveal .btn-reveal-title.flippable {\n  background:#e56f31;\n  color: black;\n} \n.slide-reveal .btn-reveal.active .btn-reveal-desc.flippable {\n  background: #3D622D;\n  color: var(--text-color); \n}\n.slide-reveal .btn-reveal-desc, .slide-reveal .btn-reveal-title {\n  pointer-events:none;\n}\n\n.slide-expandable-list .item.active .item-button {\n  background:var(--accent-color);  \n  color: black;\n}\n\n.slide-expandable-list .item-button {\n  background:#e56f31;\n  color: white;\n}\n\n.slide-expandable-list .item-button:after {color: white;}\n\n.slide-expandable-list .item.active .item-button:after {color: black;}\n\n.slide-image-waypoints .prev-wp, .slide-image-waypoints .next-wp {background: var(--main-color); color: white;}\n\n\n.slide-image-waypoints.guided-false .waypoint.tapped:after {\n    background-color: var(--accent-color);}\n\n\n\n.slide-list ::marker {\n  color:var(--accent-color); \n}\n\n\n.slide-speech-bubble .quote.quote-dk .quote-bg, .quote.quote-dk {\n   background:var(--main-color);  \n   color: var(--text-color); \n   opacity: 1;\n}\n\n.slide-speech-bubble .quote.pull-left.quote-dk:after {\n    border-color: var(--main-color) transparent transparent;\n}\n\n.slide-comparison .slider-knob {\n    background-color:var(--main-color);\n}\n\n.slide-comparison .slider-knob:before, .slide-comparison .slider-knob:after {\n   background-color:var(--main-color);\n}\n\n.slide-table .table-row:nth-child(odd) {\n    border-radius:3px;\n    background: var(--main-color);\n    color: black;\n}\n\n.slide-table .table-row:nth-child(even) {\n    border-radius:3px;\n    background:var(--accent-color);\n    color: black; \n}\n\n/*/Interactions/*/\n.slide-chat .message--question {\n  background:#026D74;\n  color:black;\n}\n\n.slide-chat.show-msg-true .selectable {\n  background: black;\n  color:white;\n}\n\n.slide-chat.show-msg-true .selectable.active {\n  background: var(--accent-color);\n  color: var(--text-color);\n}\n\n.slide-chat.state-complete .chat-msg.incorrect {\n  background: white;\n  color:red;\n}\n\n.slide-chat.state-complete .chat-msg.correct {\n  background: white;\n  color:green;\n}\n\n.slide-chat .message--question:after {\n  border-color: #FFB6A3 transparent transparent;\n}\n.slide-chat .message--answer:after {\n  border-color:#FFD7AA transparent transparent;\n}\n\n\n.slide-categorise .direction-ltr .selectable .btn-long, .direction-ltr .draggy .btn-long {\n  background:#e56f31;\n  color:white;\n}\n\n.slide-circle-the-answer .circle-box.active .circle-box-text, .text-dark .slide-circle-the-answer .circle-box.active .circle-box-text {\n  background:var(--main-color);\n  color:white;\n}\n.slide-multiple-choice-game .btn.btn-solid {\n  background:#e65f31;\n  color: white;\n}\n\n.slide-multiple-choice-game .selectable.active .btn {\n  background:#953c17;\n  color:white;\n}\n\n.slide-multiple-choice-game.state-complete .selectable.incorrect .btn {\n  background:white;\n  color:red;\n}\n.slide-multiple-choice-game.state-complete .selectable.correct .btn {\n  background:white;\n  color:green;\n}\n\n.slide-connect .connect-box {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-connect .connect-box.complete {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-game-true-or-false .game-statement {\n  background:var(--main-color);\n  color:white;\n}\n\n.slide-game-image-word-match .btn-word {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-game-image-word-match .btn-word.__active {\n  background:var(--accent-color);\n  color:black;\n}\n\n.slide-carousel .btn.btn-solid {\n  background:var(--main-color);\n  color:black;\n}\n\n.slide-slider .slider-bar, .slide-slider-survey .slider-bar {\n  background:var(--main-color);\n}\n\n.slide-slider.active .slider-knob-input, .active.slide-slider-survey .slider-knob-input {\n  background:var(--accent-color);\n}\n\n.slide-game-image-word-match .multi-content-wrapper, .slide-game-image-word-match .multi-content-media {\n    box-sizing: unset;\n}",
+		"direction": "ltr",
+		"disableInteractionSummary": true,
+		"disableLessonScore": false,
+		"hasAnswerFeedback": true,
+		"hasScormExitButton": true,
+		"preventLogoutOnExit": false,
+		"indicator": true,
+		"logo": "fit_content_assets/CH_logga_rundad_2014-03-14_efcpah.jpg",
+		"minimumScore": 0,
+		"pageNumbers": true,
+		"pagination": false,
+		"soundDisabled": false,
+		"language": "sv"
+	},
+	"slides": [
+		{
+			"id": "111eac30-b186-ab11-43a4-52f94bba1e8e",
+			"type": "image-map",
+			"subtype": "multiple-regions",
+			"name": 0,
+			"displayIndex": 1,
+			"templateName": "Image map",
+			"templateDescription": "Map out details through a series of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "111eac30-b186-ab11-43a4-52f94bba1e8e"
+			},
+			"data": {
+				"doneText": "Fortsätt",
+				"zoom": true,
+				"stickyCaptions": true,
+				"url": "fit_content_assets/CH_Industry_Inbyte_v6vkcf.png",
+				"prompt": "Klicka på Klicka här!",
+				"appearance": {
+					"waypointColor": "None"
+				},
+				"lightbox": {
+					"background": "Transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": "fit_content_assets/0001-8462681525470563261_j58acq_pwfbez.png",
+						"caption": "<b>Vi är superglada att du snart kommer bli en av oss! \n",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.85,
+							"yMin": 0.8866666666666667,
+							"xMin": 0.14333333333333334
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "cfbbb4ef-111e-8b96-5831-17c3db6aa3ee",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 1,
+			"displayIndex": 2,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "cfbbb4ef-111e-8b96-5831-17c3db6aa3ee"
+			},
+			"data": {
+				"prompt": "<span style=\"color: black;\">Svep upp för att se mera</span>",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-2170026948801602626_njgdmu.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<h3>Låt oss börja med att berätta lite om CH Industry",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "e262cbc8-6e63-03ce-37f4-8319823a3a4a",
+			"type": "image-gallery",
+			"subtype": "text-gallery",
+			"name": 2,
+			"displayIndex": 3,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "e262cbc8-6e63-03ce-37f4-8319823a3a4a"
+			},
+			"data": {
+				"prompt": "<span style=\"color: black;\">Svep åt vänster för att se mera</span>",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": null,
+						"caption": "<h1 class=\"text-xxl\">CH Industrys Historia</h1>"
+					},
+					{
+						"image": "fit_content_assets/Bengt_och_carl_b1chii.png",
+						"caption": "<p>Historian bakom CH Industry sträcker sig ända bak till 1940 talet som då gick under namnet <b>Centralsvets AB </b> med grundarna Carl Hellberg och Bengt Lindberg. "
+					},
+					{
+						"image": "fit_content_assets/Image-2_2x_woujjq.png",
+						"caption": "<p>1980 hade företaget växt och hade 35 anställda. Fabriken hade också växt från 200 kvm till 2 500 kvm.</p><p class=\"text-sm \"></p><p class=\"text-sm \"><em>Det var under denna tid som Bengt Lindbergs söner Dennis och Thomas tog över verksamheten.</em></p>"
+					},
+					{
+						"image": "fit_content_assets/lokal_knhztp.png",
+						"caption": "<p>Mycket hände under åren men på 2000-talet introducerades namnet CH Industry AB</p>"
+					},
+					{
+						"image": "fit_content_assets/sid-7_us2gau.jpg",
+						"caption": "<p>2014 köpte de nuvarande ägarna Ulrik Englund och Torbjörn Svahn alla aktier ifrån familjen Lindberg som ägt företaget sedan 1948.</p>"
+					},
+					{
+						"image": "",
+						"caption": "<p>De fokuserar på effektiv produktion och ständig förbättring mot kunder med hög kravbild.</p>"
+					}
+				],
+				"doneText": "Testa mina kunskaper",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "88b5d512-c5db-3937-5f2c-0b7140fe3ed4",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 3,
+			"displayIndex": 4,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vilket årtal bytte företaget namn från Centralsvets AB till CH Industry AB",
+							"questionId": "163bdeaf-6179-486f-963d-6efafabd716d",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "2000",
+								"correct": true,
+								"answerId": "c19e718c-1ac3-4da9-b047-e706e6dee84b",
+								"type": "text"
+							},
+							{
+								"content": "1980",
+								"correct": false,
+								"answerId": "1b1b85d1-ba38-45ce-bd4f-3cb4ca2a1943",
+								"type": "text"
+							},
+							{
+								"content": "2010",
+								"correct": false,
+								"answerId": "3f7eb4fb-29fd-448c-bd8b-ad0479c0e2c5",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "88b5d512-c5db-3937-5f2c-0b7140fe3ed4"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "960cd614-fb94-4dc9-82c9-e57d8f1e37ab",
+						"content": "2000",
+						"correct": true
+					},
+					{
+						"id": "c23444d0-ca73-41ce-8cbf-dfedfccdfae5",
+						"content": "1980",
+						"correct": false
+					},
+					{
+						"id": "59719d6a-e5f4-4b5a-b686-417ed25eb7d9",
+						"content": "2010",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt",
+					"text": "<p>På 2000 talet bytte Centralsvets AB namn till CH Industry AB</p>",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet",
+				"title": "Vilket årtal bytte företaget namn från Centralsvets AB till CH Industry AB",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "73396cf7-9525-b241-f6b0-496fb00d9cb5",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 4,
+			"displayIndex": 5,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "73396cf7-9525-b241-f6b0-496fb00d9cb5"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "<x>CH Industry AB är en lego-leverantör\n",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/0001-3218239757088094733_oh5jh0_u8ospk.png",
+						"contentType": "image"
+					},
+					{
+						"content": "Det betyder att vi tillverkar produkter på order av en kund,\nefter deras ritningsunderlag. Vi kallar denna del av vår produktion för vårt **”Lego-flöde”.**\n____\nDe kunder vi jobbar med i Lego-flödet är framför allt <x>VCE, Scania</x> och <x>Komatsu Forrest.</x> \n\n___\nAlla dessa kunder tillverkar tunga fordon. Vi gör även lego-produkter till andra branscher, som tex speciella dörrar till häkten och en massa annat.\n",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "CH Industrys affärsidé ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "fb955ab7-4a22-8875-d3cc-247ec41332c2",
+			"type": "title",
+			"subtype": "default",
+			"name": 5,
+			"displayIndex": 6,
+			"templateName": "Title",
+			"templateDescription": "Introduce your lesson",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "fb955ab7-4a22-8875-d3cc-247ec41332c2"
+			},
+			"data": {
+				"buttonText": "Okej, nu kör vi!",
+				"exitButton": false,
+				"title": "Vad gör vi på CH Industry?",
+				"titleType": "html",
+				"subtitle": "Våra lokaler, tjänster m.m",
+				"subtitleType": "html",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "6ba230a7-19b2-440b-b151-bca87fffe662",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 6,
+			"displayIndex": 7,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "6ba230a7-19b2-440b-b151-bca87fffe662"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Testa mina kunskaper",
+				"url": "fit_content_assets/CH_produktion_2_hydlk1.png",
+				"prompt": "Utforska bilderna med hjälp av pilen",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h1> Lego-flödet</h1>\n\nI Legoflödet handlar vår kärnverksamhet om svetsning. \n\nVi är bra på både manuell svetsning och svetsning med hjälp av robot. ",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.284,
+							"yMin": 1.7053025658242405e-16,
+							"xMin": 0.054
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1> Produktägande företag </h1>\n\n<x>CH</x> är också ett produktägande företag. Vi har ett särskilt flöde för tillverkning av säkerhets- och branddörrar i stål. ",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.6,
+							"yMin": 0.012,
+							"xMin": 0.386
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>CH Ståldörrar</h1>\n\nDessa dörrar säljer vi under produktnamnet <x>CH Ståldörrar.</x>\n\nDörrarna säljer vi antingen till vårt moderbolag **Svenska Skydd AB** eller direkt till stora bygg-företag.\n",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.87,
+							"yMin": 0.04400000000000006,
+							"xMin": 0.678
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "e9b86333-6d7b-a669-36c2-24619ff5b43d",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 7,
+			"displayIndex": 8,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "",
+							"content": "Vad är kärnverksamheten inom Lego-flödet?",
+							"questionId": "4ae9a510-05d7-4bf9-9c80-7ece678fa9c2",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Svetsning",
+								"correct": true,
+								"answerId": "a1b01d36-6809-460f-88d3-e9446f94a705",
+								"type": "text"
+							},
+							{
+								"content": "Plåtslagning ",
+								"correct": false,
+								"answerId": "b91e8dd3-9ef5-4f8d-a4c4-8c494bad827e",
+								"type": "text"
+							},
+							{
+								"content": "Laserskärning ",
+								"correct": false,
+								"answerId": "255a5715-ecfc-4933-8668-7989ff4b932d",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "e9b86333-6d7b-a669-36c2-24619ff5b43d"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 1,
+				"randomize": true,
+				"doneText": "Fortsätt",
+				"answers": [
+					{
+						"id": "8da60c53-8339-4903-bc28-15fa714ed588",
+						"content": "Svetsning",
+						"correct": true
+					},
+					{
+						"id": "5647edc3-71e4-4912-bc8a-316ec8efcf94",
+						"content": "Plåtslagning ",
+						"correct": false
+					},
+					{
+						"id": "4ff3a30b-0ab9-4f59-9cd8-aa1cbb4a12c2",
+						"content": "Laserskärning ",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt",
+					"correct": "Det är korrekt!",
+					"text": "Kärnverksamheten inom lego-flödet är svetsning",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Välj det korrekta alternativet ",
+				"title": "Vad är kärnverksamheten inom Lego-flödet?",
+				"titleType": "text",
+				"subtitle": "",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "de56be6e-5fc4-9187-a69c-979f888f8e5b",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 8,
+			"displayIndex": 9,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "de56be6e-5fc4-9187-a69c-979f888f8e5b"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Fortsätt",
+				"url": "fit_content_assets/CH_produktion_fqiyd1.png",
+				"prompt": "Utforska bilderna med hjälp av pilen",
+				"appearance": {
+					"waypointColor": "Black"
+				},
+				"lightbox": {
+					"background": "Transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h1>Våra lokaler </h2>\n____\nVåra lokaler har en produktionsyta på \n<x>12 000 kvm. \n",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.236,
+							"yMin": 0,
+							"xMin": 0.01
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Vår tillverkning</h2>\n___\nCH Industry har fem moderna robotsvetsutrustningar som kan användas för att svetsa komponenter med en totalvikt på upp till <x>500 kg.",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.51,
+							"yMin": 0.08266666666666664,
+							"xMin": 0.276
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Manuell svetsning</h2>\n___\nVi har även en avdelning för manuell svetsning där vi hanterar större produkter eller mindre orderstorlekar.",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.76,
+							"yMin": 0,
+							"xMin": 0.5315416666666667
+						}
+					},
+					{
+						"image": null,
+						"caption": "<h1>Vi erbjuder </h2>\n___\nUtöver svetsning erbjuder vi en komplett verkstad med <x>laserskärning, stansning, skärande bearbetning, kantpressning och montering.",
+						"narration": null,
+						"region": {
+							"yMax": 1,
+							"xMax": 0.9979999999999999,
+							"yMin": 0,
+							"xMin": 0.766
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "8a3af4fd-2bde-21be-7dc2-a5be76ff3b49",
+			"type": "scrolling-media",
+			"subtype": "scrolling-media",
+			"name": 9,
+			"displayIndex": 10,
+			"templateName": "Scrolling mix",
+			"templateDescription": "Display long form content of any type",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "8a3af4fd-2bde-21be-7dc2-a5be76ff3b49"
+			},
+			"data": {
+				"content": [
+					{
+						"content": "CH är ett medelstort företag (fler än 50 anställda). Vi är en salig blandning av nationaliteter, utbildningsbakgrund, kön och åldrar. \n\n<center>**Vi vill att det skall vara så.**\n",
+						"contentType": "text"
+					},
+					{
+						"content": "fit_content_assets/medarbetare_wkpy3c.jpg",
+						"contentType": "image"
+					},
+					{
+						"content": "Vi gillar mångfald och tror att mångfald är viktigt för att vi skall funka bra ihop och för att vi skall kunna lösa vardagens problem på bästa sätt. <x> \n\n<h3> <x> <center> Motsatsen till mångfald är enfald!</x>\n",
+						"contentType": "text"
+					}
+				],
+				"prompt": "Skrolla för att se mera",
+				"doneText": "Fortsätt",
+				"preventFocus": false,
+				"title": "CH Industrys Vision",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "a5b85f9f-5adc-86cf-acdc-c8b0fea5d548",
+			"type": "image-gallery",
+			"subtype": "image-gallery",
+			"name": 10,
+			"displayIndex": 11,
+			"templateName": "Horizontal series",
+			"templateDescription": "Swipe through a gallery of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "a5b85f9f-5adc-86cf-acdc-c8b0fea5d548"
+			},
+			"data": {
+				"prompt": "Svep åt vänster för att fortsätta",
+				"background": "",
+				"lightbox": false,
+				"images": [
+					{
+						"image": "",
+						"caption": "<h1> Våra värderingar"
+					},
+					{
+						"image": "fit_content_assets/0001-3116908776250884799_lhmzrv_cde5jt.png",
+						"caption": "<p>Vår värdegrund präglas av <x>samarbete och respekt.</x> \n\nDet är kärnan i hela verksamheten och en förutsättning för att trivas och ha roligt på jobbet."
+					},
+					{
+						"image": "fit_content_assets/0001-5313539495514384552_ou0q7j_wltsvp.png",
+						"caption": "<p>Vi på CH Industry jobbar prestigelöst och ser mervärdet i mångfalden."
+					},
+					{
+						"image": "fit_content_assets/0001-6790720172479655057_gd3q3y_ummydl.png",
+						"caption": "<p>Vi är övertygade om att de här delarna är vad som gör oss bäst i branschen. \n"
+					}
+				],
+				"doneText": "Fortsätt",
+				"title": null,
+				"titleType": null,
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "c9351ff1-8da0-c321-af96-38cf15ca5aca",
+			"type": "image-waypoints",
+			"subtype": "guided",
+			"name": 11,
+			"displayIndex": 12,
+			"templateName": "Image waypoints",
+			"templateDescription": "Highlight important details in an image",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "c9351ff1-8da0-c321-af96-38cf15ca5aca"
+			},
+			"data": {
+				"guided": true,
+				"doneText": "Testa mina kunskaper",
+				"url": "fit_content_assets/CH_produktion_1_hihfsh.png",
+				"prompt": "Utforska bilderna med hjälp av pilen",
+				"appearance": {
+					"waypointColor": "White"
+				},
+				"lightbox": {
+					"background": "transparent",
+					"textColor": "Black"
+				},
+				"waypoints": [
+					{
+						"image": null,
+						"caption": "<h3> Det finns några saker som vi håller extra nära hjärtat när det handlar om\n <x>CH Industry.\n </x> Vilka är...",
+						"narration": null,
+						"region": {
+							"yMax": 0.784,
+							"xMax": 0.162,
+							"yMin": 0.036000000000000004,
+							"xMin": 0
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Vi är en mångkulturell arbetsplats vilket är något vi är extremt stolta över. ",
+						"narration": null,
+						"region": {
+							"yMax": 1.0000000000000002,
+							"xMax": 0.418,
+							"yMin": 1.7053025658242405e-16,
+							"xMin": 0.256
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Vi levererar alltid toppkvalitet till våra kunder.  ",
+						"narration": null,
+						"region": {
+							"yMax": 0.906,
+							"xMax": 0.654,
+							"yMin": 0.096,
+							"xMin": 0.494
+						}
+					},
+					{
+						"image": null,
+						"caption": "<p>Vi har alltid god ton mot varandra och <x>respekt</x> emot våra kollegor är något som är ett måste hos oss! ",
+						"narration": null,
+						"region": {
+							"yMax": 0.9420000000000001,
+							"xMax": 0.92,
+							"yMin": 0.08199999999999995,
+							"xMin": 0.752
+						}
+					}
+				],
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "755a97e3-2acb-6951-489c-6f0c3f701382",
+			"type": "multiple-choice-game",
+			"subtype": "one-of-three",
+			"name": 12,
+			"displayIndex": 13,
+			"templateName": "Multiple Choice",
+			"templateDescription": "Select the correct answer(s)",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "*Välj ett eller flera alternativ*",
+							"content": "Vad är vi stolta över på CH Industry? ",
+							"questionId": "1c5256d5-3211-4f15-9e7e-1c502b630dbb",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "Våra medarbetares respekt emot sina kollegor",
+								"correct": true,
+								"answerId": "77e38b7e-a490-4186-95bf-de22c8c977ea",
+								"type": "text"
+							},
+							{
+								"content": "Vår kvalitet mot kunden",
+								"correct": true,
+								"answerId": "94cd7e0c-6f00-46df-896e-d4c77bf4082e",
+								"type": "text"
+							},
+							{
+								"content": "Våra arbetstider",
+								"correct": false,
+								"answerId": "14381adb-32e9-481f-9fef-44b341b6b033",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "755a97e3-2acb-6951-489c-6f0c3f701382"
+			},
+			"data": {
+				"additionalContent": "",
+				"additionalContentType": "text",
+				"selectable": 2,
+				"randomize": true,
+				"doneText": "<p>Fortsätt</p>",
+				"answers": [
+					{
+						"id": "28081d12-0d52-41b2-be89-115072983f56",
+						"content": "Våra medarbetares respekt emot sina kollegor",
+						"correct": true
+					},
+					{
+						"id": "85e4bb7c-356d-4cb5-9c28-d7261635cb45",
+						"content": "Vår kvalitet mot kunden",
+						"correct": true
+					},
+					{
+						"id": "937e7cee-f608-4417-b819-f5b0b4c3d50d",
+						"content": "Våra arbetstider",
+						"correct": false
+					}
+				],
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt...",
+					"correct": "Det är korrekt!",
+					"text": "Vi är stolta över våra medarbetare och vår arbetskultur men även vår kvalitet på produkterna vi levererar till kund.",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Klicka på det korrekta alternativet",
+				"title": "Vad är vi stolta över på CH Industry? ",
+				"titleType": "text",
+				"subtitle": "*Välj ett eller flera alternativ*",
+				"subtitleType": "text",
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "689d3262-ae1a-43f0-2e72-6fe7b88e996b",
+			"type": "expandable-list",
+			"subtype": "three",
+			"name": 13,
+			"displayIndex": 14,
+			"templateName": "Expandable list",
+			"templateDescription": "Display a list of bullet points",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "689d3262-ae1a-43f0-2e72-6fe7b88e996b"
+			},
+			"data": {
+				"content": null,
+				"prompt": "Klicka på rubrikerna för att se mera",
+				"focus": true,
+				"doneText": "Fortsätt",
+				"list": [
+					{
+						"content": "<p>Vi förväntar oss att du tar vår värdegrund på allvar och följer de regler vi kommit överens om.</p>",
+						"title": "Värdegrunder"
+					},
+					{
+						"content": "<p>På jobbet respekterar vi varandra och det arbete vi gör. ",
+						"title": "Respekt "
+					},
+					{
+						"content": "<p>Vi bryr oss om varandra och uttrycker oss och beter oss professionellt.\n\n\n<small> <center> *Hemma kanske man får gorma och skrika men det får man inte göra på vår arbetsplats.*",
+						"title": "Gemenskap"
+					},
+					{
+						"content": "<p>Förmågan att samarbeta och kommunicera med varandra är avgörande för vår framgång. Därför är vår värdegrund så viktig!",
+						"title": "Kommunikation "
+					}
+				],
+				"title": "Vad vi förväntar oss utav dig ",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "4a1eb658-b370-9813-8f94-bbd29bb64ec0",
+			"type": "image-slider",
+			"subtype": "single",
+			"name": 14,
+			"displayIndex": 15,
+			"templateName": "Vertical series",
+			"templateDescription": "Swipe through a group of images",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "4a1eb658-b370-9813-8f94-bbd29bb64ec0"
+			},
+			"data": {
+				"prompt": "Svep upp eller klicka på pilen för att se mera",
+				"items": [
+					{
+						"content": "fit_content_assets/0001-2181286173729152038_jeo7tb.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>På CH kan man få lära sig många olika saker och utföra många olika arbetsuppgifter. \n",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-565619804845484143_jnxand.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Din utveckling kommer bero på hur nyfiken du är och hur intresserad du är av att lära dig nya saker.",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					},
+					{
+						"content": "fit_content_assets/0001-365209624147531623_kbcb6a.png",
+						"contentType": "image",
+						"position": "Bottom",
+						"color": "",
+						"caption": "<p>Att kunna flera arbetsuppgifter ger oss flexibilitet. **Det gillar vi!**",
+						"imagePosition": "Middle",
+						"captionStyle": "Default"
+					}
+				],
+				"arrows": true,
+				"doneText": "Testa mina kunskaper",
+				"challenge_configuration": null,
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": {
+					"progress_on_completion": false,
+					"can_not_be_skipped": false,
+					"audio_file": null
+				}
+			}
+		},
+		{
+			"id": "12bc3e0b-dc25-393e-6508-964610105472",
+			"type": "categorise",
+			"subtype": "true-or-false",
+			"name": 15,
+			"displayIndex": 16,
+			"templateName": "Categorize",
+			"templateDescription": "Drag to the correct category",
+			"permanent": false,
+			"metadata": {
+				"questions": [
+					{
+						"question": {
+							"category": "Vi förväntar oss att du följer våra värdegrunder och respekterar dina kollegor",
+							"content": "Är detta påstående sant eller falskt? ",
+							"questionId": "65149f1c-1f6d-41af-8c0c-a49bc9c20abb",
+							"type": "text"
+						},
+						"answers": [
+							{
+								"content": "<p>Sant",
+								"correct": true,
+								"answerId": "d6aa5623-d91f-41fa-92e8-4414be7c8ff0",
+								"type": "text"
+							},
+							{
+								"content": "<p>Falskt",
+								"correct": false,
+								"answerId": "95152f86-6ebe-4412-a485-3587e9ca820f",
+								"type": "text"
+							}
+						]
+					}
+				],
+				"slideId": "12bc3e0b-dc25-393e-6508-964610105472"
+			},
+			"data": {
+				"buttonText": "Vi förväntar oss att du följer våra värdegrunder och respekterar dina kollegor",
+				"categories": [
+					{
+						"text": "<p>Sant",
+						"correct": true
+					},
+					{
+						"text": "<p>Falskt",
+						"correct": false
+					}
+				],
+				"doneText": "Fortsätt",
+				"answer": {
+					"takeaway": "",
+					"incorrect": "Inte riktigt",
+					"correct": "Det är korrekt!",
+					"text": "Detta påstående är sant",
+					"value": null
+				},
+				"game": {
+					"timer": {
+						"limit": -1,
+						"isDisabled": false,
+						"out-of-time-prompt": null
+					},
+					"stars": null
+				},
+				"prompt": "Dra påståendet till sant eller falskt",
+				"title": "Är detta påstående sant eller falskt? ",
+				"titleType": "text",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": {
+					"nb_stars": null,
+					"weighting": 1
+				},
+				"socialLearning": {
+					"enabled": false,
+					"maxResponseLength": 0
+				},
+				"narration": null
+			}
+		},
+		{
+			"id": "0a76748c-85fe-740c-96f6-b6e793c8b89f",
+			"type": "slider-survey",
+			"subtype": "slider",
+			"name": 16,
+			"displayIndex": 17,
+			"templateName": "Slider",
+			"templateDescription": "Gather numerical feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "0a76748c-85fe-740c-96f6-b6e793c8b89f"
+			},
+			"data": {
+				"slider": {
+					"min": 1,
+					"max": 10,
+					"prefix": "",
+					"suffix": "",
+					"increment": 1,
+					"decimals": 0,
+					"labels": 10,
+					"minLabel": "1",
+					"maxLabel": "10"
+				},
+				"prompt": "Dra till ett nummer för att svara",
+				"question": {
+					"min": null,
+					"content": "Från 1-10 vad tyckte du om detta kapitel? \n\n<h5><p> 1=Super dåligt 10=Superbra",
+					"contentType": "html",
+					"id": "612f1689-9f2e-9801-d375-e4e8f01dde2a"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "00fb6bc8-ccdb-29f6-07a2-08246063b488",
+			"type": "free-text-survey",
+			"subtype": "free-text",
+			"name": 17,
+			"displayIndex": 18,
+			"templateName": "Free text",
+			"templateDescription": "Free text input for user feedback",
+			"permanent": false,
+			"metadata": {
+				"questions": [],
+				"slideId": "00fb6bc8-ccdb-29f6-07a2-08246063b488"
+			},
+			"data": {
+				"prompt": "Skriv ditt svar",
+				"question": {
+					"min": 0,
+					"content": "Finns det något du tycker vi kan göra bättre eller prata mer om? ",
+					"contentType": "html",
+					"id": "84aac59e-d0b1-24d1-f404-0e294b35d3ff"
+				},
+				"doneText": "Fortsätt",
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		},
+		{
+			"id": "b6770f88-4b13-406e-9898-aa7d3bc2450f",
+			"type": "exit",
+			"subtype": "default",
+			"name": 18,
+			"displayIndex": 19,
+			"templateName": "Exit Lesson",
+			"templateDescription": "",
+			"permanent": true,
+			"metadata": {
+				"questions": [],
+				"slideId": "b6770f88-4b13-406e-9898-aa7d3bc2450f"
+			},
+			"data": {
+				"content": "Bra jobbat! Du har slutfört det första kapitlet. <small>*Intyget hittar du över kursen eller i din profil.*",
+				"buttonText": "Avsluta kapitel",
+				"title": "Det var allt!",
+				"titleType": "html",
+				"subtitle": null,
+				"subtitleType": null,
+				"challenge_configuration": null,
+				"socialLearning": null,
+				"narration": null
+			}
+		}
+	],
+	"title": "Om CH Industry",
+	"index": 0,
+	"scorm": true,
+	"id": "65c0adf27c20fed1b480de67"
+}
