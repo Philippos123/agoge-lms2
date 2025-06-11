@@ -89,7 +89,7 @@ export default function RecommendedCourses({ courses, companyBransch }) {
             >
               <div className="relative h-48 overflow-hidden">
                 <img
-                  src={`http://localhost:8000/${course.image_url}`}
+                  src={`https://backend-agoge-5544956f8095.herokuapp.com${course.image_url}`}
                   alt={course.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   loading="lazy"

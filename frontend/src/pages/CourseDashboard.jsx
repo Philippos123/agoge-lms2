@@ -44,7 +44,6 @@ export default function CourseDashboard() {
     <>
       <Navbar />
       <div className="container mx-auto page-container w-full" style={{ opacity: 0 }}>
-        <h1 className="text-2xl font-bold my-6">Kurser för {companyName}</h1>
         <CourseList />
       </div>
     </>

@@ -4,7 +4,7 @@ import './../services/scormApiWrapper'; // Importera wrappern
 
 
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = 'https://backend-agoge-5544956f8095.herokuapp.com/api';
 
 // Create axios instance with base URL
 const api = axios.create({
@@ -12,8 +12,18 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials : true, // Enable sending cookies with requests
 });
 
+api.updateFeaturedCourses = async (data) => {
+  try {
+    const response = await api.put('/featured-courses/', data);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating featured courses:', error);
+    throw error; // Re-throw to handle in the component
+  }
+};
 
 // Add interceptor to add auth token to requests
 api.interceptors.request.use(config => {
@@ -55,27 +65,33 @@ const AuthService = {
   login: async (email, password) => {
     try {
       const response = await api.post('/token/', { email, password });
-      console.log("Inloggningssvar:", response.data); // LÄGG TILL DENNA RAD
       if (response.data.access) {
-        // Spara användardata först
-        localStorage.setItem('user', JSON.stringify({
-          id: response.data.user_id,
-          email: response.data.email,
-          isAdmin: response.data.is_admin,
-          firstName: response.data.first_name,
-          lastName: response.data.last_name,
-          companyId: response.data.company_id,
-          companyName: response.data.company_name
-        }));
-        
         // Spara tokens
         localStorage.setItem('token', response.data.access);
         localStorage.setItem('refreshToken', response.data.refresh);
-        
-        // Omdirigera till dashboard eller annan lämplig sida
+
+        // Sätt token för kommande anrop
+        api.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+
+        // Hämta användarinfo
+        const userResponse = await api.get('/user/');
+        const user = userResponse.data[0];  // Om du returnerar en lista med en användare
+
+        localStorage.setItem('user', JSON.stringify({
+          id: user.id,
+          email: user.email,
+          isAdmin: user.is_admin,
+          firstName: user.first_name,
+          lastName: user.last_name,
+          companyId: user.company,
+          companyName: user.company_name || "",
+        }));
+
+        // Omdirigera först när allt är klart
         window.location.href = "/dashboard";
       }
     } catch (error) {
+      console.error("Login failed:", error);
       throw error;
     }
   },
@@ -129,7 +145,15 @@ const AuthService = {
 
 // Hämta alla kurser
 export const getCourses = async () => {
-  const response = await fetch(`${API_URL}/coursetobuy/`);
+  const token = localStorage.getItem('token'); // Hämta token från localStorage
+  const headers = {};
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${API_URL}/coursetobuy/`, {
+    headers: headers,
+  });
   if (!response.ok) {
     throw new Error("Failed to fetch courses");
   }
@@ -198,32 +222,60 @@ export const getFullMediaUrl = (relativeUrl) => {
 
 // Exportera ModuleService
 
-export const initializeScorm = (courseId, languageCode) => {
-  return fetch(`/coursetobuy/${courseId}/scorm/launch/${languageCode}/`) // Använder proxy-path
-    .then(response => response.json())
-    .then(data => {
-      const iframe = document.createElement('iframe');
-      iframe.id = 'scorm-iframe'; // Viktigt att ha en ID om du hämtar den senare
-      iframe.src = data.scorm_url; // Borde nu vara en relativ sökväg om proxyn fungerar korrekt
-      iframe.style.width = '100%';
-      iframe.style.height = '100vh';
-      iframe.style.border = 'none';
+export const initializeScorm = async (courseId, languageCode) => {
+  try {
+    // 1. Fetch the SCORM launch URL
+    const response = await fetch(`/api/coursetobuy/${courseId}/scorm/launch/${languageCode}/`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-      const container = document.getElementById('scorm-container');
-      container.innerHTML = '';
-      container.appendChild(iframe);
+    const data = await response.json();
+    
+    if (!data.launch_url) {
+      throw new Error('No launch_url in response');
+    }
 
+    // 2. Create and configure the iframe
+    const iframe = document.createElement('iframe');
+    iframe.id = 'scorm-iframe';
+    iframe.src = data.launch_url;
+    iframe.style.width = '100%';
+    iframe.style.height = '100vh';
+    iframe.style.border = 'none';
+    iframe.setAttribute('allow', 'fullscreen');
+
+    // 3. Handle container
+    const container = document.getElementById('scorm-container');
+    if (!container) {
+      throw new Error('SCORM container not found');
+    }
+    
+    container.innerHTML = '';
+    container.appendChild(iframe);
+
+    // 4. Return a promise that resolves when iframe is loaded
+    return new Promise((resolve, reject) => {
       iframe.onload = () => {
-        const iframeElement = document.getElementById('scorm-iframe');
-        if (iframeElement) {
-          setupScormAPI(iframeElement);
-        } else {
-          console.error("Kunde inte hitta iframe-elementet.");
+        try {
+          setupScormAPI(iframe);
+          resolve(iframe);
+        } catch (error) {
+          console.error('SCORM API setup failed:', error);
+          reject(error);
         }
       };
 
-      return iframe;
+      iframe.onerror = () => {
+        reject(new Error('Failed to load SCORM content'));
+      };
     });
+
+  } catch (error) {
+    console.error('SCORM initialization failed:', error);
+    throw error; // Re-throw for calling code to handle
+  }
 };
 
 
@@ -231,7 +283,7 @@ export const initializeScorm = (courseId, languageCode) => {
 export const uploadDocument = async (title, file, token) => {
   const formData = new FormData();
   formData.append('title', title);
-  formData.append('document', file); // Ändra fältnamnet för filen om din backend förväntar sig det
+  formData.append('document_file', file); // Ändra fältnamnet för filen om din backend förväntar sig det
 
   try {
     const response = await fetch(`${API_URL}/company/documents/`, { // KORREKT: ANVÄND POST
@@ -253,6 +305,16 @@ export const uploadDocument = async (title, file, token) => {
   } catch (error) {
     console.error('Error uploading document:', error);
     throw error;
+  }
+};
+
+
+export const del = async (url, config = {}) => {
+  try {
+    const response = await api.delete(url, config);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error;
   }
 };
 
@@ -309,35 +371,58 @@ export const getCompanyDashboardData = async (token) => {
 export const updateCompanyDashboardData = async (token, dashboardText, logoFile) => {
   try {
     const formData = new FormData();
-    formData.append('dashboard_text', dashboardText);
+    formData.append('dashboard_text', dashboardText || ''); // Ensure field exists even if empty
+    
     if (logoFile) {
-      formData.append('logo', logoFile);
+      formData.append('logo', logoFile, logoFile.name); // Include filename
     }
+
     const response = await fetch(`${API_URL}/company/dashboard/`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
+        // Explicitly DO NOT set Content-Type header for FormData
       },
       body: formData,
+      credentials: 'include' // Add this if using cookies/sessions
     });
+
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Kunde inte uppdatera dashboard-data.');
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.detail || errorData.error || 'Update failed');
     }
-    const data = await response.json();
-    return {
-      ...data,
-      logoUrl: data.logo ? `${API_URL.slice(0, -4)}${data.logo}` : null, // Uppdatera även här om du vill visa den nya loggan direkt efter uppladdning
-    };
+
+    return await response.json();
   } catch (error) {
-    console.error('Fel vid uppdatering av dashboard-data:', error);
+    console.error('Update error:', error);
+    throw error;
+  }
+};
+const updateFeaturedCourses = async (data) => {
+  try {
+    const response = await fetch('/api/featured-courses', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to update featured courses');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error updating featured courses:', error);
     throw error;
   }
 };
 
 const UserService = {
   getProfile: async (userId) => {
-    const response = await api.get(`/users/${userId}/`);
+    const response = await api.get(`/user/${userId}/`);
     return {
       ...response.data,
       profile_img_url: getFullMediaUrl(response.data.profile_img_url),
@@ -345,14 +430,14 @@ const UserService = {
   },
 
   updateProfile: async (userId, data) => {
-    const response = await api.put(`/users/${userId}/`, data);
+    const response = await api.put(`/user/${userId}/`, data);
     return response.data;
   },
 
   uploadProfileImage: async (userId, file) => {
     const formData = new FormData();
     formData.append('profile_img', file);
-    const response = await api.put(`/users/${userId}/`, formData, {
+    const response = await api.put(`/user/${userId}/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

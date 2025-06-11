@@ -1,31 +1,52 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { AuthService } from "../services/api";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from '@headlessui/react';
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
+import { AuthService } from '../services/api';
 import { useState, useEffect } from 'react';
-import api from '../services/api'; // Importera din API-service
+import api from '../services/api';
 
 const handleLogout = async (e) => {
   e.preventDefault();
-
   try {
-    await fetch("http://localhost:8000/api/logout/", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    });
+    await fetch(
+      'https://backend-agoge-5544956f8095.herokuapp.com/api/logout/',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
   } catch (error) {
-    console.error("Logout request failed", error);
+    console.error('Logout request failed', error);
   }
-
   AuthService.logout();
-  window.location.href = "/";
+  window.location.href = '/';
 };
 
 const allNavigation = [
   { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Courses', href: '/course-dashboard', current: false },
+  { name: 'Mina Kurser', href: '/course-dashboard', current: false },
   { name: 'Mitt team', href: '/team', current: false, isAdminOnly: true },
-  { name: 'Mitt teams kurser', href: '/company-courses', current: false, isAdminOnly: true },
-  { name: 'Marketplace', href: '/market', current: false },
+  {
+    name: 'Mitt teams kurser',
+    href: '/admin/course-overview',
+    current: false,
+    isAdminOnly: true,
+  },
+  { name: 'Marknads Plats', href: '/market', current: false },
   { name: 'Dokument', href: '/docs', current: false, isAdminOnly: true },
 ];
 
@@ -42,50 +63,112 @@ export default function Navbar({ settings }) {
   const [currentUser, setCurrentUser] = useState({
     name: 'Användare',
     email: 'user@example.com',
-    profile_img_url: "/default-profile.jpg",
+    profile_img_url: '/default-profile.jpg',
     isAdmin: false,
-    firstName: '', // Lägg till förnamn
-    lastName: '',  // Lägg till efternamn
+    firstName: '',
+    lastName: '',
+    company: null,
   });
+
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
+  const [notificationsError, setNotificationsError] = useState(null);
+  const [userLoaded, setUserLoaded] = useState(false);
+
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await api.get('/user/');
-        const usersData = response.data; // Backend returnerar en array
+        const usersData = response.data;
 
         if (usersData && usersData.length > 0) {
-          const loggedInUser = usersData[0]; // Ta den första användaren (tillfällig lösning)
-          const baseURL = api.defaults.baseURL ? api.defaults.baseURL.replace('/api', '') : 'http://localhost:8000';
-          let profileImageUrl = loggedInUser.profile_img_url || "/default-profile.jpg";
+          const loggedInUser = usersData[0];
+          const baseURL = api.defaults.baseURL
+            ? api.defaults.baseURL.replace('/api', '')
+            : 'https://backend-agoge-5544956f8095.herokuapp.com';
+          let profileImageUrl =
+            loggedInUser.profile_img_url || '/default-profile.jpg';
 
-          // Kontrollera om URL:en redan är absolut
-          if (loggedInUser.profile_img_url && !loggedInUser.profile_img_url.startsWith('http')) {
+          if (
+            loggedInUser.profile_img_url &&
+            !loggedInUser.profile_img_url.startsWith('http')
+          ) {
             profileImageUrl = `${baseURL}${loggedInUser.profile_img_url}`;
           }
 
           setCurrentUser({
-            name: `${loggedInUser.first_name} ${loggedInUser.last_name}`.trim() || loggedInUser.email,
+            name:
+              `${loggedInUser.first_name} ${loggedInUser.last_name}`.trim() ||
+              loggedInUser.email,
             email: loggedInUser.email || 'user@example.com',
             profile_img_url: profileImageUrl,
-            isAdmin: loggedInUser.is_admin || false,
+            isAdmin: loggedInUser.is_admin,
             firstName: loggedInUser.first_name || '',
             lastName: loggedInUser.last_name || '',
+            company: loggedInUser.company || null,
           });
+          setUserLoaded(true);
         }
       } catch (error) {
         console.error('Error fetching user profile for navbar:', error);
       }
     };
 
-    fetchUserProfile();
-  }, []);
+    const fetchNotifications = async () => {
+      if (!currentUser.isAdmin) return;
 
-  const navigation = allNavigation.filter(item => !item.isAdminOnly || (currentUser && currentUser.isAdmin));
+      try {
+        setNotificationsLoading(true);
+        setNotificationsError(null);
+        const response = await api.get('/course-requests/unread/');
+        setNotifications(response.data);
+        setUnreadCount(response.data.length);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        setNotificationsError('Kunde inte hämta notiser');
+      } finally {
+        setNotificationsLoading(false);
+      }
+    };
+
+    fetchUserProfile().then(() => {
+      if (currentUser.isAdmin) {
+        fetchNotifications();
+        const interval = setInterval(fetchNotifications, 30000);
+        return () => clearInterval(interval);
+      }
+    });
+  }, [currentUser.isAdmin]);
+
+  const markAsRead = async (requestId) => {
+    try {
+      await api.post(`/course-requests/mark-read/${requestId}/`);
+      setNotifications(notifications.filter((n) => n.id !== requestId));
+      setUnreadCount((prev) => prev - 1);
+    } catch (error) {
+      console.error('Error marking notification as read:', error);
+    }
+  };
+
+  const handleAccept = async (course, requestId) => {
+    await markAsRead(requestId);
+    window.location.href = `https://roaring-dragon-c80381.netlify.app/checkout/${course}/`;
+  };
+
+  const isUtbCompany = currentUser?.company?.is_utb_company === true;
+
+  const navigation = allNavigation.filter((item) => {
+    if (item.name === 'Marknads Plats' && isUtbCompany) {
+      return false;
+    }
+    return !item.isAdminOnly || currentUser?.isAdmin;
+  });
 
   return (
-    <div className="h-full w-[100vw] flex flex-col inset-0 m-0 p-0 bg-gradient-to-r from-blue-900 to-blue-400 text-white ">
-      <Disclosure as="nav" className="shadow-md ">
+    <div className="h-full w-[100vw] flex flex-col inset-0 m-0 p-0 bg-gradient-to-r from-blue-900 to-blue-400 text-white">
+      <Disclosure as="nav" className="shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
@@ -98,37 +181,116 @@ export default function Navbar({ settings }) {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      aria-current={item.current ? 'page' : undefined}
-                      className={classNames(
-                        item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium',
-                      )}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                {userLoaded &&
+                    navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        aria-current={item.current ? 'page' : undefined}
+                        className={classNames(
+                          item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium',
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
                 </div>
               </div>
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
-                <button
-                  type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
-                >
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon aria-hidden="true" className="size-6" />
-                </button>
+                {currentUser.isAdmin && (
+                  <Menu as="div" className="relative ml-3">
+                    <MenuButton className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none">
+                      {unreadCount > 0 && (
+                        <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                      )}
+                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    </MenuButton>
+                    <MenuItems className="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-lg bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100">
+                      <div className="px-4 py-3 text-sm font-semibold text-gray-700 bg-gray-50 flex items-center">
+                        <BellIcon className="h-5 w-5 mr-2 text-indigo-600" />
+                        Notiser
+                        {unreadCount > 0 && (
+                          <span className="ml-2 bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                            {unreadCount}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {notificationsLoading ? (
+                        <div className="px-4 py-6 text-center">
+                          <div className="animate-pulse flex justify-center">
+                            <div className="h-8 w-8 bg-gray-200 rounded-full"></div>
+                          </div>
+                          <p className="mt-2 text-sm text-gray-500">Hämtar notiser...</p>
+                        </div>
+                      ) : notificationsError ? (
+                        <div className="px-4 py-3 text-sm text-red-600">
+                          {notificationsError}
+                        </div>
+                      ) : notifications.length > 0 ? (
+                        <div className="max-h-96 overflow-y-auto">
+                          {notifications.map((notification) => (
+                            <MenuItem key={notification.id}>
+                              {({ active }) => (
+                                <div className={`${active ? 'bg-gray-50' : ''} px-4 py-3`}>
+                                  <div className="flex justify-between items-start">
+                                    <div className="flex-1">
+                                      <p className="font-medium text-gray-900 flex items-center">
+                                        <UserCircleIcon className="h-5 w-5 mr-2 text-gray-400" />
+                                        {notification.requester_name} begärde:
+                                      </p>
+                                      <p className="ml-7 mt-1 text-gray-700">{notification.course_title}</p>
+                                      <p className="ml-7 mt-1 text-xs text-gray-500">
+                                        {new Date(notification.requested_at).toLocaleString('sv-SE')}
+                                      </p>
+                                    </div>
+                                    {!notification.read && (
+                                      <span className="h-2 w-2 rounded-full bg-indigo-600"></span>
+                                    )}
+                                  </div>
 
-                {/* Profile dropdown */}
+                                  <div className="ml-7 mt-3 flex space-x-2">
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleAccept(notification.course, notification.id);
+                                      }}
+                                      className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded hover:bg-green-200 transition-colors"
+                                    href="/checkout"
+                                    >
+                                      Acceptera
+                                    </button>
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        markAsRead(notification.id);
+                                      }}
+                                      className="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded hover:bg-red-200 transition-colors"
+                                    >
+                                      Neka
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </MenuItem>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="px-4 py-6 text-center">
+                          <BellIcon className="mx-auto h-8 w-8 text-gray-300" />
+                          <p className="mt-2 text-sm text-gray-500">Inga nya notiser</p>
+                        </div>
+                      )}
+                    </MenuItems>
+                  </Menu>
+                )}
+
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+                    <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -140,14 +302,14 @@ export default function Navbar({ settings }) {
                   </div>
                   <MenuItems
                     transition
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-hidden"
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 transition focus:outline-none"
                   >
                     {userNavigation.map((item) => (
                       <MenuItem key={item.name}>
                         <a
                           href={item.href}
                           onClick={item.onClick}
-                          className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                          className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-none"
                         >
                           {item.name}
                         </a>
@@ -158,8 +320,7 @@ export default function Navbar({ settings }) {
               </div>
             </div>
             <div className="-mr-2 flex md:hidden">
-              {/* Mobile menu button */}
-              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
@@ -199,14 +360,17 @@ export default function Navbar({ settings }) {
                 <div className="text-base/5 font-medium text-white">{currentUser.firstName} {currentUser.lastName}</div>
                 <div className="text-sm font-medium text-gray-400">{currentUser.email}</div>
               </div>
-              <button
-                type="button"
-                className="relative ml-auto shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
-              >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="size-6" />
-              </button>
+              {currentUser.isAdmin && (
+                <button
+                  type="button"
+                  className="relative ml-auto shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none"
+                >
+                  {unreadCount > 0 && (
+                    <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                  )}
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              )}
             </div>
             <div className="mt-3 space-y-1 px-2">
               {userNavigation.map((item) => (

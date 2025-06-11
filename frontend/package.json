@@ -19,7 +19,10 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.0.15",
+    "@upandgo/react-scorm-container": "^3.0.4",
     "axios": "^1.8.4",
+    "chart.js": "^4.4.9",
+    "clsx": "^2.1.1",
     "grapesjs": "^0.22.6",
     "grapesjs-blocks-basic": "^1.0.2",
     "grapesjs-plugin-forms": "^2.0.6",
@@ -27,12 +30,16 @@
     "gsap": "^3.12.7",
     "heroicons": "^2.2.0",
     "lucide-react": "^0.483.0",
+    "motion": "^12.10.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.4.0",
     "react-syntax-highlighter": "^15.6.1",
-    "scorm-api-wrapper": "^0.0.2"
+    "recharts": "^2.15.3",
+    "scorm-again": "^2.6.2",
+    "scorm-api-wrapper": "^0.0.2",
+    "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

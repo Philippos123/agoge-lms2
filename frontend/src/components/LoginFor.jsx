@@ -92,7 +92,7 @@ export default function SignIn() {
       
       <div className="max-w-md w-full mx-auto px-8 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold text-gray-300 text-center uppercase pt-10 ">Agoges </h2>
-        <h2 className='text-4xl md:text-3xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Kunskaps portal</h2>
+        <h2 className='text-5xl md:text-4xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Företag portal</h2>
 
         <img
           src="/Logotyp-Agoge-white.png"
@@ -107,7 +107,7 @@ export default function SignIn() {
             </label>
             <div className="mt-2 justify-center text-right items-baseline">
               <input
-                placeholder="Email address"
+                placeholder="Your Work Email"
                 id="email"
                 name="email"
                 type="email"
@@ -154,7 +154,7 @@ export default function SignIn() {
               className="flex w-full cursor-pointer justify-center rounded-md bg-linear-to-l/srgb from-indigo-800 to-indigo-500 px-3 py-4 text-sm font-semibold text-white shadow-xs hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
               disabled={loading}
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Loggar in...' : 'Logga in'}
             </button>
           </div>
         </form>
@@ -165,14 +165,14 @@ export default function SignIn() {
             className="flex w-full justify-center cursor-pointer rounded-md bg-linear-to-r/srgb from-blue-500 to-blue-200 px-3 py-4 text-sm font-semibold text-white shadow-sm hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
             onClick={handleSSOLogin}
           >
-            Sign in with SSO
+            Logga in med SSO
           </button>
         </div>
 
         <p className="mt-10  text-center text-sm text-gray-500">
-          Är du privatperson?{' '}
+          Saknar ditt företag ett konto?{' '}
           <a href="#" className="font-semibold text-yellow-600 hover:text-indigo-500">
-            Ansök om konto här
+            Ansök om företagskonto här
           </a>
         </p>
       </div>

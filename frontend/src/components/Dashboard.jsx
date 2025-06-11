@@ -1,83 +1,184 @@
-import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import DocumentsDashboard from "./DocumentsDashboard";
 import { getCompanyDashboardData, updateCompanyDashboardData } from '../services/api';
+import api from '../services/api';
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 
 const Dashboard = () => {
+  // State management
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [companyName, setCompanyName] = useState("");
-  const [email, setEmail] = useState(null);
-  const [is_admin, setIsAdmin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [dashboardText, setDashboardText] = useState("");
   const [newDashboardText, setNewDashboardText] = useState("");
   const [newLogoFile, setNewLogoFile] = useState(null);
   const [logoUrl, setLogoUrl] = useState(null);
+  const [showGoalForm, setShowGoalForm] = useState(false);
+  const [goals, setGoals] = useState({ primaryGoal: "", skillsToDevelop: "" });
+  const [courses, setCourses] = useState([]);
+  const [featuredCourses, setFeaturedCourses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Refs
   const location = useLocation();
   const prevLocation = useRef(null);
   const dashboardContentRef = useRef(null);
   const logoRef = useRef(null);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  // Check for first login
+  const isFirstLogin = localStorage.getItem('firstLogin') === 'true';
+
+  // Dynamically assign gradient classes
+  const getGradientClasses = (index) => {
+    const gradients = [
+      { from: "from-blue-900", to: "to-blue-700" },
+      { from: "from-blue-700", to: "to-blue-500" },
+      { from: "from-blue-500", to: "to-blue-300" },
+    ];
+    return gradients[index % gradients.length];
+  };
+
+  // Fetch user, dashboard, courses, and featured courses data
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      // Fetch user information
+      const userResponse = await api.get('/user/');
+      const usersData = userResponse.data;
+
+      if (usersData && usersData.length > 0) {
+        const loggedInUser = usersData[0];
+        setCompanyName(loggedInUser.companyName || "");
+        setEmail(loggedInUser.email || "");
+        setFirstName(loggedInUser.first_name || "");
+        setIsAdmin(loggedInUser.is_admin || false);
+      } else {
+        console.warn("Kunde inte hämta användarinformation för dashboard.");
+      }
+
+      // Define userId for SCORM data fetching
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      const userId = user.id || "anonymous";
+
+      // Fetch dashboard data
+      const dashboardData = await getCompanyDashboardData(token);
+      setDashboardText(dashboardData.dashboard_text || '');
+      setNewDashboardText(dashboardData.dashboard_text || '');
+      setLogoUrl(dashboardData.logo_url || null);
+
+      // Fetch courses
+      const coursesResponse = await api.get('/courses/');
+      const coursesData = coursesResponse.data || [];
+      setCourses(coursesData);
+
+      // Fetch featured courses from backend
+      try {
+        const featuredResponse = await api.getFeaturedCourses();
+        let featuredCoursesData = featuredResponse.data.map(item => item.course) || [];
+
+        // Fetch SCORM progress for completion status
+        featuredCoursesData = await Promise.all(
+          featuredCoursesData.map(async (course) => {
+            try {
+              const scormResponse = await api.get(`https://backend-agoge-5544956f8095.herokuapp.com/api/scorm/get-data/?courseId=${course.id}`);
+              const scormData = scormResponse.data || [];
+              const userProgress = scormData.find(
+                (entry) => entry.user_id === userId && entry.progress_data
+              );
+              const isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+              return { ...course, isCompleted };
+            } catch (err) {
+              console.error(`Error fetching SCORM data for course ${course.id}:`, err);
+              return { ...course, isCompleted: false };
+            }
+          })
+        );
+
+        setFeaturedCourses(featuredCoursesData);
+        localStorage.setItem('featuredCourses', JSON.stringify(featuredCoursesData));
+      } catch (error) {
+        console.warn("Kunde inte hämta utvalda kurser, använder localStorage som reserv...");
+        // Fallback to localStorage if backend fetch fails
+        let savedFeatured = JSON.parse(localStorage.getItem('featuredCourses')) || [];
+        savedFeatured = await Promise.all(
+          savedFeatured.map(async (course) => {
+            try {
+              const scormResponse = await api.get(`https://backend-agoge-5544956f8095.herokuapp.com/api/scorm/get-data/?courseId=${course.id}`);
+              const scormData = scormResponse.data || [];
+              const userProgress = scormData.find(
+                (entry) => entry.user_id === userId && entry.progress_data
+              );
+              const isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+              return { ...course, isCompleted };
+            } catch (err) {
+              console.error(`Error fetching SCORM data for course ${course.id}:`, err);
+              return { ...course, isCompleted: false };
+            }
+          })
+        );
+        const validFeatured = savedFeatured
+          .filter(fc => coursesData.some(c => c.id === fc.id))
+          .slice(0, 3);
+        setFeaturedCourses(validFeatured.length ? validFeatured : coursesData.slice(0, 3));
+      }
+
+      // Check for first login
+      if (isFirstLogin) {
+        setShowGoalForm(true);
+        localStorage.setItem('firstLogin', 'false');
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.error('Fel vid hämtning av data för dashboard:', error);
+      setError(error.message || "Kunde inte hämta data för dashboard.");
+      setLoading(false);
+    }
+  }, [token, isFirstLogin]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-          const userObject = JSON.parse(storedUser);
-          setCompanyName(userObject.companyName || "");
-          setEmail(userObject.email || "");
-          setIsAdmin(userObject.isAdmin || false);
-        }
+    fetchData();
+  }, [fetchData]);
 
-        const data = await getCompanyDashboardData(token);
-        setDashboardText(data.dashboard_text || '');
-        setLogoUrl(data.logoUrl || null);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, [token]);
-
+  // Animation effects
   useEffect(() => {
     if (loading) return;
 
     const animateContent = () => {
-      // Reset styles before animation
       gsap.set(dashboardContentRef.current, { opacity: 0, y: 20 });
       gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      
-      // Animate main content
+
       tl.to(dashboardContentRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.8
+        duration: 0.8,
       });
 
-      // Animate logo with delay
       tl.to(logoRef.current, {
         opacity: 1,
         scale: 1,
         duration: 0.6,
-        ease: "back.out(1.5)"
+        ease: "back.out(1.5)",
       }, "-=0.4");
 
-      // Add subtle pulse effect to logo
       tl.to(logoRef.current, {
         scale: 1.05,
         duration: 0.8,
         yoyo: true,
         repeat: 1,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       }, "+=0.5");
     };
 
@@ -93,23 +194,78 @@ const Dashboard = () => {
     prevLocation.current = location;
   }, [loading, location]);
 
-  const handleEditToggle = () => {
+  // Handlers
+  const handleEditToggle = useCallback(() => {
     setIsEditing(!isEditing);
     setNewDashboardText(dashboardText);
     setNewLogoFile(null);
-  };
+  }, [isEditing, dashboardText]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await updateCompanyDashboardData(token, newDashboardText, newLogoFile);
       setDashboardText(data.dashboard_text);
-      setLogoUrl(data.logoUrl);
+      setLogoUrl(data.logo_url);
       setIsEditing(false);
       setError('');
     } catch (error) {
-      console.error('Update error:', error);
-      setError(error.message);
+      console.error('Uppdateringsfel:', error);
+      setError(error.message || "Kunde inte uppdatera dashboard");
+    }
+  };
+
+  const handleGoalSubmit = (e) => {
+    e.preventDefault();
+    console.log("Användarens mål:", goals);
+    setShowGoalForm(false);
+  };
+
+  const handleGoalChange = (e) => {
+    setGoals(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Handle selection of featured courses
+  const handleSelectFeaturedCourses = async (selectedCourseIds) => {
+    try {
+      const selectedCourses = courses
+        .filter(course => selectedCourseIds.includes(course.id))
+        .slice(0, 3);
+
+      const selectedCourseIdsForApi = selectedCourses.map(course => course.id);
+
+      // Call the method from the api instance
+      await api.updateFeaturedCourses({ course_ids: selectedCourseIdsForApi });
+
+      // Fetch SCORM data for selected courses to include completion status
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      const userId = user.id || "anonymous";
+      const updatedCourses = await Promise.all(
+        selectedCourses.map(async (course) => {
+          try {
+            const scormResponse = await api.get(`https://backend-agoge-5544956f8095.herokuapp.com/api/scorm/get-data/?courseId=${course.id}`);
+            const scormData = scormResponse.data || [];
+            const userProgress = scormData.find(
+              (entry) => entry.user_id === userId && entry.progress_data
+            );
+            const isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+            return { ...course, isCompleted };
+          } catch (err) {
+            console.error(`Error fetching SCORM data for course ${course.id}:`, err);
+            return { ...course, isCompleted: false };
+          }
+        })
+      );
+
+      setFeaturedCourses(updatedCourses);
+      localStorage.setItem('featuredCourses', JSON.stringify(updatedCourses));
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Fel vid uppdatering av utvalda kurser:', error);
+      setError(error.response?.data?.message || "Kunde inte uppdatera utvalda kurser.");
     }
   };
 
@@ -125,90 +281,161 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-blue-200 to-blue-100 pt-15 pb-15">
-      <div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 page-background rounded-2xl pb-15"
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-r from-blue-50 to-blue-100 pt-16 pb-16">
+      {/* Goal Form Modal */}
+      {showGoalForm && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50 p-4">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">What are your goals at {companyName}?</h2>
+            <form onSubmit={handleGoalSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="primaryGoal" className="block text-sm font-medium text-gray-700 mb-1">
+                  Primary goal (for the coming year)
+                </label>
+                <textarea
+                  id="primaryGoal"
+                  name="primaryGoal"
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  value={goals.primaryGoal}
+                  onChange={handleGoalChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="skillsToDevelop" className="block text-sm font-medium text-gray-700 mb-1">
+                  Three skills you want to develop
+                </label>
+                <textarea
+                  id="skillsToDevelop"
+                  name="skillsToDevelop"
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  value={goals.skillsToDevelop}
+                  onChange={handleGoalChange}
+                  required
+                />
+              </div>
+              <div className="flex justify-end space-x-3 pt-2">
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                  Save Goals
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Main Dashboard Content */}
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"
         ref={dashboardContentRef}
       >
-        <p className="text-lg mb-4">Du tillhör företaget <span className="font-extrabold text-blue-700">{companyName}</span></p>
-        
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8 flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-2/3 mb-4 md:mb-0">
-            <h2 className="text-2xl font-semibold mb-4">
-              Välkommen till din dashboard <span className=" font-extrabold ">{email}!</span>
+        {/* Welcome Card */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 flex flex-col md:flex-row">
+          <div className="p-6 md:w-2/3">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Välkommen till din dashboard, <span className="text-blue-600">{first_name}</span>!
             </h2>
-            <p className="text-gray-700">{dashboardText || "Här kan du se viktig information och notiser."}</p>
+            <p className="text-gray-600">
+              {dashboardText || "Here you can find important information and updates."}
+            </p>
           </div>
           
           {logoUrl && (
-            <div ref={logoRef} className="md:w-1/2 flex justify-center">
-              <img 
-                src={logoUrl} 
-                alt="Företagslogga" 
-                className="max-h-50 transition-all duration-300 hover:scale-105" 
+            <div ref={logoRef} className="md:w-1/3 flex items-center justify-center p-6 bg-gray-50">
+              <img
+                src={logoUrl}
+                alt="Company logo"
+                className="max-h-40 object-contain transition-transform duration-300 hover:scale-105"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://via.placeholder.com/150?text=Logo+Missing";
+                }}
               />
             </div>
           )}
         </div>
 
+        {/* Error Display */}
         {error && (
-          <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-8 rounded-md">
-            <p>{error}</p>
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded-md">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
+            </div>
           </div>
         )}
 
-        {is_admin && (
+        {/* Admin Controls */}
+        {isAdmin && (
           <div className="mb-8">
             {!isEditing ? (
               <button
                 onClick={handleEditToggle}
-                className="px-6 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors"
+                className="px-6 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Redigera innehåll
+                Edit Content
               </button>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md space-y-4">
+              <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md space-y-6">
                 <div>
-                  <label htmlFor="dashboardText" className="block text-sm font-medium text-gray-700 mb-1">
-                    Information om bolaget
+                  <label htmlFor="dashboardText" className="block text-sm font-medium text-gray-700 mb-2">
+                    Company Information
                   </label>
                   <textarea
                     id="dashboardText"
                     value={newDashboardText}
                     onChange={(e) => setNewDashboardText(e.target.value)}
                     rows={5}
-                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="logoFile" className="block text-sm font-medium text-gray-700 mb-1">
-                    Ladda upp logotyp
+                  <label htmlFor="logoFile" className="block text-sm font-medium text-gray-700 mb-2">
+                    Upload Logo
                   </label>
-                  <input
-                    type="file"
-                    id="logoFile"
-                    onChange={(e) => setNewLogoFile(e.target.files[0])}
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                  />
+                  <div className="flex items-center">
+                    <input
+                      type="file"
+                      id="logoFile"
+                      onChange={(e) => setNewLogoFile(e.target.files?.[0] || null)}
+                      accept="image/*"
+                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                    />
+                  </div>
                   {newLogoFile && (
-                    <p className="mt-2 text-sm text-gray-500">Vald fil: {newLogoFile.name}</p>
+                    <p className="mt-2 text-sm text-gray-500">Selected file: {newLogoFile.name}</p>
+                  )}
+                  {logoUrl && !newLogoFile && (
+                    <p className="mt-2 text-sm text-gray-500">Current logo will be kept</p>
                   )}
                 </div>
 
-                <div className="flex justify-end space-x-3">
+                <div className="flex justify-end space-x-3 pt-2">
                   <button
                     type="button"
                     onClick={handleEditToggle}
-                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
+                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                   >
-                    Avbryt
+                    Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
-                    Spara ändringar
+                    Save Changes
                   </button>
                 </div>
               </form>
@@ -216,31 +443,244 @@ const Dashboard = () => {
           </div>
         )}
 
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-3xl text-center font-bold mb-8">Kurser att göra</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-gradient-to-r from-blue-950 to-blue-500 text-white text-center rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h4 className="text-xl font-semibold mb-2">Kurs 1</h4>
-              <p>Grundläggande säkerhet</p>
-            </div>
-            <div className="bg-gradient-to-r from-blue-500 to-blue-300 text-white text-center rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h4 className="text-xl font-semibold mb-2">Kurs 2</h4>
-              <p>Avancerad säkerhet</p>
-            </div>
-            <div className="bg-gradient-to-r from-blue-300 to-blue-100 text-white text-center rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h4 className="text-xl font-semibold mb-2">Kurs 3</h4>
-              <p>Specialträning</p>
-            </div>
+        {/* Courses Section */}
+        <div className="mb-12">
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="text-2xl font-bold text-center text-gray-800">Prioriterade Kurser</h3>
+            {isAdmin && (
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+              >
+                Välj utvalda kurser
+              </button>
+            )}
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredCourses.map((course, index) => {
+              const { from, to } = getGradientClasses(index);
 
-          <div className="text-center py-8">
-            <h2 className="text-3xl font-bold mb-8">Dina dokument</h2>
+              return (
+                <div
+                  key={course.id}
+                  className={`bg-gradient-to-r ${from} ${to} text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden flex flex-col relative`}
+                >
+                  {/* Completion Badge */}
+                  {course.isCompleted && (
+                    <div className="absolute top-3 left-3 flex items-center bg-green-600 text-white text-xs font-medium px-2 py-0.5 rounded-full">
+                      <CheckCircleIcon className="h-4 w-4 mr-1" />
+                      Slutförd
+                    </div>
+                  )}
+
+                  {/* Course Image with fallback */}
+                  <div className="mb-4 h-40 overflow-hidden rounded-lg bg-gray-200 flex items-center justify-center">
+                    {course.image_url ? (
+                      <img
+                        src={course.image_url}
+                        alt={course.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/placeholder-course.jpg';
+                        }}
+                      />
+                    ) : (
+                      <div className="text-gray-500 text-center p-4">
+                        No image available
+                      </div>
+                    )}
+                  </div>
+
+                  <h4 className="text-xl font-semibold mb-3">{course.title}</h4>
+
+                  <p className="opacity-90 line-clamp-3 mb-4">
+                    {course.description || "No description available"}
+                  </p>
+
+                  <button
+                    onClick={() => navigate(`/course/${course.id}/scorm`)}
+                    className="mt-auto px-4 py-2 bg-white bg-opacity-20 rounded-md hover:bg-opacity-30 transition-colors text-black font-medium cursor-pointer"
+                  >
+                    {course.isCompleted ? "Repetera kurs" : "Starta kurs"}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Admin Call to Action */}
+        {isAdmin && (
+          <div className="my-12 p-6 bg-orange-50/50 border-l-4 border-amber-600 rounded-lg shadow-sm">
+            <h4 className="text-lg font-semibold text-blue-800 mb-2">
+              Vill ni göra mer med era utbildningar?
+            </h4>
+            <p className="text-blue-800 mb-4">
+              Vi kan hjälpa er att omvandla era PowerPoint-presentationer till engagerande, interaktiva kurser med uppföljning och resultatspårning.
+            </p>
+            <a
+              href="/kontakt"
+              className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-800 transition"
+            >
+              Kontakta oss
+            </a>
+          </div>
+        )}
+        {/* Documents Section */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="p-6">
             <DocumentsDashboard />
           </div>
         </div>
+
+        {/* Modal for selecting featured courses */}
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full">
+              <h2 className="text-2xl font-bold mb-4">Välj utvalda kurser (max 3)</h2>
+              <SelectFeaturedCourses
+                courses={courses}
+                onSave={handleSelectFeaturedCourses}
+                onCancel={() => setIsModalOpen(false)}
+                initialSelected={featuredCourses.map(c => c.id)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+// Component for selecting and reordering featured courses
+function SelectFeaturedCourses({ courses, onSave, onCancel, initialSelected }) {
+  const [selectedIds, setSelectedIds] = useState(initialSelected);
+
+  // Handle toggling course selection
+  const handleToggleCourse = (courseId) => {
+    if (selectedIds.includes(courseId)) {
+      setSelectedIds(selectedIds.filter((id) => id !== courseId));
+    } else if (selectedIds.length < 3) {
+      setSelectedIds([...selectedIds, courseId]);
+    }
+  };
+
+  // Move course up in the order
+  const handleMoveUp = (index) => {
+    if (index === 0) return; // Can't move up if already at the top
+    const newSelectedIds = [...selectedIds];
+    [newSelectedIds[index - 1], newSelectedIds[index]] = [
+      newSelectedIds[index],
+      newSelectedIds[index - 1],
+    ];
+    setSelectedIds(newSelectedIds);
+  };
+
+  // Move course down in the order
+  const handleMoveDown = (index) => {
+    if (index === selectedIds.length - 1) return; // Can't move down if already at the bottom
+    const newSelectedIds = [...selectedIds];
+    [newSelectedIds[index], newSelectedIds[index + 1]] = [
+      newSelectedIds[index + 1],
+      newSelectedIds[index],
+    ];
+    setSelectedIds(newSelectedIds);
+  };
+
+  // Handle save
+  const handleSave = () => {
+    onSave(selectedIds);
+  };
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Välj och ordna utvalda kurser (max 3)</h2>
+      <div className="mb-4 max-h-32 overflow-y-auto">
+        {selectedIds.map((courseId, index) => {
+          const course = courses.find((c) => c.id === courseId);
+          return (
+            <div
+              key={courseId}
+              className="flex items-center justify-between mb-2 p-2 bg-gray-100 rounded-md"
+            >
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={selectedIds.includes(courseId)}
+                  onChange={() => handleToggleCourse(courseId)}
+                  className="mr-2"
+                />
+                <span>{course ? course.title : 'Kurs inte hittad'}</span>
+              </div>
+              <div className="flex space-x-2">
+                <button
+                  type="button"
+                  onClick={() => handleMoveUp(index)}
+                  disabled={index === 0}
+                  className={`px-2 py-1 text-sm rounded-md ${
+                    index === 0
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-blue-500 text-white hover:bg-blue-600'
+                  }`}
+                >
+                  ↑
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleMoveDown(index)}
+                  disabled={index === selectedIds.length - 1}
+                  className={`px-2 py-1 text-sm rounded-md ${
+                    index === selectedIds.length - 1
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-blue-500 text-white hover:bg-blue-600'
+                  }`}
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* List of available courses for selection */}
+      <div className="max-h-32 overflow-y-auto mb-4">
+        {courses
+          .filter((course) => !selectedIds.includes(course.id))
+          .map((course) => (
+            <div key={course.id} className="flex items-center mb-2">
+              <input
+                type="checkbox"
+                checked={selectedIds.includes(course.id)}
+                onChange={() => handleToggleCourse(course.id)}
+                disabled={!selectedIds.includes(course.id) && selectedIds.length >= 3}
+                className="mr-2"
+              />
+              <span>{course.title}</span>
+            </div>
+          ))}
+      </div>
+
+      {selectedIds.length >= 3 && (
+        <p className="text-yellow-600 mb-2">Max 3 kurser kan väljas.</p>
+      )}
+      <div className="flex justify-end space-x-2">
+        <button
+          onClick={onCancel}
+          className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+        >
+          Avbryt
+        </button>
+        <button
+          onClick={handleSave}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+        >
+          Spara
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default Dashboard;

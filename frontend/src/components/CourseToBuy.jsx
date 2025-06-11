@@ -134,9 +134,9 @@ export default function CourseToBuy({ courses }) {
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={`http://localhost:8000/${course.image_url}`}
+                      src={course.image_url}
                       alt={course.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      className="object-cover transition-transform duration-500 hover:scale-110"
                       loading="lazy"
                     />
                     <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -182,7 +182,7 @@ export default function CourseToBuy({ courses }) {
             {visibleCourses < filteredCourses.length && (
               <div className="flex justify-center mt-12">
                 <button
-                  onClick={() => setVisibleCourses(visibleCourses + 4)}
+                  onClick={() => setVisibleCourses(visibleCourses + 8)}
                   className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white font-medium rounded-lg hover:from-green-700 hover:to-green-600 transition-colors"
                 >
                   Visa fler kurser ({filteredCourses.length - visibleCourses} till)

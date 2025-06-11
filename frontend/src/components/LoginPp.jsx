@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AuroraBackground } from './ui/aurora';
+import { AuroraBackground } from './ui/aurora-pp';
 import { motion } from "motion/react";
 
 
@@ -13,10 +13,6 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  const handleSSOLogin = () => {
-    window.location.href = `${API_URL}/login/azuread-oauth2/`; // Anpassa URL:en om din är annorlunda
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +71,7 @@ export default function SignIn() {
   // Om du behåller lokal inloggning, se till att starta token-uppdateringen där det är relevant
 
   return (  
-    <div className=" absolute bg-gradient-to-b from-indigo-900 to-indigo-500 flex items-center justify-center">
+    <div className=" absolute bg-gradient-to-b from-orange-900 to-orange-500 flex items-center justify-center">
     <AuroraBackground>
       <motion.div
         initial={{ opacity: 0.0, y: 40 }}
@@ -92,7 +88,7 @@ export default function SignIn() {
       
       <div className="max-w-md w-full mx-auto px-8 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold text-gray-300 text-center uppercase pt-10 ">Agoges </h2>
-        <h2 className='text-4xl md:text-3xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Kunskaps portal</h2>
+        <h2 className='text-4xl md:text-4xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Din egna Kunskaps portal</h2>
 
         <img
           src="/Logotyp-Agoge-white.png"
@@ -123,17 +119,17 @@ export default function SignIn() {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium text-gray-100">
-                Password
+                Lösenord
               </label>
               <div className="text-sm">
                 <a href="#" className="font-semibold text-yellow-500 hover:text-indigo-500">
-                  Forgot password?
+                  Glömt lösenord?
                 </a>
               </div>
             </div>
             <div className="mt-2">
               <input
-                placeholder="Password"
+                placeholder="Lösenord"
                 id="password"
                 name="password"
                 type="password"
@@ -154,27 +150,18 @@ export default function SignIn() {
               className="flex w-full cursor-pointer justify-center rounded-md bg-linear-to-l/srgb from-indigo-800 to-indigo-500 px-3 py-4 text-sm font-semibold text-white shadow-xs hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
               disabled={loading}
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Loggar in...' : 'Logga in'}
             </button>
           </div>
         </form>
 
-        <div className="mt-6">
-          <button
-            type="button"
-            className="flex w-full justify-center cursor-pointer rounded-md bg-linear-to-r/srgb from-blue-500 to-blue-200 px-3 py-4 text-sm font-semibold text-white shadow-sm hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
-            onClick={handleSSOLogin}
-          >
-            Sign in with SSO
-          </button>
-        </div>
 
-        <p className="mt-10  text-center text-sm text-gray-500">
-          Är du privatperson?{' '}
-          <a href="#" className="font-semibold text-yellow-600 hover:text-indigo-500">
-            Ansök om konto här
-          </a>
-        </p>
+        <p className="mt-10 text-center text-sm text-gray-300">
+                Har du inget konto ännu?{' '}
+                <a href="/ansok" className="font-semibold text-yellow-500 hover:text-indigo-300">
+                  Ansök om ett gratis konto
+                </a>
+              </p>
       </div>
     </div>
       </motion.div>

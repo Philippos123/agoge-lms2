@@ -5,86 +5,166 @@ const UploadDocument = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState('');
   const [uploading, setUploading] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [uploadError, setUploadError] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState({
+    success: false,
+    error: null,
+    message: null,
+    document_url: null
+
+  });
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file size (e.g., 10MB limit)
+      if (file.size > 10 * 1024 * 1024) {
+        setUploadStatus({
+          success: false,
+          error: 'File size exceeds 10MB limit',
+          message: null
+        });
+        return;
+      }
+      setSelectedFile(file);
+      setUploadStatus({ success: false, error: null, message: null });
+    }
   };
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
+  const resetForm = () => {
+    setSelectedFile(null);
+    setTitle('');
+    // Reset file input
+    document.getElementById('document').value = '';
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!selectedFile) {
-      alert('Välj en fil att ladda upp.');
+      setUploadStatus({
+        success: false,
+        error: 'Please select a file to upload',
+        message: null,
+        document_url: response.document_url // 👈 Lägg till detta!
+
+      });
       return;
     }
 
     setUploading(true);
-    setUploadSuccess(false);
-    setUploadError(null);
-
-    const formData = new FormData();
-    formData.append('document', selectedFile);
-    if (title) {
-      formData.append('title', title);
-    }
+    setUploadStatus({ success: false, error: null, message: null });
 
     const token = localStorage.getItem('token');
+    if (!token) {
+      setUploading(false);
+      setUploadStatus({
+        success: false,
+        error: 'Authentication required. Please log in.',
+        message: null
+      });
+      return;
+    }
 
     try {
       const response = await uploadDocument(title, selectedFile, token);
-      console.log('Dokument uppladdat:', response);
-      setUploadSuccess(true);
-      // Hantera framgångsrikt uppladdning (t.ex., visa meddelande, rensa formulär)
+      setUploadStatus({
+        success: true,
+        error: null,
+        message: 'Document uploaded successfully!'
+      });
+      resetForm();
     } catch (error) {
-      console.error('Fel vid uppladdning:', error);
-      setUploadError(error.message || 'Något gick fel vid uppladdningen');
+      const errorMessage = error.response?.data?.message || 
+                         error.message || 
+                         'An error occurred during upload';
+      setUploadStatus({
+        success: false,
+        error: errorMessage,
+        message: null
+      });
     } finally {
       setUploading(false);
     }
   };
 
   return (
-    <div className="mt-5 p-4 border border-gray-300 rounded-md bg-gray-50">
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Ladda upp dokument</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-md mx-auto mt-8 p-6 border border-gray-200 rounded-lg shadow-sm bg-white">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Upload Document</h2>
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
-            Titel (valfritt):
+          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+            Title (optional):
           </label>
           <input
             type="text"
             id="title"
             value={title}
             onChange={handleTitleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter document title"
+            maxLength={100}
+            aria-describedby="titleHelp"
           />
+          <p id="titleHelp" className="mt-1 text-sm text-gray-500">
+            Maximum 100 characters
+          </p>
         </div>
+
         <div>
-          <label htmlFor="document" className="block text-gray-700 text-sm font-bold mb-2">
-            Välj fil:
+          <label htmlFor="document" className="block text-sm font-medium text-gray-700 mb-1">
+            Select file:
           </label>
           <input
             type="file"
             id="document"
             onChange={handleFileChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="block w-full text-sm text-gray-500
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-md file:border-0
+              file:text-sm file:font-semibold
+              file:bg-blue-50 file:text-blue-700
+              hover:file:bg-blue-100"
+            accept=".pdf,.doc,.docx,.txt,.xls,.xlsx,.ppt,.pptx"
+            aria-describedby="fileHelp"
           />
+          <p id="fileHelp" className="mt-1 text-sm text-gray-500">
+            Supported formats: PDF, DOC, DOCX, TXT, XLS, XLSX, PPT, PPTX (max 10MB)
+          </p>
+          {selectedFile && (
+            <p className="mt-2 text-sm text-gray-600">
+              Selected: {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+            </p>
+          )}
         </div>
-        <button
-          type="submit"
-          className={`bg-gradient-to-r from-blue-600 to-blue-400 hover:text-lg duration-500 text-white font-bold py-2 px-4 cursor-pointer rounded focus:outline-none focus:shadow-outline ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={uploading}
-        >
-          {uploading ? 'Laddar upp...' : 'Ladda upp'}
-        </button>
-        {uploadSuccess && <p className="text-green-500 font-semibold mt-2">Dokument uppladdat!</p>}
-        {uploadError && <p className="text-red-500 font-semibold mt-2">Fel: {uploadError}</p>}
+
+        <div className="flex items-center space-x-4">
+          <button
+            type="submit"
+            disabled={uploading}
+            className={`px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+              uploading ? 'opacity-70 cursor-not-allowed' : ''
+            }`}
+            aria-busy={uploading}
+          >
+            {uploading ? 'Uploading...' : 'Upload'}
+          </button>
+          
+          {uploadStatus.success && (
+            <p className="text-sm text-green-600 font-medium">
+              {uploadStatus.message}
+            </p>
+          )}
+          
+          {uploadStatus.error && (
+            <p className="text-sm text-red-600 font-medium">
+              Error: {uploadStatus.error}
+            </p>
+          )}
+        </div>
       </form>
     </div>
   );
