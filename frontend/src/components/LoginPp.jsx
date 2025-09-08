@@ -87,8 +87,8 @@ export default function SignIn() {
       
       
       <div className="max-w-md w-full mx-auto px-8 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold text-gray-300 text-center uppercase pt-10 ">Agoges </h2>
-        <h2 className='text-4xl md:text-4xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Din egna Kunskaps portal</h2>
+        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-t to-gray-200 from-gray-400 text-center uppercase pt-10 ">Agoge </h2>
+        <h2 className='text-4xl md:text-4xl sd:text-4xl font-bold  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-b to-agoge-400 from-agoge-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Din egna Kunskapsportal</h2>
 
         <img
           src="/Logotyp-Agoge-white.png"
@@ -122,7 +122,7 @@ export default function SignIn() {
                 Lösenord
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-yellow-500 hover:text-indigo-500">
+                <a href="/newPassword" className="font-semibold text-yellow-500 hover:text-indigo-500">
                   Glömt lösenord?
                 </a>
               </div>
@@ -147,7 +147,7 @@ export default function SignIn() {
           <div>
             <button
               type="submit"
-              className="flex w-full cursor-pointer justify-center rounded-md bg-linear-to-l/srgb from-indigo-800 to-indigo-500 px-3 py-4 text-sm font-semibold text-white shadow-xs hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
+              className="flex w-full mb-5 cursor-pointer justify-center rounded-md bg-linear-to-l/srgb from-indigo-800 to-indigo-500 px-3 py-4 text-sm font-semibold text-white shadow-xs hover:text-xl hover:from-blue-500 hover:to-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 duration-200"
               disabled={loading}
             >
               {loading ? 'Loggar in...' : 'Logga in'}
@@ -156,10 +156,10 @@ export default function SignIn() {
         </form>
 
 
-        <p className="mt-10 text-center text-sm text-gray-300">
+        <p className="-5 text-center text-sm text-gray-300">
                 Har du inget konto ännu?{' '}
-                <a href="/ansok" className="font-semibold text-yellow-500 hover:text-indigo-300">
-                  Ansök om ett gratis konto
+                <a href="https://agoge.se/signup" className="font-semibold text-yellow-600 hover:text-indigo-500">
+                Ansök om ett gratis konto
                 </a>
               </p>
       </div>

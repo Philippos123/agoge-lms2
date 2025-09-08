@@ -85,25 +85,34 @@ const Dashboard = () => {
       try {
         const featuredResponse = await api.getFeaturedCourses();
         let featuredCoursesData = featuredResponse.data.map(item => item.course) || [];
-
-        // Fetch SCORM progress for completion status
+      
+        // Fetch progress for completion status, handling both SCORM and JSON
         featuredCoursesData = await Promise.all(
           featuredCoursesData.map(async (course) => {
             try {
-              const scormResponse = await api.get(`https://backend-agoge-5544956f8095.herokuapp.com/api/scorm/get-data/?courseId=${course.id}`);
-              const scormData = scormResponse.data || [];
-              const userProgress = scormData.find(
-                (entry) => entry.user_id === userId && entry.progress_data
-              );
-              const isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+              let isCompleted = false;
+        
+              if (course.course_type === 'scorm') {
+                const scormResponse = await api.get(`/scorm/get-data/?courseId=${course.id}`);
+                const scormData = scormResponse.data || [];
+                const userProgress = scormData.find(
+                  (entry) => entry.user_id === userId && entry.progress_data
+                );
+                isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+              } else if (course.course_type === 'json') {
+                const progressResponse = await api.get(`/courses/${course.id}/progress/`);
+                const progressData = progressResponse.data || {};
+                isCompleted = progressData.is_completed || false;
+              }
+        
               return { ...course, isCompleted };
             } catch (err) {
-              console.error(`Error fetching SCORM data for course ${course.id}:`, err);
+              console.error(`Error fetching data for course ${course.id}:`, err);
               return { ...course, isCompleted: false };
             }
           })
         );
-
+      
         setFeaturedCourses(featuredCoursesData);
         localStorage.setItem('featuredCourses', JSON.stringify(featuredCoursesData));
       } catch (error) {
@@ -193,6 +202,8 @@ const Dashboard = () => {
 
     prevLocation.current = location;
   }, [loading, location]);
+
+  
 
   // Handlers
   const handleEditToggle = useCallback(() => {
@@ -499,11 +510,23 @@ const Dashboard = () => {
                   </p>
 
                   <button
-                    onClick={() => navigate(`/course/${course.id}/scorm`)}
-                    className="mt-auto px-4 py-2 bg-white bg-opacity-20 rounded-md hover:bg-opacity-30 transition-colors text-black font-medium cursor-pointer"
-                  >
-                    {course.isCompleted ? "Repetera kurs" : "Starta kurs"}
-                  </button>
+  onClick={() => {
+    // Hämta token från localStorage
+    const token = localStorage.getItem('token');
+    if (course.course_type === 'scorm') {
+      navigate(`/course/${course.id}/scorm`);
+    } else if (course.course_type === 'json') {
+      // Lägg till token som en query-parameter i URL:en
+      window.location.href = `https://player.agoge-lms.se/coursetobuy/${course.id}/?token=${token}`;
+    } else {
+      console.warn(`Okänt kursformat för kurs ${course.id}: ${course.course_type}`);
+      setError('Okänt kursformat');
+    }
+  }}
+  className="mt-auto px-4 py-2 bg-white bg-opacity-20 rounded-md hover:bg-opacity-30 transition-colors text-black font-medium cursor-pointer"
+>
+  {course.isCompleted ? "Repetera kurs" : "Starta kurs"}
+</button>
                 </div>
               );
             })}

@@ -35,6 +35,30 @@ const handleLogout = async (e) => {
   AuthService.logout();
   window.location.href = '/';
 };
+const handleCreateCourse = async () => {
+  console.log('handleCreateCourse called');
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('No token found in localStorage');
+    alert('Du måste vara inloggad för att skapa en kurs.');
+    return;
+  }
+  console.log('Token:', token);
+  try {
+    console.log('Sending request to /forward-token/');
+    const response = await api.post('/forward-token/', 
+      { redirect_to: 'builder.agoge-lms.se' },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log('Response received:', response.data);
+    window.location.href = `https://builder.agoge-lms.se?token=${response.data.token}`;
+  } catch (err) {
+    console.error('Error in handleCreateCourse:', err.response?.data || err.message);
+    alert(err.response?.status === 400 
+      ? `Ogiltig förfrågan: ${err.response?.data?.error || 'Kontrollera token och backend.'}`
+      : `Kunde inte ansluta till kursbyggaren: ${err.message}`);
+  }
+};
 
 const allNavigation = [
   { name: 'Dashboard', href: '/dashboard', current: false },
@@ -48,6 +72,13 @@ const allNavigation = [
   },
   { name: 'Marknads Plats', href: '/market', current: false },
   { name: 'Dokument', href: '/docs', current: false, isAdminOnly: true },
+  {
+    name: 'Skapa Kurs',
+    href: '#', // Ändra till # för att hantera klick
+    onClick: handleCreateCourse, // Lägg till onClick
+    current: false,
+    isAdminOnly: true,
+  },
 ];
 
 const userNavigation = [
@@ -180,23 +211,24 @@ export default function Navbar({ settings }) {
                 />
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                {userLoaded &&
-                    navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        aria-current={item.current ? 'page' : undefined}
-                        className={classNames(
-                          item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium',
-                        )}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                </div>
-              </div>
+  <div className="ml-10 flex items-baseline space-x-4">
+    {userLoaded &&
+      navigation.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
+          aria-current={item.current ? 'page' : undefined}
+          className={classNames(
+            item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
+            'rounded-md px-3 py-2 text-sm font-medium',
+          )}
+        >
+          {item.name}
+        </a>
+      ))}
+  </div>
+</div>
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
@@ -338,6 +370,7 @@ export default function Navbar({ settings }) {
                 as="a"
                 href={item.href}
                 aria-current={item.current ? 'page' : undefined}
+                onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
                 className={classNames(
                   item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                   'block rounded-md px-3 py-2 text-base font-medium',

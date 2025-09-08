@@ -24,6 +24,9 @@ import AdminCourseOverviewPage from './pages/AdminCourseOverview';
 import InspectPage from './pages/Inspect';
 import AiDashboardPage from './pages/AiDashboard';
 import Kontakt from './pages/kontakt';
+import NotFound from './pages/NotFound';
+import { GoogleAnalytics } from './pages/Analylitcs';
+import RegisterPage from './pages/RegisterPage';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -60,6 +63,7 @@ function App() {
 
   return (
     <Router>
+      <GoogleAnalytics />
       <Routes>
         <Route 
           path="/" 
@@ -107,6 +111,7 @@ function App() {
         <Route path="/checkout/:courseId" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         <Route path="/registration-success" element={<RegistrationSuccess />} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/test" element={<TestEditor />} />
         <Route 
           path="/docs" 
@@ -132,6 +137,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>
     </Router>
   );

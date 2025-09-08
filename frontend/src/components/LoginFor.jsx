@@ -91,8 +91,8 @@ export default function SignIn() {
       
       
       <div className="max-w-md w-full mx-auto px-8 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold text-gray-300 text-center uppercase pt-10 ">Agoges </h2>
-        <h2 className='text-5xl md:text-4xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Företag portal</h2>
+        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-t to-gray-200 from-gray-400 text-center uppercase pt-10 ">Agoges </h2>
+        <h2 className='text-4xl md:text-4xl sd:text-4xl font-bold  bg-clip-text bg-no-repeat text-transparent bg-gradient-to-b to-agoge-400 from-agoge-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Företagsportal</h2>
 
         <img
           src="/Logotyp-Agoge-white.png"
@@ -126,7 +126,7 @@ export default function SignIn() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-yellow-500 hover:text-indigo-500">
+                <a href="/newpassword" className="font-semibold text-yellow-500 hover:text-indigo-500">
                   Forgot password?
                 </a>
               </div>
@@ -171,8 +171,8 @@ export default function SignIn() {
 
         <p className="mt-10  text-center text-sm text-gray-500">
           Saknar ditt företag ett konto?{' '}
-          <a href="#" className="font-semibold text-yellow-600 hover:text-indigo-500">
-            Ansök om företagskonto här
+          <a href="/register" className="font-semibold text-yellow-600 hover:text-indigo-500">
+          Registrera här
           </a>
         </p>
       </div>

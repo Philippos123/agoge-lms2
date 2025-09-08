@@ -1,3 +1,4 @@
+// CourseDashboard.jsx
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../../services/api";
@@ -29,28 +30,30 @@ export default function CourseList() {
         coursesData = await Promise.all(
           coursesData.map(async (course) => {
             try {
-              const scormResponse = await api.get(
-                `/scorm/get-data/?courseId=${course.id}`
-              );
-              const scormData = scormResponse.data || [];
-              const userProgress = scormData.find(
-                (entry) =>
-                  entry.user_id === userId && entry.progress_data
-              );
-              const isCompleted =
-                userProgress?.progress_data?.["cmi.completion_status"] ===
-                "completed";
-              return { ...course, isCompleted };
+              if (course.course_type === 'scorm') {
+                const scormResponse = await api.get(`/scorm/get-data/?courseId=${course.id}`);
+                const scormData = scormResponse.data || [];
+                const userProgress = scormData.find(
+                  (entry) => entry.user_id === userId && entry.progress_data
+                );
+                const isCompleted = userProgress?.progress_data?.["cmi.completion_status"] === "completed";
+                return { ...course, isCompleted, hasEverCompleted: isCompleted };
+              } else if (course.course_type === 'json') {
+                const progressResponse = await api.get(`/courses/${course.id}/progress/`);
+                const progressData = progressResponse.data;
+                const isCompleted = progressData?.is_completed || false;
+                const hasEverCompleted = progressData?.has_ever_completed || false;
+                return { ...course, isCompleted, hasEverCompleted };
+              }
             } catch (err) {
-              console.error(
-                `Error fetching SCORM data for course ${course.id}:`,
-                err
-              );
-              return { ...course, isCompleted: false };
+              console.error(`Error fetching data for course ${course.id}:`, err);
+              return { ...course, isCompleted: false, hasEverCompleted: false };
             }
           })
         );
 
+        coursesData = coursesData.filter(course => course.is_active); // Add this line
+        
         // Sortera egna kurser högre
         coursesData.sort((a, b) =>
           a.is_marketplace === b.is_marketplace
@@ -216,7 +219,7 @@ export default function CourseList() {
             {course.language}
           </span>
 
-          {course.isCompleted && (
+          {course.hasEverCompleted && (
             <div className="absolute top-3 left-3 flex items-center bg-green-600 text-white text-xs font-medium px-2 py-0.5 rounded-full">
               <CheckCircleIcon className="h-4 w-4 mr-1" />
               Slutförd
@@ -243,12 +246,30 @@ export default function CourseList() {
           </div>
 
           <div className="flex space-x-3">
-            <Link
-              to={`/course/${course.id}/scorm`}
-              className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-medium rounded-lg hover:from-blue-700 hover:to-blue-500 transition-colors"
-            >
-              {course.isCompleted ? "Repetera kurs" : "Starta Kurs"}
-            </Link>
+            {course.course_type === 'scorm' ? (
+              <Link
+                to={`/course/${course.id}/scorm`}
+                className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-medium rounded-lg hover:from-blue-700 hover:to-blue-500 transition-colors"
+              >
+                {course.hasEverCompleted ? "Repetera kurs" : "Starta Kurs"}
+              </Link>
+            ) : (
+              <button
+                onClick={() => {
+                  const token = localStorage.getItem('token');
+                  if (course.course_type === 'json') {
+                    // Navigera till JSON-spelaren med token i URL:en
+                    window.location.href = `https://player.agoge-lms.se/coursetobuy/${course.id}/?token=${token}`;
+                  } else {
+                    console.warn(`Okänt kursformat för kurs ${course.id}: ${course.course_type}`);
+                    setError('Okänt kursformat');
+                  }
+                }}
+                className="flex-1 text-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-medium rounded-lg hover:from-blue-700 hover:to-blue-500 transition-colors"
+              >
+                {course.hasEverCompleted ? "Repetera kurs" : "Starta Kurs"}
+              </button>
+            )}
             <Link
               to={`/course/${course.id}`}
               className="flex-1 text-center px-4 py-2 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"

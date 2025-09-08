@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuroraBackground } from './ui/aurora';
 import { motion } from "motion/react";
-
-
 const API_URL = 'https://backend-agoge-5544956f8095.herokuapp.com/api';
 
 export default function SignIn() {
@@ -91,8 +89,8 @@ export default function SignIn() {
       
       
       <div className="max-w-md w-full mx-auto px-8 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold text-gray-300 text-center uppercase pt-10 ">Agoges </h2>
-        <h2 className='text-4xl md:text-3xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-blue-600 via-yellow-600 to-blue-600 [text-shadow:0_0_rgba(0,0,0,0)]  text-center mb-10 uppercase '> Kunskaps portal</h2>
+        <h2 className="text-4xl md:text-3xl sm:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-t to-gray-200 from-gray-400 text-center uppercase pt-10 ">Agoges </h2>
+        <h2 className='text-4xl md:text-3xl sd:text-4xl font-bold bg-clip-text bg-no-repeat text-transparent bg-gradient-to-b to-agoge-400 from-agoge-600 text-center mb-10 uppercase '> Kunskapsportal</h2>
 
         <img
           src="/Logotyp-Agoge-white.png"
@@ -126,7 +124,7 @@ export default function SignIn() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-yellow-500 hover:text-indigo-500">
+                <a href="/newPassword" className="font-semibold text-yellow-500 hover:text-indigo-500">
                   Forgot password?
                 </a>
               </div>
@@ -170,9 +168,9 @@ export default function SignIn() {
         </div>
 
         <p className="mt-10  text-center text-sm text-gray-500">
-          Är du privatperson?{' '}
-          <a href="#" className="font-semibold text-yellow-600 hover:text-indigo-500">
-            Ansök om konto här
+          Saknar ditt företag ett konto?{' '}
+          <a href="/register" className="font-semibold text-yellow-600 hover:text-indigo-500">
+            Registrera här
           </a>
         </p>
       </div>

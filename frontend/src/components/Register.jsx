@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import RegistrationSuccess from './RegistrationSuccess';
 
-const RegisterPage = () => {
+const RegisterPage3 = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [companyName, setCompanyName] = useState('');
@@ -61,8 +61,8 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center">
+      <form onSubmit={handleSubmit} className=" p-6 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl mb-4">{isInvited ? 'Join Company' : 'Register Company'}</h2>
         <input
           type="email"
@@ -121,4 +121,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default RegisterPage3;

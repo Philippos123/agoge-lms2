@@ -21,3 +21,15 @@ body {
     }
   }
 }
+
+
+@theme{
+  --color-primary: oklch(0.3934 0.1523 268.82); /* Tailwind-blå nyans */
+  --color-agoge-400: oklch(0.4941 0.1054 89.8);
+  --color-agoge-500: oklch(0.5908 0.1054 89.8); /* Tailwind-gul nyans */
+  --color-agoge-600: oklch(0.6929 0.1054 89.8);
+  --color-agoge-700: oklch(0.7938 0.1054 89.8);
+  --color-primary-400: oklch(0.4911 0.1523 268.82);
+  --color-primary-500: oklch(0.5908 0.1523 268.82);
+
+}
