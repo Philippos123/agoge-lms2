@@ -22,8 +22,8 @@ const TeamPage = () => {
       const response = await api.get('/team/');
       setTeam(response.data);
     } catch (err) {
-      console.error("Error fetching team:", err);
-      setError(err.response?.data?.message || "Failed to load team data. Please try again.");
+      console.error("Fel vid hämtning av team:", err);
+      setError(err.response?.data?.message || "Kunde inte ladda teamdata. Försök igen.");
     }
   };
 
@@ -34,8 +34,8 @@ const TeamPage = () => {
       const response = await api.get(`/team/member-courses/${userId}/`);
       setMemberCourses(response.data);
     } catch (err) {
-      console.error("Error fetching member courses:", err);
-      setError(err.response?.data?.message || "Failed to load member's courses.");
+      console.error("Fel vid hämtning av medlemskurser:", err);
+      setError(err.response?.data?.message || "Kunde inte ladda medlemskurser.");
     } finally {
       setCoursesLoading(false);
     }
@@ -43,31 +43,31 @@ const TeamPage = () => {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    console.log("User object from storage:", storedUser);
+    console.log("Användarobjekt från lagring:", storedUser);
     setUser(storedUser);
   }, []);
 
   useEffect(() => {
-    console.log('User object:', user); // Logga user-objektet
+    console.log('Användarobjekt:', user); // Logga user-objektet
     if (!user) {
-      setError('No user logged in. Please log in again.');
+      setError('Ingen användare inloggad. Vänligen logga in igen.');
       setIsLoading(false);
       return;
     }
     if (user.isAdmin) { // Använd isAdmin
-      console.log('Fetching team...');
+      console.log('Hämtar team...');
       fetchTeam()
         .then(() => {
-          console.log('Team data fetched successfully');
+          console.log('Teamdata hämtad framgångsrikt');
           setIsLoading(false);
         })
         .catch(err => {
-          console.error('Error fetching data:', err);
-          setError(err.response?.data?.message || 'Failed to load data.');
+          console.error('Fel vid hämtning av data:', err);
+          setError(err.response?.data?.message || 'Kunde inte ladda data.');
           setIsLoading(false);
         });
     } else {
-      setError('You do not have permission to view this page.');
+      setError('Du har inte behörighet att visa denna sida.');
       setIsLoading(false);
     }
     if (error) {
@@ -78,29 +78,29 @@ const TeamPage = () => {
 
   const handleSendInvitation = async () => {
     if (!inviteEmail.trim()) {
-      setError('Please enter a valid email address');
+      setError('Ange en giltig e-postadress');
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inviteEmail)) {
-      setError('Please enter a valid email format');
+      setError('Ange ett giltigt e-postformat');
       return;
     }
     try {
       setMessage('');
       const response = await api.post('/team/invite/', { email: inviteEmail });
-      setMessage(response.data.message || 'Invitation sent successfully!');
+      setMessage(response.data.message || 'Inbjudan skickad framgångsrikt!');
       setShowInviteModal(false);
       setInviteEmail('');
       await fetchTeam();
     } catch (err) {
-      console.error("Error inviting member:", err);
-      setError(err.response?.data?.message || 'Failed to send invitation');
+      console.error("Fel vid inbjudan av medlem:", err);
+      setError(err.response?.data?.message || 'Kunde inte skicka inbjudan');
     }
   };
 
   const handleSendNotification = async (memberId) => {
     if (!notificationMessage.trim()) {
-      setError('Please enter a notification message');
+      setError('Ange ett notifikationsmeddelande');
       return;
     }
     try {
@@ -109,28 +109,28 @@ const TeamPage = () => {
         message: notificationMessage,
         notification_type: 'admin_message'
       });
-      setMessage('Notification sent successfully!');
+      setMessage('Notifikation skickad framgångsrikt!');
       setShowNotificationModal(false);
       setNotificationMessage('');
     } catch (err) {
-      console.error("Error sending notification:", err);
-      setError(err.response?.data?.error || 'Failed to send notification');
+      console.error("Fel vid sändning av notifikation:", err);
+      setError(err.response?.data?.error || 'Kunde inte skicka notifikation');
     }
   };
 
   const handleRemoveMember = async (userId) => {
-    if (!window.confirm("Are you sure you want to remove this team member?")) return;
+    if (!window.confirm("Är du säker på att du vill ta bort denna teammedlem?")) return;
     try {
       await api.delete(`/team/remove/${userId}/`);
       setTeam(team.filter(member => member.id !== userId));
-      setMessage('Team member removed successfully');
+      setMessage('Teammedlem borttagen framgångsrikt');
       if (selectedMember?.id === userId) {
         setSelectedMember(null);
         setMemberCourses([]);
       }
     } catch (err) {
-      console.error("Error removing member:", err);
-      setError(err.response?.data?.message || 'Failed to remove team member');
+      console.error("Fel vid borttagning av medlem:", err);
+      setError(err.response?.data?.message || 'Kunde inte ta bort teammedlem');
     }
   };
 
@@ -147,7 +147,7 @@ const TeamPage = () => {
   if (!user || !user.isAdmin) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <p className="text-red-500">You do not have permission to view this page.</p>
+        <p className="text-red-500">Du har inte behörighet att visa denna sida.</p>
       </div>
     );
   }
@@ -163,7 +163,7 @@ const TeamPage = () => {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">Team Management</h1>
+        <h1 className="text-2xl font-bold text-gray-800">Teamhantering</h1>
         <button
           onClick={() => setShowInviteModal(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
@@ -171,11 +171,11 @@ const TeamPage = () => {
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
-          Invite Member
+          Bjud in medlem
         </button>
       </div>
 
-      {/* Status Messages */}
+      {/* Statusmeddelanden */}
       {message && (
         <div className="mb-4 p-3 bg-green-100 text-green-700 rounded flex justify-between items-center">
           <span>{message}</span>
@@ -200,12 +200,12 @@ const TeamPage = () => {
       )}
 
       <div className="flex flex-col gap-6">
-        {/* Team Members List */}
+        {/* Lista över teammedlemmar */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          <h2 className="text-lg font-semibold text-gray-800 p-4 border-b">Team Members</h2>
+          <h2 className="text-lg font-semibold text-gray-800 p-4 border-b">Teammedlemmar</h2>
           {team.length === 0 ? (
             <div className="text-center p-8 text-gray-500">
-              No team members found. Invite someone to get started!
+              Inga teammedlemmar hittades. Bjud in någon för att komma igång!
             </div>
           ) : (
             <ul className="divide-y divide-gray-200">
@@ -239,7 +239,7 @@ const TeamPage = () => {
                       <button
                         onClick={() => handleViewCourses(member)}
                         className="text-blue-600 hover:text-blue-800 p-2 rounded-full hover:bg-blue-50"
-                        title="View courses"
+                        title="Visa kurser"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -249,7 +249,7 @@ const TeamPage = () => {
                       <button
                         onClick={() => { setSelectedMember(member); setShowNotificationModal(true); }}
                         className="text-green-600 hover:text-green-800 p-2 rounded-full hover:bg-green-50"
-                        title="Send notification"
+                        title="Skicka notifikation"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -258,7 +258,7 @@ const TeamPage = () => {
                       <button
                         onClick={() => handleRemoveMember(member.id)}
                         className="text-red-600 hover:text-red-800 p-2 rounded-full hover:bg-red-50"
-                        title="Remove member"
+                        title="Ta bort medlem"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -272,12 +272,12 @@ const TeamPage = () => {
           )}
         </div>
 
-        {/* Member Details Panel */}
+        {/* Medlemsdetaljpanel */}
         {selectedMember && (
           <div className="bg-white rounded-lg shadow overflow-hidden w-full md:w-96">
             <div className="p-4 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-800">
-                {selectedMember.full_name || selectedMember.email}'s Details
+                {selectedMember.full_name || selectedMember.email}s detaljer
               </h2>
               <button onClick={closeMemberDetails} className="text-gray-500 hover:text-gray-700">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -314,13 +314,13 @@ const TeamPage = () => {
                   )}
                 </div>
               </div>
-              <h3 className="font-medium text-gray-800 mb-2">Completed Courses</h3>
+              <h3 className="font-medium text-gray-800 mb-2">Genomförda kurser</h3>
               {coursesLoading ? (
                 <div className="flex justify-center py-4">
                   <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
                 </div>
               ) : memberCourses.length === 0 ? (
-                <p className="text-gray-500">No courses completed yet.</p>
+                <p className="text-gray-500">Inga kurser genomförda än.</p>
               ) : (
                 <ul className="divide-y divide-gray-200">
                   {memberCourses.map((course) => (
@@ -328,10 +328,10 @@ const TeamPage = () => {
                       <div className="flex justify-between">
                         <div>
                           <p className="font-medium text-gray-800">{course.title}</p>
-                          <p className="text-sm text-gray-500">Completed on: {new Date(course.completed_at).toLocaleDateString()}</p>
+                          <p className="text-sm text-gray-500">Genomförd: {new Date(course.completed_at).toLocaleDateString()}</p>
                         </div>
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                          {course.score ? `${course.score}%` : 'Completed'}
+                          {course.score ? `${course.score}%` : 'Genomförd'}
                         </span>
                       </div>
                     </li>
@@ -343,13 +343,13 @@ const TeamPage = () => {
         )}
       </div>
 
-      {/* Invite Modal */}
+      {/* Inbjudan-modal */}
       {showInviteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Invite Team Member</h2>
+                <h2 className="text-xl font-bold">Bjud in teammedlem</h2>
                 <button
                   onClick={() => { setShowInviteModal(false); setInviteEmail(''); setError(''); }}
                   className="text-gray-500 hover:text-gray-700"
@@ -361,7 +361,7 @@ const TeamPage = () => {
               </div>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email Address
+                  E-postadress
                 </label>
                 <input
                   type="email"
@@ -369,7 +369,7 @@ const TeamPage = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={inviteEmail}
                   onChange={(e) => setInviteEmail(e.target.value)}
-                  placeholder="member@example.com"
+                  placeholder="medlem@example.com"
                   autoFocus
                 />
               </div>
@@ -378,13 +378,13 @@ const TeamPage = () => {
                   onClick={() => { setShowInviteModal(false); setInviteEmail(''); setError(''); }}
                   className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
                 >
-                  Cancel
+                  Avbryt
                 </button>
                 <button
                   onClick={handleSendInvitation}
                   className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-md transition-colors"
                 >
-                  Send Invite
+                  Skicka inbjudan
                 </button>
               </div>
             </div>
@@ -392,13 +392,13 @@ const TeamPage = () => {
         </div>
       )}
 
-      {/* Notification Modal */}
+      {/* Notifikationsmodal */}
       {showNotificationModal && selectedMember && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Send Notification</h2>
+                <h2 className="text-xl font-bold">Skicka notifikation</h2>
                 <button
                   onClick={() => { setShowNotificationModal(false); setNotificationMessage(''); setError(''); }}
                   className="text-gray-500 hover:text-gray-700"
@@ -410,17 +410,17 @@ const TeamPage = () => {
               </div>
               <div className="mb-4">
                 <p className="text-sm text-gray-600 mb-2">
-                  Sending to: {selectedMember.full_name || selectedMember.email}
+                  Skickas till: {selectedMember.full_name || selectedMember.email}
                 </p>
                 <label htmlFor="notification" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
+                  Meddelande
                 </label>
                 <textarea
                   id="notification"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={notificationMessage}
                   onChange={(e) => setNotificationMessage(e.target.value)}
-                  placeholder="Enter your notification message..."
+                  placeholder="Skriv ditt notifikationsmeddelande..."
                   rows="4"
                   autoFocus
                 />
@@ -430,13 +430,13 @@ const TeamPage = () => {
                   onClick={() => { setShowNotificationModal(false); setNotificationMessage(''); setError(''); }}
                   className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
                 >
-                  Cancel
+                  Avbryt
                 </button>
                 <button
                   onClick={() => handleSendNotification(selectedMember.id)}
                   className="px-4 py-2 bg-green-600 text-white hover:bg-green-700 rounded-md transition-colors"
                 >
-                  Send Notification
+                  Skicka notifikation
                 </button>
               </div>
             </div>

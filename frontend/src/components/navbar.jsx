@@ -12,6 +12,7 @@ import {
   BellIcon,
   XMarkIcon,
   UserCircleIcon,
+  ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 import { AuthService } from '../services/api';
 import { useState, useEffect } from 'react';
@@ -21,7 +22,7 @@ const handleLogout = async (e) => {
   e.preventDefault();
   try {
     await fetch(
-      'https://backend-agoge-5544956f8095.herokuapp.com/api/logout/',
+      'http://localhost:8000/api/logout/',
       {
         method: 'POST',
         headers: {
@@ -35,6 +36,7 @@ const handleLogout = async (e) => {
   AuthService.logout();
   window.location.href = '/';
 };
+
 const handleCreateCourse = async () => {
   console.log('handleCreateCourse called');
   const token = localStorage.getItem('token');
@@ -62,20 +64,20 @@ const handleCreateCourse = async () => {
 
 const allNavigation = [
   { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Mina Kurser', href: '/course-dashboard', current: false },
-  { name: 'Mitt team', href: '/team', current: false, isAdminOnly: true },
+  { name: 'Kurser', href: '/course-dashboard', current: false },
+  { name: 'Marknads Plats', href: '/market', current: false },
+  { name: 'Behörighet', href: '/team', current: false, isAdminOnly: true },   
   {
-    name: 'Mitt teams kurser',
+    name: 'Kurs Översikt',
     href: '/admin/course-overview',
     current: false,
     isAdminOnly: true,
   },
-  { name: 'Marknads Plats', href: '/market', current: false },
   { name: 'Dokument', href: '/docs', current: false, isAdminOnly: true },
   {
     name: 'Skapa Kurs',
-    href: '#', // Ändra till # för att hantera klick
-    onClick: handleCreateCourse, // Lägg till onClick
+    href: '#',
+    onClick: handleCreateCourse,
     current: false,
     isAdminOnly: true,
   },
@@ -106,7 +108,6 @@ export default function Navbar({ settings }) {
   const [notificationsLoading, setNotificationsLoading] = useState(false);
   const [notificationsError, setNotificationsError] = useState(null);
   const [userLoaded, setUserLoaded] = useState(false);
-
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -197,38 +198,58 @@ export default function Navbar({ settings }) {
     return !item.isAdminOnly || currentUser?.isAdmin;
   });
 
+  // Lägg till separator om admin och "Behörighet" finns med
+  const shouldShowSeparator = currentUser?.isAdmin && navigation.some(item => item.name === 'Behörighet');
+  if (shouldShowSeparator) {
+    navigation.splice(navigation.findIndex(item => item.name === 'Behörighet'), 0, { name: 'separator', separator: true });
+  }
+
   return (
     <div className="h-full w-[100vw] flex flex-col inset-0 m-0 p-0 bg-gradient-to-r from-blue-900 to-blue-400 text-white">
       <Disclosure as="nav" className="shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-20 items-center justify-between">
             <div className="flex items-center">
               <div className="shrink-0">
                 <img
                   alt="Agoge"
                   src="/Logotyp-Agoge-white.png"
-                  className="size-10"
+                  className="size-12" // Ökad från size-10 till size-12
                 />
               </div>
               <div className="hidden md:block">
-  <div className="ml-10 flex items-baseline space-x-4">
-    {userLoaded &&
-      navigation.map((item) => (
-        <a
-          key={item.name}
-          href={item.href}
-          onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
-          aria-current={item.current ? 'page' : undefined}
-          className={classNames(
-            item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
-            'rounded-md px-3 py-2 text-sm font-medium',
-          )}
-        >
-          {item.name}
-        </a>
-      ))}
-  </div>
-</div>
+                <div className="ml-10 flex items-baseline space-x-3"> {/* Ökad från space-x-4 till space-x-6 */}
+                {userLoaded &&
+                    navigation.map((item) => (
+                      item.separator ? (
+                        <span
+                          key={item.name}
+                          className="text-gray-300 h-6 border-l border-gray-400 mx-2" // Stilren vertikal linje
+                        />
+                      ) : (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
+                          aria-current={item.current ? 'page' : undefined}
+                          className={classNames(
+                            item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
+                            'rounded-md px-3 py-2 text-sm relative', // Ökad från text-sm till text-base
+                            item.isAdminOnly ? 'bg-yellow-500/10' : 'left'
+                          )}
+                          title={item.isAdminOnly ? 'Admin-funktion' : ''}
+                        >
+                          <span className="flex items-center space-x-1">
+                            {item.isAdminOnly && (
+                              <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
+                            )}
+                            <span>{item.name}</span>
+                          </span>
+                        </a>
+                      )
+                    ))}
+                </div>
+              </div>
             </div>
             <div className="hidden md:block">
               <div className="ml-4 flex items-center md:ml-6">
@@ -250,7 +271,6 @@ export default function Navbar({ settings }) {
                           </span>
                         )}
                       </div>
-                      
                       {notificationsLoading ? (
                         <div className="px-4 py-6 text-center">
                           <div className="animate-pulse flex justify-center">
@@ -283,7 +303,6 @@ export default function Navbar({ settings }) {
                                       <span className="h-2 w-2 rounded-full bg-indigo-600"></span>
                                     )}
                                   </div>
-
                                   <div className="ml-7 mt-3 flex space-x-2">
                                     <button
                                       onClick={(e) => {
@@ -291,7 +310,7 @@ export default function Navbar({ settings }) {
                                         handleAccept(notification.course, notification.id);
                                       }}
                                       className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded hover:bg-green-200 transition-colors"
-                                    href="/checkout"
+                                      href="/checkout"
                                     >
                                       Acceptera
                                     </button>
@@ -319,7 +338,6 @@ export default function Navbar({ settings }) {
                     </MenuItems>
                   </Menu>
                 )}
-
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
@@ -359,25 +377,44 @@ export default function Navbar({ settings }) {
                 <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
               </DisclosureButton>
             </div>
+            {currentUser.isAdmin && (
+              <div className="flex space-x-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-300/40">
+                <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
+                <span className="text-xs font-medium text-yellow-100">Admin</span>
+              </div>
+            )}
           </div>
         </div>
-
         <DisclosurePanel className="md:hidden">
-          <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+          <div className="space-y-2 px-2 pt-2 pb-3 sm:px-3"> {/* Ökad från space-y-1 till space-y-2 */}
             {navigation.map((item) => (
-              <DisclosureButton
-                key={item.name}
-                as="a"
-                href={item.href}
-                aria-current={item.current ? 'page' : undefined}
-                onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
-                className={classNames(
-                  item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                  'block rounded-md px-3 py-2 text-base font-medium',
-                )}
-              >
-                {item.name}
-              </DisclosureButton>
+              item.separator ? (
+                <span
+                  key={item.name}
+                  className="block h-6 border-l border-gray-400 mx-3" // Stilren vertikal linje i mobil
+                />
+              ) : (
+                <DisclosureButton
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
+                  aria-current={item.current ? 'page' : undefined}
+                  className={classNames(
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md px-3 py-3 text-base font-medium',
+                    item.isAdminOnly ? 'border border-yellow-300/30 bg-yellow-500/10' : '',
+                    item.isAdminSection ? 'font-bold bg-yellow-500/20 border-2 border-yellow-300' : ''
+                  )}
+                >
+                  <span className="flex items-center space-x-2">
+                    <span>{item.name}</span>
+                    {item.isAdminOnly && (
+                      <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
+                    )}
+                  </span>
+                </DisclosureButton>
+              )
             ))}
           </div>
           <div className="border-t border-gray-700 pt-4 pb-3">
@@ -389,8 +426,16 @@ export default function Navbar({ settings }) {
                   className="size-10 rounded-full"
                 />
               </div>
-              <div className="ml-3">
-                <div className="text-base/5 font-medium text-white">{currentUser.firstName} {currentUser.lastName}</div>
+              <div className="ml-3 flex-1">
+                <div className="text-base/5 font-medium text-white flex items-center space-x-2">
+                  <span>{currentUser.firstName} {currentUser.lastName}</span>
+                  {currentUser.isAdmin && (
+                    <span className="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-300/40">
+                      <ShieldCheckIcon className="h-3 w-3 text-yellow-300" />
+                      <span className="text-xs text-yellow-100">Admin</span>
+                    </span>
+                  )}
+                </div>
                 <div className="text-sm font-medium text-gray-400">{currentUser.email}</div>
               </div>
               {currentUser.isAdmin && (
