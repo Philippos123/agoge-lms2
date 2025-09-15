@@ -456,82 +456,163 @@ const Dashboard = () => {
 
         {/* Courses Section */}
         <div className="mb-12">
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="text-2xl font-bold text-center text-gray-800">Prioriterade Kurser</h3>
-            {isAdmin && (
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
-              >
-                Välj utvalda kurser
-              </button>
+  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+    <div>
+      <h3 className="text-3xl font-bold text-gray-900 mb-2">Prioriterade Kurser</h3>
+      <p className="text-gray-600">Våra mest populära och rekommenderade kurser</p>
+    </div>
+    {isAdmin && (
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium"
+      >
+        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        Välj utvalda kurser
+      </button>
+    )}
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {featuredCourses.map((course, index) => {
+      const { from, to } = getGradientClasses(index);
+
+      return (
+        <div
+          key={course.id}
+          className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+        >
+          {/* Course Image Container */}
+          <div className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+            {course.image_url ? (
+              <img
+                src={course.image_url}
+                alt={course.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/placeholder-course.jpg';
+                }}
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full text-gray-400">
+                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" 
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
             )}
+
+            {/* Completion Badge */}
+            {course.isCompleted && (
+              <div className="absolute top-4 left-4 flex items-center bg-green-500 text-white text-sm font-medium px-3 py-1 rounded-full shadow-lg">
+                <CheckCircleIcon className="h-4 w-4 mr-1" />
+                Slutförd
+              </div>
+            )}
+
+            {/* Course Type Badge */}
+            <div className="absolute top-4 right-4">
+              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                course.course_type === 'scorm' 
+                  ? 'bg-blue-100 text-blue-800' 
+                  : 'bg-purple-100 text-purple-800'
+              }`}>
+                {course.course_type?.toUpperCase() || 'KURS'}
+              </span>
+            </div>
+
+            {/* Gradient Overlay */}
+            <div className={`absolute inset-0 bg-gradient-to-t ${from} ${to} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredCourses.map((course, index) => {
-              const { from, to } = getGradientClasses(index);
 
-              return (
-                <div
-                  key={course.id}
-                  className={`bg-gradient-to-r ${from} ${to} text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden flex flex-col relative`}
-                >
-                  {/* Completion Badge */}
-                  {course.isCompleted && (
-                    <div className="absolute top-3 left-3 flex items-center bg-green-600 text-white text-xs font-medium px-2 py-0.5 rounded-full">
-                      <CheckCircleIcon className="h-4 w-4 mr-1" />
-                      Slutförd
-                    </div>
-                  )}
+          {/* Course Content */}
+          <div className="p-6">
+            <h4 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+              {course.title}
+            </h4>
 
-                  {/* Course Image with fallback */}
-                  <div className="mb-4 h-40 overflow-hidden rounded-lg bg-gray-200 flex items-center justify-center">
-                    {course.image_url ? (
-                      <img
-                        src={course.image_url}
-                        alt={course.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/placeholder-course.jpg';
-                        }}
-                      />
-                    ) : (
-                      <div className="text-gray-500 text-center p-4">
-                        No image available
-                      </div>
-                    )}
-                  </div>
+            <p className="text-gray-600 line-clamp-3 mb-6 leading-relaxed">
+              {course.description || "Ingen beskrivning tillgänglig"}
+            </p>
 
-                  <h4 className="text-xl font-semibold mb-3">{course.title}</h4>
+            {/* Course Stats */}
+            <div className="flex items-center justify-between mb-6 text-sm text-gray-500">
+              <div className="flex items-center">
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span></span>
+              </div>
+              <div className="flex items-center">
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span>Interaktiv</span>
+              </div>
+            </div>
 
-                  <p className="opacity-90 line-clamp-3 mb-4">
-                    {course.description || "No description available"}
-                  </p>
-
-                  <button
-  onClick={() => {
-    // Hämta token från localStorage
-    const token = localStorage.getItem('token');
-    if (course.course_type === 'scorm') {
-      navigate(`/course/${course.id}/scorm`);
-    } else if (course.course_type === 'json') {
-      // Lägg till token som en query-parameter i URL:en
-      window.location.href = `https://player.agoge-lms.se/coursetobuy/${course.id}/?token=${token}`;
-    } else {
-      console.warn(`Okänt kursformat för kurs ${course.id}: ${course.course_type}`);
-      setError('Okänt kursformat');
-    }
-  }}
-  className="mt-auto px-4 py-2 bg-white bg-opacity-20 rounded-md hover:bg-opacity-30 transition-colors text-black font-medium cursor-pointer"
->
-  {course.isCompleted ? "Repetera kurs" : "Starta kurs"}
-</button>
-                </div>
-              );
-            })}
+            {/* Action Button */}
+            <button
+              onClick={() => {
+                const token = localStorage.getItem('token');
+                if (course.course_type === 'scorm') {
+                  navigate(`/course/${course.id}/scorm`);
+                } else if (course.course_type === 'json') {
+                  window.location.href = `https://player.agoge-lms.se/coursetobuy/${course.id}/?token=${token}`;
+                } else {
+                  console.warn(`Okänt kursformat för kurs ${course.id}: ${course.course_type}`);
+                  setError('Okänt kursformat');
+                }
+              }}
+              className={`w-full cursor-pointer inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 ${
+                course.isCompleted
+                  ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white'
+                  : 'bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white'
+              }`}
+            >
+              {course.isCompleted ? (
+                <>
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Repetera kurs
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m-6-8h12a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2z" />
+                  </svg>
+                  Starta kurs
+                </>
+              )}
+            </button>
           </div>
         </div>
+      );
+    })}
+  </div>
+
+  {/* Empty State */}
+  {featuredCourses.length === 0 && (
+    <div className="text-center py-16">
+      <div className="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+        <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" 
+            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      </div>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">Inga prioriterade kurser än</h3>
+      <p className="text-gray-600 max-w-md mx-auto">
+        {isAdmin 
+          ? "Klicka på 'Välj utvalda kurser' för att lägga till prioriterade kurser." 
+          : "Prioriterade kurser kommer att visas här när de blir tillgängliga."
+        }
+      </p>
+    </div>
+  )}
+</div>
 
         {/* Admin Call to Action */}
         {isAdmin && (

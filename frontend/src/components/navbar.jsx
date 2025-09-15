@@ -13,6 +13,9 @@ import {
   XMarkIcon,
   UserCircleIcon,
   ShieldCheckIcon,
+  SparklesIcon,
+  BuildingOfficeIcon,
+  CheckCircleIcon,
 } from '@heroicons/react/24/outline';
 import { AuthService } from '../services/api';
 import { useState, useEffect } from 'react';
@@ -40,52 +43,121 @@ const handleLogout = async (e) => {
 const handleCreateCourse = async () => {
   console.log('handleCreateCourse called');
   const token = localStorage.getItem('token');
+  const refreshToken = localStorage.getItem('refresh_token');
   if (!token) {
-    console.error('No token found in localStorage');
-    alert('Du måste vara inloggad för att skapa en kurs.');
-    return;
+      console.error('No token found in localStorage');
+      alert('Du måste vara inloggad för att skapa en kurs.');
+      return;
   }
-  console.log('Token:', token);
+  console.log('Access Token:', token);
+  console.log('Refresh Token:', refreshToken);
   try {
-    console.log('Sending request to /forward-token/');
-    const response = await api.post('/forward-token/', 
-      { redirect_to: 'builder.agoge-lms.se' },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    console.log('Response received:', response.data);
-    window.location.href = `https://builder.agoge-lms.se?token=${response.data.token}`;
+      console.log('Sending request to /forward-token/');
+      const response = await api.post(
+          '/forward-token/',
+          { redirect_to: 'builder.agoge-lms.se', refresh_token: refreshToken },
+          { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log('Response received:', response.data);
+      window.location.href = `https://builder.agoge-lms.se?token=${response.data.token}&refresh_token=${response.data.refresh_token || refreshToken}`;
   } catch (err) {
-    console.error('Error in handleCreateCourse:', err.response?.data || err.message);
-    alert(err.response?.status === 400 
-      ? `Ogiltig förfrågan: ${err.response?.data?.error || 'Kontrollera token och backend.'}`
-      : `Kunde inte ansluta till kursbyggaren: ${err.message}`);
+      console.error('Error in handleCreateCourse:', err.response?.data || err.message);
+      alert(
+          err.response?.status === 400
+              ? `Ogiltig förfrågan: ${err.response?.data?.error || 'Kontrollera token och backend.'}`
+              : `Kunde inte ansluta till kursbyggaren: ${err.message}`
+      );
   }
 };
 
 const allNavigation = [
-  { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Kurser', href: '/course-dashboard', current: false },
-  { name: 'Marknads Plats', href: '/market', current: false },
-  { name: 'Behörighet', href: '/team', current: false, isAdminOnly: true },   
+  { 
+    name: 'Dashboard', 
+    href: '/dashboard', 
+    current: false,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5a2 2 0 012-2h2a2 2 0 012 2v6H8V5z" />
+      </svg>
+    )
+  },
+  { 
+    name: 'Kurser', 
+    href: '/course-dashboard', 
+    current: false,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    )
+  },
+  { 
+    name: 'Marknads Plats', 
+    href: '/market', 
+    current: false,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+    )
+  },
+  { 
+    name: 'Behörighet', 
+    href: '/team', 
+    current: false, 
+    isAdminOnly: true,
+    icon: <ShieldCheckIcon className="w-4 h-4" />
+  },   
   {
     name: 'Kurs Översikt',
     href: '/admin/course-overview',
     current: false,
     isAdminOnly: true,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    )
   },
-  { name: 'Dokument', href: '/docs', current: false, isAdminOnly: true },
+  { 
+    name: 'Dokument', 
+    href: '/docs', 
+    current: false, 
+    isAdminOnly: true,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    )
+  },
   {
     name: 'Skapa Kurs',
     href: '#',
     onClick: handleCreateCourse,
     current: false,
     isAdminOnly: true,
+    icon: <SparklesIcon className="w-4 h-4" />,
+    isSpecial: true
   },
 ];
 
 const userNavigation = [
-  { name: 'Your Profile', href: '/profile' },
-  { name: 'Sign out', href: '/', onClick: handleLogout },
+  { 
+    name: 'Your Profile', 
+    href: '/profile',
+    icon: <UserCircleIcon className="w-4 h-4" />
+  },
+  { 
+    name: 'Sign out', 
+    href: '/', 
+    onClick: handleLogout,
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      </svg>
+    )
+  },
 ];
 
 function classNames(...classes) {
@@ -205,7 +277,7 @@ export default function Navbar({ settings }) {
   }
 
   return (
-    <div className="h-full w-[100vw] flex flex-col inset-0 m-0 p-0 bg-gradient-to-r from-blue-900 to-blue-400 text-white">
+    <div className="w-full bg-white shadow-lg border-b border-gray-200">
       <Disclosure as="nav" className="shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex h-20 items-center justify-between">
@@ -213,18 +285,18 @@ export default function Navbar({ settings }) {
               <div className="shrink-0">
                 <img
                   alt="Agoge"
-                  src="/Logotyp-Agoge-white.png"
-                  className="size-12" // Ökad från size-10 till size-12
+                  src="/Logotyp-Agoge.png"
+                  className="size-12"
                 />
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-3"> {/* Ökad från space-x-4 till space-x-6 */}
-                {userLoaded &&
+                <div className="ml-10 flex items-baseline space-x-3">
+                  {userLoaded &&
                     navigation.map((item) => (
                       item.separator ? (
-                        <span
+                        <div
                           key={item.name}
-                          className="text-gray-300 h-6 border-l border-gray-400 mx-2" // Stilren vertikal linje
+                          className="h-8 w-px bg-gray-300 mx-4"
                         />
                       ) : (
                         <a
@@ -233,18 +305,23 @@ export default function Navbar({ settings }) {
                           onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
                           aria-current={item.current ? 'page' : undefined}
                           className={classNames(
-                            item.current ? '' : 'text-white hover:bg-gray-700 hover:text-white',
-                            'rounded-md px-3 py-2 text-sm relative', // Ökad från text-sm till text-base
-                            item.isAdminOnly ? 'bg-yellow-500/10' : 'left'
+                            'group flex items-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200',
+                            item.current 
+                              ? 'bg-blue-50 text-blue-700 shadow-md' 
+                              : item.isSpecial
+                                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                                : item.isAdminOnly
+                                  ? 'text-gray-600 hover:bg-yellow-50 hover:text-yellow-700 border border-transparent hover:border-yellow-200'
+                                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                           )}
-                          title={item.isAdminOnly ? 'Admin-funktion' : ''}
                         >
-                          <span className="flex items-center space-x-1">
-                            {item.isAdminOnly && (
-                              <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
-                            )}
-                            <span>{item.name}</span>
+                          <span className="mr-2 opacity-75 group-hover:opacity-100 transition-opacity">
+                            {item.icon}
                           </span>
+                          <span>{item.name}</span>
+                          {item.isAdminOnly && !item.isSpecial && (
+                            <ShieldCheckIcon className="ml-2 h-3 w-3 text-yellow-500" />
+                          )}
                         </a>
                       )
                     ))}
@@ -255,74 +332,93 @@ export default function Navbar({ settings }) {
               <div className="ml-4 flex items-center md:ml-6">
                 {currentUser.isAdmin && (
                   <Menu as="div" className="relative ml-3">
-                    <MenuButton className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none">
+                    <MenuButton className="relative p-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                       {unreadCount > 0 && (
-                        <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                            {unreadCount > 9 ? '9+' : unreadCount}
+                          </span>
+                        </span>
                       )}
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
                     </MenuButton>
-                    <MenuItems className="absolute right-0 z-10 mt-2 w-96 origin-top-right rounded-lg bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none divide-y divide-gray-100">
-                      <div className="px-4 py-3 text-sm font-semibold text-gray-700 bg-gray-50 flex items-center">
-                        <BellIcon className="h-5 w-5 mr-2 text-indigo-600" />
-                        Notiser
-                        {unreadCount > 0 && (
-                          <span className="ml-2 bg-indigo-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                            {unreadCount}
-                          </span>
-                        )}
+                    <MenuItems className="absolute right-0 z-50 mt-2 w-96 origin-top-right rounded-2xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden">
+                      <div className="px-6 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <BellIcon className="h-5 w-5 mr-2" />
+                            <span className="font-semibold">Notifikationer</span>
+                          </div>
+                          {unreadCount > 0 && (
+                            <span className="bg-white/20 text-white text-xs font-bold px-2 py-1 rounded-full">
+                              {unreadCount} nya
+                            </span>
+                          )}
+                        </div>
                       </div>
                       {notificationsLoading ? (
-                        <div className="px-4 py-6 text-center">
-                          <div className="animate-pulse flex justify-center">
-                            <div className="h-8 w-8 bg-gray-200 rounded-full"></div>
-                          </div>
-                          <p className="mt-2 text-sm text-gray-500">Hämtar notiser...</p>
+                        <div className="px-6 py-8 text-center">
+                          <div className="animate-spin mx-auto h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+                          <p className="mt-3 text-sm text-gray-500">Hämtar notiser...</p>
                         </div>
                       ) : notificationsError ? (
-                        <div className="px-4 py-3 text-sm text-red-600">
+                        <div className="px-6 py-4 text-center text-red-600 bg-red-50">
+                          <svg className="mx-auto h-8 w-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                           {notificationsError}
                         </div>
                       ) : notifications.length > 0 ? (
                         <div className="max-h-96 overflow-y-auto">
-                          {notifications.map((notification) => (
+                          {notifications.map((notification, index) => (
                             <MenuItem key={notification.id}>
                               {({ active }) => (
-                                <div className={`${active ? 'bg-gray-50' : ''} px-4 py-3`}>
-                                  <div className="flex justify-between items-start">
-                                    <div className="flex-1">
-                                      <p className="font-medium text-gray-900 flex items-center">
-                                        <UserCircleIcon className="h-5 w-5 mr-2 text-gray-400" />
-                                        {notification.requester_name} begärde:
-                                      </p>
-                                      <p className="ml-7 mt-1 text-gray-700">{notification.course_title}</p>
-                                      <p className="ml-7 mt-1 text-xs text-gray-500">
-                                        {new Date(notification.requested_at).toLocaleString('sv-SE')}
-                                      </p>
+                                <div className={`${active ? 'bg-blue-50' : 'bg-white'} ${index !== notifications.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                                  <div className="px-6 py-4">
+                                    <div className="flex items-start space-x-3">
+                                      <div className="flex-shrink-0">
+                                        <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                          <UserCircleIcon className="h-6 w-6 text-blue-600" />
+                                        </div>
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="font-medium text-gray-900">
+                                          {notification.requester_name}
+                                        </p>
+                                        <p className="text-sm text-gray-600 mt-1">
+                                          Begärde kurs: <span className="font-medium">{notification.course_title}</span>
+                                        </p>
+                                        <p className="text-xs text-gray-400 mt-2">
+                                          {new Date(notification.requested_at).toLocaleString('sv-SE')}
+                                        </p>
+                                      </div>
+                                      {!notification.read && (
+                                        <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                      )}
                                     </div>
-                                    {!notification.read && (
-                                      <span className="h-2 w-2 rounded-full bg-indigo-600"></span>
-                                    )}
-                                  </div>
-                                  <div className="ml-7 mt-3 flex space-x-2">
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleAccept(notification.course, notification.id);
-                                      }}
-                                      className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded hover:bg-green-200 transition-colors"
-                                      href="/checkout"
-                                    >
-                                      Acceptera
-                                    </button>
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        markAsRead(notification.id);
-                                      }}
-                                      className="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded hover:bg-red-200 transition-colors"
-                                    >
-                                      Neka
-                                    </button>
+                                    <div className="flex space-x-3 mt-4">
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleAccept(notification.course, notification.id);
+                                        }}
+                                        className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-lg hover:bg-green-600 transition-colors"
+                                      >
+                                        <CheckCircleIcon className="h-4 w-4 mr-1" />
+                                        Acceptera
+                                      </button>
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          markAsRead(notification.id);
+                                        }}
+                                        className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                                      >
+                                        <XMarkIcon className="h-4 w-4 mr-1" />
+                                        Neka
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               )}
@@ -330,9 +426,10 @@ export default function Navbar({ settings }) {
                           ))}
                         </div>
                       ) : (
-                        <div className="px-4 py-6 text-center">
-                          <BellIcon className="mx-auto h-8 w-8 text-gray-300" />
-                          <p className="mt-2 text-sm text-gray-500">Inga nya notiser</p>
+                        <div className="px-6 py-12 text-center">
+                          <BellIcon className="mx-auto h-12 w-12 text-gray-300" />
+                          <h3 className="mt-4 text-sm font-medium text-gray-900">Inga notiser</h3>
+                          <p className="mt-1 text-sm text-gray-500">Du har inga nya notifikationer</p>
                         </div>
                       )}
                     </MenuItems>
@@ -356,13 +453,19 @@ export default function Navbar({ settings }) {
                   >
                     {userNavigation.map((item) => (
                       <MenuItem key={item.name}>
-                        <a
-                          href={item.href}
-                          onClick={item.onClick}
-                          className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-none"
-                        >
-                          {item.name}
-                        </a>
+                        {({ active }) => (
+                          <a
+                            href={item.href}
+                            onClick={item.onClick}
+                            className={classNames(
+                              active ? 'bg-gray-50' : '',
+                              'flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors'
+                            )}
+                          >
+                            <span className="mr-3 text-gray-400">{item.icon}</span>
+                            {item.name}
+                          </a>
+                        )}
                       </MenuItem>
                     ))}
                   </MenuItems>
@@ -373,26 +476,23 @@ export default function Navbar({ settings }) {
               <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
-                <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
-                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
+                <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
+                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-[open]:block" />
               </DisclosureButton>
             </div>
             {currentUser.isAdmin && (
-              <div className="flex space-x-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-300/40">
+              <div className="hidden md:flex space-x-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-300/40">
                 <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
-                <span className="text-xs font-medium text-yellow-100">Admin</span>
+                <span className="text-xs font-medium text-black">Admin</span>
               </div>
             )}
           </div>
         </div>
         <DisclosurePanel className="md:hidden">
-          <div className="space-y-2 px-2 pt-2 pb-3 sm:px-3"> {/* Ökad från space-y-1 till space-y-2 */}
+          <div className="space-y-2 px-2 pt-2 pb-3 sm:px-3">
             {navigation.map((item) => (
               item.separator ? (
-                <span
-                  key={item.name}
-                  className="block h-6 border-l border-gray-400 mx-3" // Stilren vertikal linje i mobil
-                />
+                <hr key={item.name} className="my-4 border-gray-200" />
               ) : (
                 <DisclosureButton
                   key={item.name}
@@ -401,23 +501,26 @@ export default function Navbar({ settings }) {
                   onClick={item.onClick ? (e) => { e.preventDefault(); item.onClick(); } : undefined}
                   aria-current={item.current ? 'page' : undefined}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-3 text-base font-medium',
-                    item.isAdminOnly ? 'border border-yellow-300/30 bg-yellow-500/10' : '',
-                    item.isAdminSection ? 'font-bold bg-yellow-500/20 border-2 border-yellow-300' : ''
+                    'flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200',
+                    item.current
+                      ? 'bg-blue-50 text-blue-700'
+                      : item.isSpecial
+                        ? 'bg-gradient-to-r from-purple-500/50 to-blue-500/50 text-white'
+                        : item.isAdminOnly
+                          ? 'text-gray-600 bg-yellow-50'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   )}
                 >
-                  <span className="flex items-center space-x-2">
-                    <span>{item.name}</span>
-                    {item.isAdminOnly && (
-                      <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
-                    )}
-                  </span>
+                  <span>{item.icon}</span>
+                  <span>{item.name}</span>
+                  {item.isAdminOnly && !item.isSpecial && (
+                    <ShieldCheckIcon className="ml-auto h-4 w-4 text-yellow-500" />
+                  )}
                 </DisclosureButton>
               )
             ))}
           </div>
-          <div className="border-t border-gray-700 pt-4 pb-3">
+          <div className="border-t border-gray-200 pt-4 pb-3">
             <div className="flex items-center px-5">
               <div className="shrink-0">
                 <img
@@ -427,12 +530,12 @@ export default function Navbar({ settings }) {
                 />
               </div>
               <div className="ml-3 flex-1">
-                <div className="text-base/5 font-medium text-white flex items-center space-x-2">
+                <div className="text-base/5 font-medium text-black flex items-center space-x-2">
                   <span>{currentUser.firstName} {currentUser.lastName}</span>
                   {currentUser.isAdmin && (
                     <span className="flex items-center space-x-1 px-2 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-300/40">
                       <ShieldCheckIcon className="h-3 w-3 text-yellow-300" />
-                      <span className="text-xs text-yellow-100">Admin</span>
+                      <span className="text-xs text-black">Admin</span>
                     </span>
                   )}
                 </div>
@@ -457,9 +560,10 @@ export default function Navbar({ settings }) {
                   as="a"
                   href={item.href}
                   onClick={item.onClick}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                  className="flex items-center space-x-3 px-4 py-2 text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded-xl transition-colors"
                 >
-                  {item.name}
+                  <span className="text-gray-400">{item.icon}</span>
+                  <span>{item.name}</span>
                 </DisclosureButton>
               ))}
             </div>
