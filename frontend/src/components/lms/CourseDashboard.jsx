@@ -184,7 +184,7 @@ export default function CourseList() {
   const completedCourses = courses.filter(c => c.hasEverCompleted).length;
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <section className=" w-full max-w-full py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <header className="mb-16 text-center">
@@ -298,16 +298,9 @@ export default function CourseList() {
 
           {/* Badges */}
           <div className="absolute top-4 right-4 flex flex-col gap-2">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-              course.course_type === 'scorm' 
-                ? 'bg-blue-100 text-blue-800' 
-                : 'bg-purple-100 text-purple-800'
-            }`}>
-              {course.course_type?.toUpperCase() || 'KURS'}
-            </span>
             
             {course.language && (
-              <span className="bg-blue-500 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">
+              <span className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">
                 {course.language}
               </span>
             )}

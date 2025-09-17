@@ -309,7 +309,7 @@ export default function Navbar({ settings }) {
                             item.current 
                               ? 'bg-blue-50 text-blue-700 shadow-md' 
                               : item.isSpecial
-                                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                                ? 'bg-gradient-to-r from-purple-500 to-primary-500 text-white hover:from-purple-600 hover:to-primary-400 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
                                 : item.isAdminOnly
                                   ? 'text-gray-600 hover:bg-yellow-50 hover:text-yellow-700 border border-transparent hover:border-yellow-200'
                                   : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'

@@ -514,13 +514,7 @@ const Dashboard = () => {
 
             {/* Course Type Badge */}
             <div className="absolute top-4 right-4">
-              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                course.course_type === 'scorm' 
-                  ? 'bg-blue-100 text-blue-800' 
-                  : 'bg-purple-100 text-purple-800'
-              }`}>
-                {course.course_type?.toUpperCase() || 'KURS'}
-              </span>
+              
             </div>
 
             {/* Gradient Overlay */}
