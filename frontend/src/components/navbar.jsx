@@ -144,12 +144,12 @@ const allNavigation = [
 
 const userNavigation = [
   { 
-    name: 'Your Profile', 
+    name: 'Din Profil', 
     href: '/profile',
     icon: <UserCircleIcon className="w-4 h-4" />
   },
   { 
-    name: 'Sign out', 
+    name: 'Logga ut', 
     href: '/', 
     onClick: handleLogout,
     icon: (

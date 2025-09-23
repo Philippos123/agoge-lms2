@@ -8,28 +8,78 @@ function DocumentsDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [deleteStatus, setDeleteStatus] = useState({ id: null, loading: false });
   const [userRole, setUserRole] = useState(null);
+  const [filterType, setFilterType] = useState('all'); // all, documents, videos
   const token = localStorage.getItem('token');
 
-  // Check user role on component mount
-  useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user') || '{}');
-    console.log('userData from localStorage:', userData); // Felsökning
-    // Använd isAdmin istället för is_admin, baserat på din användardata
-    if (userData && userData.isAdmin === true) {
-      setUserRole('is_admin');
-    } else {
-      setUserRole(null);
+  /** ---------- Hjälpfunktioner ---------- **/
+  const isVideoUrl = (url) => {
+    return url && (url.includes('youtube.com') || url.includes('vimeo.com') || url.match(/\.(mp4|webm|ogg)$/i));
+  };
+
+  const isVideo = (document) => {
+    return !!document.video_url || isVideoUrl(document.media_url);
+  };
+
+  const getFileExtension = (url) => {
+    if (!url) return '';
+    const match = url.match(/\.([^.?#]+)(?:\?|#|$)/i);
+    return match ? match[1].toLowerCase() : '';
+  };
+
+  const formatDate = (dateString) => {
+    if (!dateString) return 'Ogiltigt datum';
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('sv-SE', options);
+  };
+
+  const getDocumentIcon = (document) => {
+    if (isVideo(document)) {
+      return (
+        <svg className="h-8 w-8 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 55 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+          <path d="m10 12 5-3-5-3v6z"/>
+        </svg>
+      );
     }
-    console.log('userRole set to:', userData.isAdmin ? 'is_admin' : null); // Felsökning
-  }, []);
 
-  // Memoize filtered documents
-  const filteredDocuments = useMemo(() => {
-    return documents.filter(doc =>
-      doc.title?.toLowerCase().includes(searchTerm.toLowerCase()) || false
+    const extension = getFileExtension(document.media_url);
+    if (['pdf'].includes(extension)) {
+      return (
+        <svg className="h-8 w-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+        </svg>
+      );
+    } else if (['doc', 'docx'].includes(extension)) {
+      return (
+        <svg className="h-8 w-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+        </svg>
+      );
+    } else if (['xls', 'xlsx'].includes(extension)) {
+      return (
+        <svg className="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+        </svg>
+      );
+    } else if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
+      return (
+        <svg className="h-8 w-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"/>
+        </svg>
+      );
+    }
+
+    return (
+      <svg className="h-8 w-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"/>
+      </svg>
     );
-  }, [searchTerm, documents]);
+  };
 
+  const getVideoCount = () => documents.filter(doc => isVideo(doc)).length;
+  const getDocumentCount = () => documents.filter(doc => !isVideo(doc)).length;
+
+  /** ---------- API Calls ---------- **/
   const fetchCompanyDocuments = useCallback(async () => {
     if (!token) {
       setError('Ingen autentiseringstoken hittades.');
@@ -51,14 +101,6 @@ function DocumentsDashboard() {
     }
   }, [token]);
 
-  useEffect(() => {
-    fetchCompanyDocuments();
-  }, [fetchCompanyDocuments]);
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   const handleDeleteDocument = async (documentId) => {
     if (!window.confirm('Är du säker på att du vill ta bort detta dokument?')) return;
 
@@ -76,183 +118,155 @@ function DocumentsDashboard() {
     }
   };
 
-  const formatDate = (dateString) => {
-    if (!dateString) return 'Ogiltigt datum';
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('sv-SE', options);
-  };
+  /** ---------- User Role ---------- **/
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user') || '{}');
+    if (userData && userData.isAdmin === true) {
+      setUserRole('is_admin');
+    } else {
+      setUserRole(null);
+    }
+  }, []);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-32">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-        <span className="ml-3 text-gray-600">Hämtar dokument...</span>
-      </div>
+  /** ---------- Filtered Documents ---------- **/
+  const filteredDocuments = useMemo(() => {
+    let filtered = documents.filter(doc =>
+      doc.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }
 
-  if (error) {
-    return (
-      <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
-        <div className="flex">
-          <div className="flex-shrink-0">
-            <svg className="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
-          <div className="ml-3">
-            <p className="text-sm text-red-700">{error}</p>
-            <button
-              onClick={fetchCompanyDocuments}
-              className="mt-2 text-sm text-red-600 hover:text-red-500 font-medium"
-            >
-              Försök igen
-            </button>
-          </div>
+    if (filterType === 'videos') filtered = filtered.filter(doc => isVideo(doc));
+    else if (filterType === 'documents') filtered = filtered.filter(doc => !isVideo(doc));
+
+    return filtered;
+  }, [searchTerm, documents, filterType]);
+
+  useEffect(() => {
+    fetchCompanyDocuments();
+  }, [fetchCompanyDocuments]);
+
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const handleFilterChange = (type) => setFilterType(type);
+
+  /** ---------- Render ---------- **/
+  if (loading) return (
+    <div className="flex justify-center items-center h-32">
+      <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+      <span className="ml-3 text-gray-600">Hämtar dokument...</span>
+    </div>
+  );
+
+  if (error) return (
+    <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <svg className="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+        <div className="ml-3">
+          <p className="text-sm text-red-700">{error}</p>
+          <button onClick={fetchCompanyDocuments} className="mt-2 text-sm text-red-600 hover:text-red-500 font-medium">Försök igen</button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 
   return (
-    <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-sm">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4 sm:mb-0">Dina Dokument</h2>
-        <div className="w-full sm:w-64">
-          <label htmlFor="search" className="sr-only">
-            Sök dokument
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
+    <div className="max-w-6xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+      {/* Header & Controls */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 space-y-4 lg:space-y-0">
+        <h2 className="text-2xl font-bold text-gray-800">Dina Dokument</h2>
+
+        {/* Filter & Search */}
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+          <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+            <button
+              onClick={() => handleFilterChange('all')}
+              className={`px-4 py-2 text-sm font-medium transition-colors duration-150 ${filterType==='all'?'bg-blue-600 text-white':'bg-white text-gray-700 hover:bg-gray-50'}`}>
+              Alla ({documents.length})
+            </button>
+            <button
+              onClick={() => handleFilterChange('documents')}
+              className={`px-4 py-2 text-sm font-medium border-l transition-colors duration-150 ${filterType==='documents'?'bg-blue-600 text-white':'bg-white text-gray-700 hover:bg-gray-50'}`}>
+              Dokument ({getDocumentCount()})
+            </button>
+            <button
+              onClick={() => handleFilterChange('videos')}
+              className={`px-4 py-2 text-sm font-medium border-l transition-colors duration-150 ${filterType==='videos'?'bg-blue-600 text-white':'bg-white text-gray-700 hover:bg-gray-50'}`}>
+              Videor ({getVideoCount()})
+            </button>
+          </div>
+
+          <div className="w-full sm:w-64 relative">
             <input
               type="text"
-              id="search"
               placeholder="Sök efter titel..."
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               value={searchTerm}
               onChange={handleSearchChange}
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-150"
             />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg className="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Documents Grid */}
       {filteredDocuments.length > 0 ? (
-        <ul className="divide-y divide-gray-200">
-          {filteredDocuments.map((doc, index) => (
-            <li
-              key={doc.id}
-              className={`py-4 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pl-3 pr-3">
-                <div className="flex-1 min-w-0">
-                  <div className="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
-                    <p
-                      className={`text-sm font-medium ${
-                        doc.title ? 'text-gray-900' : 'text-gray-500 italic'
-                      } truncate`}
-                    >
-                      {doc.title || 'Namnlöst dokument'}
-                    </p>
-                    <div className="flex items-center text-sm text-gray-500 mt-1 sm:mt-0">
-                      <svg
-                        className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Uppladdat: {formatDate(doc.uploaded_at)}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredDocuments.map((doc) => (
+            <div key={doc.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="p-6">
+                <div className="flex items-start mb-4">
+                  <div className="flex-shrink-0">{getDocumentIcon(doc)}</div>
+                  <div className="ml-3 flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-gray-900 truncate">{doc.title || 'Namnlöst dokument'}</h3>
+                    <div className="flex items-center text-xs text-gray-500 mt-1">
+                      {formatDate(doc.uploaded_at)}
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 sm:mt-0 flex space-x-3">
-                  {doc.document_url && (
-                    <a
-                      href={doc.document_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    >
-                      Öppna
+
+                {/* Action Buttons */}
+                <div className="flex flex-col space-y-2">
+                  {(doc.media_url || doc.video_url) && (
+                    <a href={doc.video_url || doc.media_url} target="_blank" rel="noopener noreferrer"
+                       className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-150">
+                      {isVideo(doc) ? 'Spela video' : 'Öppna dokument'}
                     </a>
                   )}
+
                   {userRole === 'is_admin' && (
                     <button
                       onClick={() => handleDeleteDocument(doc.id)}
                       disabled={deleteStatus.id === doc.id && deleteStatus.loading}
-                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-75 disabled:cursor-not-allowed"
+                      className="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-75 disabled:cursor-not-allowed transition-colors duration-150"
                     >
-                      {deleteStatus.id === doc.id && deleteStatus.loading ? (
-                        <>
-                          <svg
-                            className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            />
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            />
-                          </svg>
-                          Tar bort...
-                        </>
-                      ) : (
-                        'Ta bort'
-                      )}
+                      {deleteStatus.id === doc.id && deleteStatus.loading ? 'Tar bort...' : 'Ta bort'}
                     </button>
                   )}
                 </div>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <div className="text-center py-12">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1}
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
           <h3 className="mt-2 text-sm font-medium text-gray-900">
-            {documents.length > 0 ? 'Inga dokument matchar din sökning' : 'Inga dokument hittades'}
+            {documents.length > 0 ? 'Inga dokument matchar din sökning eller filter' : 'Inga dokument hittades'}
           </h3>
-          <p className="mt-1 text-sm text-gray-500">
-            {documents.length > 0 ? 'Försök med en annan sökterm' : 'Börja med att ladda upp ett dokument'}
-          </p>
+          {(searchTerm || filterType !== 'all') && documents.length > 0 && (
+            <button onClick={() => { setSearchTerm(''); setFilterType('all'); }} className="mt-3 text-blue-600 hover:text-blue-500 text-sm font-medium">
+              Rensa filter
+            </button>
+          )}
         </div>
       )}
     </div>

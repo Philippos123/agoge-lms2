@@ -8,7 +8,9 @@ import {
   ChartBarIcon,
   SparklesIcon,
   EyeIcon,
-  ArrowTrendingUpIcon
+  ArrowTrendingUpIcon,
+  DocumentIcon,
+  PlayIcon
 } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import { BackgroundGradient } from "../ui/background-gradient";
@@ -84,28 +86,119 @@ export default function AdminCourseOverview() {
   };
 
   // Funktion för att parsa SCORM-sessionstid till sekunder
-  const parseSessionTime = (sessionTime) => {
-    try {
-      if (!sessionTime || sessionTime === "0") return 0;
-      const match = sessionTime.match(/(\d+):(\d{2}):(\d{2})(\.\d+)?/);
-      if (!match) return 0;
-      const [, hours, minutes, seconds, decimals] = match;
-      let totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-      if (decimals) totalSeconds += parseFloat(decimals);
-      return totalSeconds;
-    } catch (err) {
-      console.error(`Fel vid parsning av sessionstid ${sessionTime}:`, err);
-      return 0;
+  // Korrigerad funktion för att hämta progress data för en specifik kurs baserat på kurstyp
+const fetchCourseProgressData = async (course) => {
+  try {
+    if (course.course_type === 'scorm') {
+      // Använd gamla SCORM-endpointen för SCORM-kurser
+      const response = await api.get(`/scorm/get-data/?courseId=${course.id}`);
+      const scormData = response.data || [];
+      
+      // Räkna unika användare med completed status
+      const completedUserIds = new Set(
+        scormData
+          .filter((entry) => entry.progress_data?.["cmi.completion_status"] === "completed")
+          .map((entry) => entry.user_id)
+      );
+      
+      // Räkna totala genomföranden (varje completed entry)
+      const totalCompletions = scormData.filter(entry => 
+        entry.progress_data?.["cmi.completion_status"] === "completed"
+      ).length;
+      
+      // Beräkna total sessionstid för SCORM
+      let totalSessionTime = 0;
+      scormData.forEach((entry) => {
+        // Använd total_session_time som är ackumulerad tid
+        const sessionTime = entry.progress_data?.["cmi.core.total_session_time"];
+        if (sessionTime) {
+          totalSessionTime += parseSessionTime(sessionTime);
+        }
+      });
+      
+      return {
+        completedUsers: completedUserIds.size,
+        totalCompletions: totalCompletions, // Antal completed entries, inte unika användare
+        totalSessionTime
+      };
+    } else {
+      // Använd nya endpointen för JSON-kurser
+      const response = await api.get(`/courses/${course.id}/progress/all/`);
+      const progressData = response.data || [];
+      
+      // Räkna unika användare som slutfört kursen
+      const completedUsers = progressData.filter(entry => entry.is_completed).length;
+      
+      // För JSON-kurser: använd completion_count från backend för totala genomföranden
+      const totalCompletions = progressData.reduce((sum, entry) => {
+        // Om användaren har slutfört kursen, lägg till deras completion_count
+        return sum + (entry.is_completed ? (entry.completion_count || 1) : 0);
+      }, 0);
+      
+      // För JSON-kurser kan vi beräkna en uppskattad sessionstid baserat på slides
+      // Detta är en uppskattning eftersom JSON-kurser inte har exakt sessionstid
+      let estimatedSessionTime = 0;
+      progressData.forEach((entry) => {
+        if (entry.is_completed && entry.current_slide_index) {
+          // Uppskatta ~30 sekunder per slide som genomfört
+          estimatedSessionTime += (entry.current_slide_index + 1) * 30 * (entry.completion_count || 1);
+        }
+      });
+      
+      return {
+        completedUsers,
+        totalCompletions,
+        totalSessionTime: estimatedSessionTime
+      };
     }
-  };
+  } catch (err) {
+    console.error(`Fel vid hämtning av progressdata för kurs ${course.id} (${course.course_type}):`, err);
+    return {
+      completedUsers: 0,
+      totalCompletions: 0,
+      totalSessionTime: 0
+    };
+  }
+};
 
-  // Funktion för att formatera sekunder till MM:SS
-  const formatSessionTime = (seconds) => {
-    if (!seconds) return "0:00";
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.round(seconds % 60);
+// Korrigerad funktion för att parsa SCORM-sessionstid till sekunder
+const parseSessionTime = (sessionTime) => {
+  try {
+    if (!sessionTime || sessionTime === "0") return 0;
+    
+    // SCORM tidsformat: "0000:05:09.53" (HHHH:MM:SS.ss)
+    const match = sessionTime.match(/(\d+):(\d{2}):(\d{2})(\.\d+)?/);
+    if (!match) return 0;
+    
+    const [, hours, minutes, seconds, decimals] = match;
+    let totalSeconds = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+    
+    // Lägg till decimaler om de finns
+    if (decimals) {
+      totalSeconds += parseFloat(decimals);
+    }
+    
+    return totalSeconds;
+  } catch (err) {
+    console.error(`Fel vid parsning av sessionstid ${sessionTime}:`, err);
+    return 0;
+  }
+};
+
+// Korrigerad funktion för att formatera sekunder till MM:SS eller HH:MM:SS
+const formatSessionTime = (seconds) => {
+  if (!seconds || seconds === 0) return "0:00";
+  
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = Math.round(seconds % 60);
+  
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+  } else {
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  };
+  }
+};
 
   // Filtrera och sortera kurser
   const getFilteredAndSortedCourses = () => {
@@ -115,11 +208,16 @@ export default function AdminCourseOverview() {
       filtered = courses.filter(course => course.completed_users > 0);
     } else if (filter === 'new') {
       filtered = courses.slice(0, 3); // Antag att de första är nyast
+    } else if (filter === 'scorm') {
+      filtered = courses.filter(course => course.course_type === 'scorm');
+    } else if (filter === 'json') {
+      filtered = courses.filter(course => course.course_type === 'json');
     }
 
     return filtered.sort((a, b) => {
       if (sortBy === 'popular') return b.completed_users - a.completed_users;
       if (sortBy === 'alphabetical') return a.title.localeCompare(b.title);
+      if (sortBy === 'type') return a.course_type.localeCompare(b.course_type);
       return 0;
     });
   };
@@ -128,62 +226,67 @@ export default function AdminCourseOverview() {
     const fetchData = async () => {
       try {
         setLoading(true);
-
+  
         // Hämta kurser
         const coursesResponse = await api.get("/courses/");
         let coursesData = coursesResponse.data;
-
+  
         // Hämta team-data för totalUsers
         const teamResponse = await api.get("/team/");
         const totalUsers = teamResponse.data.length || 0;
-
-        // Hämta SCORM-data för alla kurser
-        let completedCourses = 0;
+  
+        // Hämta progress data för alla kurser baserat på kurstyp
+        let totalCompletedCourses = 0;
         let totalSessionTime = 0;
-
-        // Lägg till completed_users för varje kurs
+        let totalUniqueCompletedUsers = new Set(); // För att räkna unika användare
+  
+        // Lägg till completed_users för varje kurs och samla statistik
         coursesData = await Promise.all(
           coursesData.map(async (course) => {
+            const progressStats = await fetchCourseProgressData(course);
+            
+            // Lägg till totala genomföranden (inte unika användare)
+            totalCompletedCourses += progressStats.totalCompletions;
+            
+            // Lägg till sessionstid
+            totalSessionTime += progressStats.totalSessionTime;
+            
+            // För att få unika användare över alla kurser, hämta användardata per kurs
             try {
-              const scormResponse = await api.get(`/scorm/get-data/?courseId=${course.id}`);
-              const scormData = scormResponse.data || [];
-
-              // Räkna unika användare med completed
-              const completedUserIds = new Set(
+              if (course.course_type === 'scorm') {
+                const scormResponse = await api.get(`/scorm/get-data/?courseId=${course.id}`);
+                const scormData = scormResponse.data || [];
                 scormData
                   .filter((entry) => entry.progress_data?.["cmi.completion_status"] === "completed")
-                  .map((entry) => entry.user_id)
-              );
-              const completedUsersCount = completedUserIds.size;
-
-              // Uppdatera statistik
-              scormData.forEach((entry) => {
-                if (entry.progress_data?.["cmi.completion_status"] === "completed") {
-                  completedCourses += 1;
-                }
-                const sessionTime = entry.progress_data?.["cmi.core.total_session_time"];
-                if (sessionTime) {
-                  totalSessionTime += parseSessionTime(sessionTime);
-                }
-              });
-
-              return { ...course, completed_users: completedUsersCount };
+                  .forEach((entry) => totalUniqueCompletedUsers.add(entry.user_id));
+              } else {
+                const jsonResponse = await api.get(`/courses/${course.id}/progress/all/`);
+                const jsonData = jsonResponse.data || [];
+                jsonData
+                  .filter((entry) => entry.is_completed)
+                  .forEach((entry) => totalUniqueCompletedUsers.add(entry.user_id));
+              }
             } catch (err) {
-              console.error(`Fel vid hämtning av SCORM-data för kurs ${course.id}:`, err);
-              return { ...course, completed_users: 0 };
+              console.error(`Fel vid hämtning av användardata för kurs ${course.id}:`, err);
             }
+            
+            return { 
+              ...course, 
+              completed_users: progressStats.completedUsers 
+            };
           })
         );
-
+  
         setCourses(coursesData);
-
-        const avgSessionTime = totalUsers > 0 ? totalSessionTime : 0;
-
+  
+        // Uppdatera företagsstatistik med korrekt data
         setCompanyStats({
           totalUsers,
-          completedCourses,
-          avgSessionTime: avgSessionTime || 0,
+          completedCourses: totalCompletedCourses, // Totala genomföranden (kan vara flera per användare)
+          avgSessionTime: totalSessionTime, // Total ackumulerad sessionstid
+          uniqueCompletedUsers: totalUniqueCompletedUsers.size // Extra: unika användare som slutfört minst en kurs
         });
+        
       } catch (err) {
         console.error("Error fetching data:", err);
         setError("Kunde inte hämta data. Försök igen senare.");
@@ -191,7 +294,7 @@ export default function AdminCourseOverview() {
         setLoading(false);
       }
     };
-
+  
     const timer = setTimeout(fetchData, 500);
     return () => clearTimeout(timer);
   }, []);
@@ -307,7 +410,7 @@ export default function AdminCourseOverview() {
               className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full shadow-xl border border-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all"
             >
               <SparklesIcon className="h-5 w-5 mr-2" />
-              AI för oss nördar
+              AI-dashboard
             </motion.button>
           </Link>
         </motion.header>
@@ -375,7 +478,7 @@ export default function AdminCourseOverview() {
           transition={{ delay: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 mb-8"
         >
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -403,6 +506,32 @@ export default function AdminCourseOverview() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setFilter('scorm')}
+              className={`inline-flex items-center px-4 py-2 rounded-full font-medium transition-all ${
+                filter === 'scorm' 
+                  ? 'bg-blue-600 text-white shadow-lg' 
+                  : 'bg-white/60 text-gray-600 hover:bg-white/80'
+              }`}
+            >
+              <PlayIcon className="h-4 w-4 mr-1" />
+              SCORM
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setFilter('json')}
+              className={`inline-flex items-center px-4 py-2 rounded-full font-medium transition-all ${
+                filter === 'json' 
+                  ? 'bg-blue-600 text-white shadow-lg' 
+                  : 'bg-white/60 text-gray-600 hover:bg-white/80'
+              }`}
+            >
+              <DocumentIcon className="h-4 w-4 mr-1" />
+              JSON
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setFilter('new')}
               className={`px-4 py-2 rounded-full font-medium transition-all ${
                 filter === 'new' 
@@ -421,6 +550,7 @@ export default function AdminCourseOverview() {
           >
             <option value="popular">Sortera efter popularitet</option>
             <option value="alphabetical">Sortera alfabetiskt</option>
+            <option value="type">Sortera efter kurstyp</option>
           </select>
         </motion.div>
 
@@ -473,6 +603,26 @@ export default function AdminCourseOverview() {
                       <div className="absolute top-4 right-4 flex gap-2">
                         <span className="bg-blue-600/90 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full">
                           {course.language}
+                        </span>
+                      </div>
+                      {/* Kurstyp badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
+                          course.course_type === 'scorm' 
+                            ? 'bg-purple-600/90 text-white' 
+                            : 'bg-green-600/90 text-white'
+                        }`}>
+                          {course.course_type === 'scorm' ? (
+                            <>
+                              <PlayIcon className="h-3 w-3 mr-1" />
+                              SCORM
+                            </>
+                          ) : (
+                            <>
+                              <DocumentIcon className="h-3 w-3 mr-1" />
+                              JSON
+                            </>
+                          )}
                         </span>
                       </div>
                     </div>

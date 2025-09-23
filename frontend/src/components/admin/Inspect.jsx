@@ -27,6 +27,7 @@ import { BackgroundGradient } from "../ui/background-gradient";
 
 export default function Inspect() {
   const { courseId } = useParams();
+  const [courseType, setCourseType] = useState(null);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [progressData, setProgressData] = useState([]);
@@ -106,18 +107,38 @@ export default function Inspect() {
     const fetchData = async () => {
       try {
         setLoading(true);
+  
+        // Hämta kursdetaljer för att bestämma typ
+        const courseResponse = await api.get(`/courses/${courseId}/progress`);
+        const fetchedCourseType = courseResponse.data.course_type;
+        setCourseType(fetchedCourseType);
+  
+        // Hämta team/användare
         const teamResponse = await api.get("/team/");
         const userList = teamResponse.data.map((user) => ({
           id: user.id,
           name: user.full_name && user.full_name.trim() ? user.full_name : user.email,
         }));
-
-        const progressResponse = await api.get(`/scorm/get-data/?courseId=${courseId}`);
+  
+        // Hämta progress baserat på kurstyp
+        let progressResponse;
+        if (fetchedCourseType === 'scorm') {
+          progressResponse = await api.get(`/scorm/get-data/?courseId=${courseId}`);
+        } else if (fetchedCourseType === 'json') {
+          progressResponse = await api.get(`/courses/${courseId}/progress/all/`);
+        } else {
+          throw new Error("Okänd kurstyp");
+        }
+  
+        // Log the API response to verify its structure
+        console.log("Progress Response:", progressResponse.data);
+  
         const progressMap = {};
         (progressResponse.data || []).forEach((data) => {
-          progressMap[data.user_id] = data.progress_data;
+          console.log("Processing progress for user_id:", data.user_id, data);
+          progressMap[data.user_id] = data; // For JSON, use the entire object
         });
-
+  
         const enrichedUsers = userList
           .map((user) => ({
             user_id: user.id,
@@ -125,12 +146,15 @@ export default function Inspect() {
             progress_data: progressMap[user.id] || null,
           }))
           .sort((a, b) => a.name.localeCompare(b.name));
-
+  
+        // Log enrichedUsers to verify progress_data
+        console.log("Enriched Users:", enrichedUsers);
+  
         setUsers(enrichedUsers);
         setProgressData(progressResponse.data || []);
         
         // Beräkna statistik
-        calculateStats(enrichedUsers);
+        calculateStats(enrichedUsers, fetchedCourseType);
       } catch (err) {
         console.error("Fel vid hämtning av data:", err);
         setError("Kunde inte hämta data. Försök igen senare.");
@@ -138,13 +162,13 @@ export default function Inspect() {
         setLoading(false);
       }
     };
-
+  
     const timer = setTimeout(fetchData, 500);
     return () => clearTimeout(timer);
   }, [courseId]);
 
   // Beräkna statistik
-  const calculateStats = (userList) => {
+  const calculateStats = (userList, type) => {
     let completed = 0;
     let started = 0;
     let notStarted = 0;
@@ -152,12 +176,12 @@ export default function Inspect() {
     let scoredUsers = 0;
 
     userList.forEach(user => {
-      const status = getStatusType(user.progress_data);
+      const status = getStatusType(user.progress_data, type);
       if (status === 'completed') completed++;
       else if (status === 'started') started++;
       else notStarted++;
 
-      const score = getScore(user.progress_data);
+      const score = getScore(user.progress_data, type);
       if (score.percentage > 0) {
         totalScore += score.percentage;
         scoredUsers++;
@@ -180,7 +204,7 @@ export default function Inspect() {
 
     if (statusFilter !== 'all') {
       filtered = filtered.filter(user => {
-        const status = getStatusType(user.progress_data);
+        const status = getStatusType(user.progress_data, courseType);
         return status === statusFilter;
       });
     }
@@ -191,37 +215,44 @@ export default function Inspect() {
         return a.name.localeCompare(b.name);
       } else if (sortBy === 'status') {
         const statusOrder = { completed: 0, started: 1, notStarted: 2 };
-        const statusA = getStatusType(a.progress_data);
-        const statusB = getStatusType(b.progress_data);
+        const statusA = getStatusType(a.progress_data, courseType);
+        const statusB = getStatusType(b.progress_data, courseType);
         return statusOrder[statusA] - statusOrder[statusB];
       } else if (sortBy === 'score') {
-        const scoreA = getScore(a.progress_data).percentage;
-        const scoreB = getScore(b.progress_data).percentage;
+        const scoreA = getScore(a.progress_data, courseType).percentage;
+        const scoreB = getScore(b.progress_data, courseType).percentage;
         return scoreB - scoreA;
       }
       return 0;
     });
 
     setFilteredUsers(filtered);
-  }, [users, searchTerm, statusFilter, sortBy]);
+  }, [users, searchTerm, statusFilter, sortBy, courseType]);
 
-  const getStatusType = (progress) => {
+  const getStatusType = (progress, type) => {
     if (!progress || Object.keys(progress).length === 0) {
       return 'notStarted';
     }
-    if (progress["cmi.completion_status"] === "completed") {
-      return 'completed';
+
+    if (type === 'json') {
+      if (progress.is_completed) return 'completed';
+      if (progress.current_slide_index > 0) return 'started';
+      return 'notStarted';
+    } else { // SCORM
+      if (progress["cmi.completion_status"] === "completed") {
+        return 'completed';
+      }
+      if (progress["cmi.core.total_session_time"] || progress["cmi.core.session_time"] || progress["cmi.exit"] === "suspend") {
+        return 'started';
+      }
+      return 'notStarted';
     }
-    if (progress["cmi.core.total_session_time"] || progress["cmi.core.session_time"] || progress["cmi.exit"] === "suspend") {
-      return 'started';
-    }
-    return 'notStarted';
   };
 
-  const getStatus = (progress) => {
-    const type = getStatusType(progress);
+  const getStatus = (progress, type) => {
+    const statusType = getStatusType(progress, type);
     
-    switch (type) {
+    switch (statusType) {
       case 'completed':
         return {
           label: "Genomförd",
@@ -249,53 +280,57 @@ export default function Inspect() {
     }
   };
 
-  const getScore = (progress) => {
+  const getScore = (progress, type) => {
     if (!progress) {
       return fallbackScore("Ingen poängdata tillgänglig.");
     }
+
+    if (type === 'json') {
+      return fallbackScore("Ingen poängsättning för JSON-kurser.");
+    } else { // SCORM
+      let raw = parseFloat(progress["cmi.score.raw"]);
+      let max = parseFloat(progress["cmi.score.max"]);
   
-    let raw = parseFloat(progress["cmi.score.raw"]);
-    let max = parseFloat(progress["cmi.score.max"]);
+      if (
+        (isNaN(raw) || isNaN(max) || max === 0) &&
+        Array.isArray(progress.completion_history) &&
+        progress.completion_history.length > 0
+      ) {
+        const latest = progress.completion_history[0];
+        raw = parseFloat(latest.score_raw);
+        max = parseFloat(latest.score_max);
+      }
   
-    if (
-      (isNaN(raw) || isNaN(max) || max === 0) &&
-      Array.isArray(progress.completion_history) &&
-      progress.completion_history.length > 0
-    ) {
-      const latest = progress.completion_history[0];
-      raw = parseFloat(latest.score_raw);
-      max = parseFloat(latest.score_max);
+      if (isNaN(raw) || isNaN(max) || max === 0) {
+        return fallbackScore("Ogiltig poängdata.");
+      }
+  
+      const percentage = (raw / max) * 100;
+      let color, bgColor, tooltip;
+  
+      if (percentage >= 80) {
+        color = "text-green-600";
+        bgColor = "bg-green-100/70 border border-green-200/50";
+        tooltip = `Hög poäng: ${Math.round(percentage)}% (${raw}/${max})`;
+      } else if (percentage >= 50) {
+        color = "text-yellow-600";
+        bgColor = "bg-yellow-100/70 border border-yellow-200/50";
+        tooltip = `Medelpoäng: ${Math.round(percentage)}% (${raw}/${max})`;
+      } else {
+        color = "text-red-600";
+        bgColor = "bg-red-100/70 border border-red-200/50";
+        tooltip = `Låg poäng: ${Math.round(percentage)}% (${raw}/${max})`;
+      }
+  
+      return {
+        percentage,
+        color,
+        bgColor,
+        display: `${Math.round(percentage)}%`,
+        rawScore: `${raw}/${max}`,
+        tooltip,
+      };
     }
-  
-    if (isNaN(raw) || isNaN(max) || max === 0) {
-      return fallbackScore("Ogiltig poängdata.");
-    }
-  
-    const percentage = (raw / max) * 100;
-    let color, bgColor, tooltip;
-  
-    if (percentage >= 80) {
-      color = "text-green-600";
-      bgColor = "bg-green-100/70 border border-green-200/50";
-      tooltip = `Hög poäng: ${Math.round(percentage)}% (${raw}/${max})`;
-    } else if (percentage >= 50) {
-      color = "text-yellow-600";
-      bgColor = "bg-yellow-100/70 border border-yellow-200/50";
-      tooltip = `Medelpoäng: ${Math.round(percentage)}% (${raw}/${max})`;
-    } else {
-      color = "text-red-600";
-      bgColor = "bg-red-100/70 border border-red-200/50";
-      tooltip = `Låg poäng: ${Math.round(percentage)}% (${raw}/${max})`;
-    }
-  
-    return {
-      percentage,
-      color,
-      bgColor,
-      display: `${Math.round(percentage)}%`,
-      rawScore: `${raw}/${max}`,
-      tooltip,
-    };
   };
   
   const fallbackScore = (tooltipMessage) => ({
@@ -306,17 +341,46 @@ export default function Inspect() {
     tooltip: tooltipMessage || "Ingen poängdata.",
   });
 
-  const formatSessionTime = (timeStr) => {
-    if (!timeStr) return "-";
+  const parseSessionTimeToSeconds = (timeStr) => {
+    if (!timeStr) return 0;
     const match = timeStr.match(/(\d+):(\d{2}):(\d{2})(\.\d{1,2})?/);
-    if (!match) return timeStr;
+    if (!match) return 0;
     const [, hours, minutes, seconds, fraction] = match;
+    return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseFloat(seconds + (fraction || ".00"));
+  };
+
+  const formatSessionTime = (seconds) => {
+    if (!seconds || seconds === 0) return "-";
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = Math.round(seconds % 60);
     const parts = [];
-    if (parseInt(hours)) parts.push(`${parseInt(hours)}h`);
-    if (parseInt(minutes)) parts.push(`${parseInt(minutes)}m`);
-    const sec = parseFloat(seconds + (fraction || ".00")).toFixed(0);
-    if (parseFloat(sec)) parts.push(`${sec}s`);
+    if (hours) parts.push(`${hours}h`);
+    if (minutes) parts.push(`${minutes}m`);
+    if (remainingSeconds) parts.push(`${remainingSeconds}s`);
     return parts.join(" ") || "0s";
+  };
+
+  const getSessionTime = (progress, type) => {
+    if (!progress) {
+      return formatSessionTime(0); // Return default value if progress is null
+    }
+    if (type === 'json') {
+      let estimatedSeconds = 0;
+      if (progress.current_slide_index !== undefined) {
+        const slidesViewed = progress.current_slide_index + 1;
+        estimatedSeconds += slidesViewed * 30;
+        if (progress.is_completed) {
+          estimatedSeconds += (progress.completion_count - 1) * slidesViewed * 30;
+        } else {
+          estimatedSeconds += progress.completion_count * slidesViewed * 30;
+        }
+      }
+      return formatSessionTime(estimatedSeconds);
+    } else { // SCORM
+      const timeStr = progress?.["cmi.core.total_session_time"] || progress?.["cmi.core.session_time"];
+      return formatSessionTime(parseSessionTimeToSeconds(timeStr));
+    }
   };
 
   const formatDate = (isoString) => {
@@ -415,7 +479,7 @@ export default function Inspect() {
               </div>
               <div>
                 <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
-                  Kursanalys #{courseId}
+                  Kursanalys #{courseId} ({courseType.toUpperCase()})
                 </h1>
                 <p className="text-gray-600 mt-1">Detaljerad användaröversikt och prestationsanalys</p>
               </div>
@@ -583,8 +647,8 @@ export default function Inspect() {
                     <tbody className="bg-white/50 backdrop-blur-sm divide-y divide-gray-200/50">
                       <AnimatePresence>
                         {filteredUsers.map((user, index) => {
-                          const status = getStatus(user.progress_data);
-                          const score = getScore(user.progress_data);
+                          const status = getStatus(user.progress_data, courseType);
+                          const score = getScore(user.progress_data, courseType);
                           const isExpanded = expandedUserId === user.user_id;
                           
                           return (
@@ -600,10 +664,29 @@ export default function Inspect() {
                               className="cursor-pointer transition-all hover:bg-gradient-to-r hover:from-blue-50/30 hover:to-indigo-50/30"
                             >
                               <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="flex items-center">
+                                  <UserCircleIcon className="h-5 w-5 text-gray-400 mr-3 flex-shrink-0" />
+                                  <div className="text-sm font-medium text-gray-900 truncate max-w-xs">
+                                    {user.name}
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${status.color}`}>
+                                  {status.icon}
+                                  <span className="ml-2">{status.label}</span>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${score.bgColor}`}>
+                                  <span className={score.color}>{score.display}</span>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="flex items-center text-sm text-gray-600">
                                   <ClockIcon className="h-4 w-4 mr-2 text-gray-400" />
                                   <span className="font-medium">
-                                    {formatSessionTime(user.progress_data?.["cmi.core.session_time"] || user.progress_data?.["cmi.core.total_session_time"])}
+                                    {getSessionTime(user.progress_data, courseType)}
                                   </span>
                                 </div>
                               </td>
@@ -657,9 +740,9 @@ export default function Inspect() {
                             </div>
                           </div>
 
-                          {users.find(u => u.user_id === expandedUserId)?.progress_data?.["completion_history"]?.length > 0 ? (
+                          {courseType === 'scorm' && users.find(u => u.user_id === expandedUserId)?.progress_data?.completion_history?.length > 0 ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                              {users.find(u => u.user_id === expandedUserId)?.progress_data["completion_history"].map((entry, idx) => (
+                              {users.find(u => u.user_id === expandedUserId)?.progress_data.completion_history.map((entry, idx) => (
                                 <motion.div 
                                   key={idx}
                                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -705,12 +788,58 @@ export default function Inspect() {
                                         <span className="text-sm font-medium text-gray-700">Tid:</span>
                                       </div>
                                       <span className="font-bold text-blue-700">
-                                        {formatSessionTime(entry.session_time)}
+                                        {formatSessionTime(parseSessionTimeToSeconds(entry.session_time))}
                                       </span>
                                     </div>
                                   </div>
                                 </motion.div>
                               ))}
+                            </div>
+                          ) : courseType === 'json' ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <motion.div 
+                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ delay: 0.1 }}
+                                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)" }}
+                                className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all"
+                              >
+                                <div className="flex items-center justify-between mb-4">
+                                  <span className="inline-flex items-center text-xs font-semibold text-blue-600 bg-blue-100/60 px-3 py-1 rounded-full">
+                                    <TrophyIcon className="h-3 w-3 mr-1" />
+                                    Slutföranden
+                                  </span>
+                                </div>
+                                <div className="space-y-4">
+                                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50/50 to-teal-50/50 rounded-lg border border-green-200/30">
+                                    <div className="flex items-center">
+                                      <CheckCircleIcon className="h-4 w-4 text-green-600 mr-2" />
+                                      <span className="text-sm font-medium text-gray-700">Antal slutförda:</span>
+                                    </div>
+                                    <span className="font-bold text-green-700">
+                                      {users.find(u => u.user_id === expandedUserId)?.progress_data?.completion_count || 0}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 rounded-lg border border-blue-200/30">
+                                    <div className="flex items-center">
+                                      <ClockIcon className="h-4 w-4 text-blue-600 mr-2" />
+                                      <span className="text-sm font-medium text-gray-700">Uppskattad total tid:</span>
+                                    </div>
+                                    <span className="font-bold text-blue-700">
+                                      {getSessionTime(users.find(u => u.user_id === expandedUserId)?.progress_data, courseType)}
+                                    </span>
+                                  </div>
+                                  <div className="flex items-center justify-between p-3 bg-gradient-to-r from-purple-50/50 to-violet-50/50 rounded-lg border border-purple-200/30">
+                                    <div className="flex items-center">
+                                      <ChartBarIcon className="h-4 w-4 text-purple-600 mr-2" />
+                                      <span className="text-sm font-medium text-gray-700">Aktuell slide:</span>
+                                    </div>
+                                    <span className="font-bold text-purple-700">
+                                      {users.find(u => u.user_id === expandedUserId)?.progress_data?.current_slide_index + 1 || "-"}
+                                    </span>
+                                  </div>
+                                </div>
+                              </motion.div>
                             </div>
                           ) : (
                             <motion.div 
